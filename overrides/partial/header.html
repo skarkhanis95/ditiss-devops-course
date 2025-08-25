@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block header %}
+  {{ super() }}
+  <!-- Floating toggle button -->
+  <button id="toggle-nav"
+          class="nav-toggle"
+          aria-label="Toggle left navigation"
+          title="Toggle left navigation">
+    ☰
+  </button>
+{% endblock %}

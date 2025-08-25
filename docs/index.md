@@ -1,4 +1,9 @@
+---
+hide:
+  - toc
+  - navigation
 # IT Infrastructure & DevOps — PG‑DITISS Aug 2025
+---
 
 Welcome! This course blends **real-world infrastructure** and **DevOps practice** using a company simulation: **TechOps Inc.**  
 You’ll guide six teams (10 students each) through designing, building, automating, and operating production-like systems.

@@ -1,16 +1,19 @@
 site_name: PG-DITISS 2025 · IT Infrastructure & DevOps
 site_description: Course site for IT Infrastructure & DevOps (PG-DITISS Aug 2025)
-site_url: https://example.github.io/ditiss-devops-course/
-repo_url: https://github.com/example/ditiss-devops-course
+site_url: https://skarkhanis95.github.io/ditiss-devops-course/
+repo_url: https://github.com/skarkhanis95/ditiss-devops-course
 repo_name: Course Repo
 
 theme:
   name: material
+  custom_dir: overrides
   language: en
   features:
     - navigation.tabs
     - navigation.top
     - navigation.expand
+    - navigation.sections
+    - navigation.instant
     - content.code.copy
     - content.tabs.link
     - search.suggest
@@ -26,7 +29,12 @@ theme:
         name: Switch to light mode
   icon:
     logo: material/school
+    
+extra_javascript:
+  - assets/javascripts/toggle-nav.js
 
+extra_css:
+  - assets/stylesheets/toggle-nav.css
 plugins:
   - search
 
@@ -49,36 +57,42 @@ markdown_extensions:
       custom_checkbox: true
 
 nav:
+  # === TOP TABS ===
   - Home: index.md
   - About:
       - Course Overview: about/overview.md
+  - Course:
+      - Couse Roadmap:
+          - Roadmap: roadmap/roadmap.md
+      - Session 0 · Agile & Tools:
+          - Overview: 00-session-0/README.md
+      - Phase 1 · Infrastructure (S6–S9):
+          - Session 6: phase-1/session-06.md
+          - Session 7: phase-1/session-07.md
+          - Session 8: phase-1/session-08.md
+          - Session 9: phase-1/session-09.md
+      - Phase 2 · Virtualization & Cloud (S10–S13):
+          - Session 10: phase-2/session-10.md
+          - Session 11: phase-2/session-11.md
+          - Session 12: phase-2/session-12.md
+          - Session 13: phase-2/session-13.md
+      - Phase 3 · DevOps Foundations (S14–S17):
+          - Session 14: phase-3/session-14.md
+          - Session 15: phase-3/session-15.md
+          - Session 16: phase-3/session-16.md
+          - Session 17: phase-3/session-17.md
+      - Phase 4 · CI/CD & Monitoring (S18–S20):
+          - Session 18: phase-4/session-18.md
+          - Session 19: phase-4/session-19.md
+          - Session 20: phase-4/session-20.md
+      - Phase 5 · Security & HA (S21–S23):
+          - Session 21: phase-5/session-21.md
+          - Session 22: phase-5/session-22.md
+          - Session 23: phase-5/session-23.md
   - Resources:
       - Tools & Setup: resources/tools.md
       - References: resources/references.md
-  - About:
-      - Course Overview: about/overview.md
-  - Session 0 · Agile & Tools:
-      - Overview: 00-session-0/README.md
-  - Phase 1 · Infrastructure (S6–S9):
-      - Session 6: phase-1/session-06.md
-      - Session 7: phase-1/session-07.md
-      - Session 8: phase-1/session-08.md
-      - Session 9: phase-1/session-09.md
-  - Phase 2 · Virtualization & Cloud (S10–S13):
-      - Session 10: phase-2/session-10.md
-      - Session 11: phase-2/session-11.md
-      - Session 12: phase-2/session-12.md
-      - Session 13: phase-2/session-13.md
-  - Phase 3 · DevOps Foundations (S14–S17):
-      - Session 14: phase-3/session-14.md
-      - Session 15: phase-3/session-15.md
-      - Session 16: phase-3/session-16.md
-      - Session 17: phase-3/session-17.md
-  - Phase 4 · CI/CD & Monitoring (S18–S20):
-      - Session 18: phase-4/session-18.md
-      - Session 19: phase-4/session-19.md
-      - Session 20: phase-4/session-20.md
-  - Phase 5 · Security & HA (S21–S23):
-      - Session 21: phase-5/session-21.md
-      - Session 22: phase-5/session-22.md
-      - Session 23: phase-5/session-23.md
+      - Announcements: resources/announcements.md
+      - Calendar: resources/calendar.md
+      - FAQs: resources/faqs.md
+  
