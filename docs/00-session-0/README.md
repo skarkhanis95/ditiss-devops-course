@@ -19,7 +19,7 @@ hide:
 
 ---
 
-## Theory Summary (Agile for Infra & DevOps) 
+## Summary (Agile for Infra & DevOps) 
 Agile emerged to counter rigid, plan‑heavy delivery models that struggled with uncertainty. In Dev and Ops contexts, Agile is less about speed for its own sake and more about **short feedback loops**, **visibility**, and **continuous improvement**. We’ll use Agile to coordinate complex work across infrastructure, cloud, and DevOps pipelines.
 
 **Agile values** emphasize individuals & interactions, working solutions, customer collaboration, and responsiveness to change. In our setting, “customer” = your stakeholders: internal teams, instructors, and demo audiences. **Principles** like frequent delivery, technical excellence, and sustainable pace map well to infrastructure work: small increments (e.g., baseline VM image), validated frequently (checkpoints), and continuously improved (automation).
@@ -37,156 +37,7 @@ Key benefits you’ll feel immediately:
 
 ---
 
-## Agile
 
-Agile is a way of working that delivers value **in small, useful slices**, learning from feedback quickly, and adapting plans as we go. Instead of locking a big plan for months, Agile asks:  
-**“What’s the next most valuable thing we can deliver in the next short cycle?”**
-
-**Core ideas**
-- Deliver in **small batches** (1–2 week cycles).
-- Focus on **customer/stakeholder value**.
-- Gather **fast feedback** and adapt.
-- Encourage **collaboration** across teams.
-- **Respond to change** instead of resisting it.
-
-!!! example "Everyday Example"
-    You’re building a college fest website.  
-    - Week 1: deliver the **schedule page**.  
-    - Week 2: add **speaker bios**.  
-    - Week 3: add **ticketing**.  
-    After week 1, you learn most users are on **mobile**, so you adjust next week’s plan to improve mobile experience.  
-    → That’s Agile: deliver → learn → adjust.
-
-![Agile Cycle](../assets/images/agile-cycle.png)
----
-
-## Agile Methodologies: Scrum and Kanban
-
-Agile is the philosophy. **Scrum** and **Kanban** are two popular ways to implement it.
-
-### Scrum (time-boxed approach)
-- **Sprints:** Short, fixed-length cycles (1–3 weeks).
-- **Roles:**  
-  - Product Owner (sets priorities)  
-  - Scrum Master (facilitates, removes blockers)  
-  - Development Team (does the work)
-- **Events:** Sprint Planning, Daily Stand-ups, Sprint Review, Retrospective.
-- **Artifacts:** Product Backlog, Sprint Backlog, Increment.
-
-!!! example "Scrum Example"
-    A team promises: “In 2 weeks, we’ll deliver a **baseline VM image**.”  
-    - They sync daily for 15 min.  
-    - At sprint end, they demo the VM and get feedback: “please add curl and htop.”  
-    - Next sprint, they adjust accordingly.
-
----
-
-### Kanban (flow-based approach)
-- **Visualize work** on a board (To Do → In Progress → Done).
-- **Limit Work-In-Progress (WIP)** to avoid multitasking chaos.
-- **Measure flow**: cycle time (start to finish), throughput (items/week).
-
-!!! example "Kanban Example"
-    An ops team gets requests: create users, patch servers, rotate keys.  
-    - They allow only **3 tasks max** “In Progress”.  
-    - When one finishes, they **pull** the next.  
-    → Result: fewer half-done tasks, faster average completion.
-
----
-
-### Scrum vs Kanban (at a glance)
-
-| Scrum | Kanban |
-|-------|--------|
-| Works in **fixed sprints** | Works in **continuous flow** |
-| Team **commits to a sprint goal** | Team **pulls tasks as capacity frees** |
-| Best for project-style work | Best for ongoing ops/support |
-
-![Agile Cycle](../assets/images/agile_diff.webp)
-
----
-
-## Lean
-
-Lean focuses on **maximizing value while eliminating waste**.  
-Originating in Toyota’s production system, it maps perfectly to IT and DevOps.
-
-**Three enemies in Lean**
-- **Muda (Waste)** – unnecessary work, delays, rework.
-- **Mura (Unevenness)** – workload peaks/valleys causing churn.
-- **Muri (Overburden)** – overloading people/systems.
-
-**Five Lean Principles**
-1. Specify value (from customer’s viewpoint).  
-2. Map the value stream (all steps from request → delivery).  
-3. Create flow (remove bottlenecks and stops).  
-4. Establish pull (work only when demand exists).  
-5. Seek perfection (continuous improvement).
-
-**Common wastes in IT/DevOps**
-- Waiting (e.g., PR sits 3 days unreviewed).  
-- Rework (build breaks due to inconsistent environments).  
-- Overprocessing (writing 30-page docs no one reads).  
-- Overproduction (building features/scripts nobody uses).  
-- Inventory/WIP (10 half-done tasks, nothing delivered).  
-- Motion/context switching (jumping across 6 tools).  
-- Unused talent (infra engineers excluded from design).
-
----
-
-## Implementation of Lean (DevOps context)
-
-1. **Define value** clearly (e.g., “a secure, ready-to-use VM by Friday”).
-2. **Map the value stream** (all steps request → running system).
-3. **Measure baseline** (lead time, cycle time, MTTR).
-4. **Remove waste** (standard templates, automation, smaller batches).
-5. **Introduce pull** (WIP limits, visualize queues).
-6. **Make problems visible** (dashboards, blocked items).
-7. **Continuous improvement** (small retrospectives after each delivery).
-
-!!! example "Mini Case"
-    Goal: Deliver a **sandbox VM** in 48 hours.  
-    - Old: approval wait 2 days + manual provisioning → often rework.  
-    - Lean: pre-approved hardened template + self-service request.  
-    → Delivery in hours, fewer defects, happier devs.
-
----
-
-## Lean and Agile in DevOps
-
-- **Agile** = what to build next (short cycles, priorities).  
-- **Lean** = how to deliver efficiently (cut waste, improve flow).  
-- **DevOps** = culture + automation bridging Dev & Ops.
-
-**Practical intersections**
-- Agile sprints + Lean small batches → **CI/CD pipelines**.  
-- Lean “reduce handoffs” + Agile “cross-functional teams” → fewer silos.  
-- Limit WIP + short sprints → steadier throughput.  
-- Retrospectives (Agile) + Kaizen (Lean) → continuous improvement.
-
-**DevOps practices showing Lean + Agile**
-- Small PRs + trunk-based development.  
-- Automated testing & deployments.  
-- Infrastructure as Code (standardization).  
-- Feature flags (safe incremental releases).  
-- Observability (metrics, logs, traces → faster recovery).  
-
-!!! example "Real-world Outcome"
-    A team moves from monthly deployments to **twice a week** by:  
-    - Using Agile sprints (1 feature/week).  
-    - Applying Lean (limit WIP, automate tests).  
-    Result: smaller, safer deployments, faster recovery, less stress.
-
----
-
-## Key Takeaways
-
-- Agile = **deliver value in small increments, adapt quickly**.  
-- Scrum = **structured sprints**, Kanban = **continuous flow**.  
-- Lean = **maximize value, eliminate waste**.  
-- Lean + Agile = **DevOps culture**, powered by automation and feedback.  
-
----
 
 ## Practical Application (TechOps Inc. Simulation)
 **Scenario:** You’ve just joined TechOps Inc. as a 10‑person platform team. You have four weeks to deliver the first milestone: **Infra Blueprint** (Sessions 6–9). Today you will create your **communication hub**, **project board**, **repo**, and a **working plan** for Sprint‑1.
@@ -324,9 +175,7 @@ You can drop these into this page later:
 
 <!-- YouTube -->
 <iframe width="560" height="315"
-src="https://www.youtube.com/watch?v=8eVXTyIZ1Hs" title="What is Agile?"
+src="https://www.youtube.com/embed/8eVXTyIZ1Hs" title="What is Agile?"
 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe>
 
-<!-- Google Slides -->
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTJD-RrXIv5pqfOiBOhCRZ_d6VPoxiInWXIO2d0_mdNSPCTH3ERofzOLyLsQhii0UC1kO99N-qQzEMO/pubembed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>

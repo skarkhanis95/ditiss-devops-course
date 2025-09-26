@@ -11,9 +11,10 @@ theme:
   features:
     - navigation.tabs
     - navigation.top
-    - navigation.expand
+    - navigation.collapse
     - navigation.sections
     - navigation.instant
+    - navigation.footer
     - content.code.copy
     - content.tabs.link
     - search.suggest
@@ -37,6 +38,7 @@ extra_css:
   - assets/stylesheets/toggle-nav.css
 plugins:
   - search
+  - mermaid2
 
 markdown_extensions:
   - admonition
@@ -55,6 +57,7 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
+  
 
 nav:
   # === TOP TABS ===
@@ -66,16 +69,81 @@ nav:
           - Roadmap: roadmap/roadmap.md
       - Session 0 · Agile & Tools:
           - Overview: 00-session-0/README.md
-      - Phase 1 · Infrastructure (S6–S9):
-          - Session 6: phase-1/session-06.md
-          - Session 7: phase-1/session-07.md
-          - Session 8: phase-1/session-08.md
-          - Session 9: phase-1/session-09.md
-      - Phase 2 · Virtualization & Cloud (S10–S13):
-          - Session 10: phase-2/session-10.md
-          - Session 11: phase-2/session-11.md
-          - Session 12: phase-2/session-12.md
-          - Session 13: phase-2/session-13.md
+          - Agile:
+            - Agile: 00-session-0/agile.md
+            - Agile Methodologioes: 00-session-0/agile-methodologies.md
+            - Lean in DevOps: 00-session-0/lean.md
+            - Understanding Labs: 00-session-0/lab-intro-00.md
+            - Lab 01: 00-session-0/lab01.md
+            - Lab 02: 00-session-0/lab02.md
+      - Data Center Management:
+          - Data Center Management: 
+            - Overview: phase-1/overview.md
+            - Architecture: phase-1/dc-arch.md
+            - Physical Area: phase-1/dc-physical-area.md
+            - Power: phase-1/dc-power.md
+            - Cooling: phase-1/dc-cooling.md
+            - Networks: phase-1/dc-networks.md
+            - Weigth: phase-1/dc-weigth.md
+            - Geo-Location: phase-1/dc-geo-location.md
+            - Budget: phase-1/dc-budget.md
+            - Good Design: phase-1/dc-design.md
+            - Classification & Ratings: phase-1/dc-ratings.md
+            - Knowledge Check: phase-1/ph1-quiz.md
+          - Infrastructure in a DC: 
+            - Overview: phase-1/dc-infra/00_Overview.md
+            - Moudlar Cable Design: phase-1/dc-infra/01_Modular_Cabling_Design.md
+            - Point of Distribution: phase-1/dc-infra/02_Points_of_Distribution.md
+            - ISP WAN: phase-1/dc-infra/03_ISP_WAN_Links.md
+            - NOC: phase-1/dc-infra/04_NOC.md
+            - DataCenter Physical Logical Security and Cleaning: phase-1/dc-infra/05_DataCenter_Physical_Logical_Security_and_Cleaning.md
+            - Reasons for Consolidation: phase-1/dc-infra/06_Reasons_for_Consolidation.md
+            - Consolidation Opportunities: phase-1/dc-infra/07_Consolidation_Opportunities.md
+            - Datacenter Servers: phase-1/dc-infra/08_Datacenter_Servers.md
+            - Server Capacity Planning: phase-1/dc-infra/09_Server_Capacity_Planning.md
+            - Disaster Recovery: phase-1/dc-infra/10_Disaster_Recovery.md
+            - DataCenter Security Guidelines: phase-1/dc-infra/11_DataCenter_Security_Guidelines.md
+            - Internet Security Guidelines: phase-1/dc-infra/12_Internet_Security_Guidelines.md
+            - Source Security Issues: phase-1/dc-infra/13_Source_Security_Issues.md
+            - Best Practices System Administration: phase-1/dc-infra/14_Best_Practices_System_Administration.md
+            - System Administration Automation: phase-1/dc-infra/15_System_Administration_Automation.md
+      - Virtualization & Cloud):
+          - Overview: phase-2/01_Overview.md
+          - Virtualization:
+            - Introduction: phase-2/virtualization/01_introduction.md
+            - Concepts: phase-2/virtualization/02_concepts.md
+            - OS Virtualization: phase-2/virtualization/03_os_virtualization.md
+            - Clusters: phase-2/virtualization/04_clusters.md
+            - Lab 03: phase-2/virtualization/lab03.md
+            - Lab 04: phase-2/virtualization/lab04.md
+          - Storage Area Network (SAN):
+            - Introduction: phase-2/san/01_overview.md
+            - High Availability: phase-2/san/02_high_availablity.md
+            - Components: phase-2/san/03_san_components.md
+            - Lab 05: phase-2/san/lab05.md
+            - Lab 06: phase-2/san/lab06.md
+            - Lab 07: phase-2/san/lab07.md
+            - Lab 08: phase-2/san/lab08.md
+            - Lab 09: phase-2/san/lab09.md
+          - Cloud Computing:
+            - Cloud Computing: phase-2/cloud-computing/01_cloud_computing.md
+            - HCI: phase-2/cloud-computing/02_hci.md
+            - Open Stack: phase-2/cloud-computing/03_open_stack.md
+            - SDN: phase-2/cloud-computing/04_sdn.md
+            - Lab 10: phase-2/cloud-computing/lab10.md
+            - Public Cloud: phase-2/cloud-computing/05_public_cloud.md
+            - Services of Public Cloud: phase-2/cloud-computing/06_public_cloud_services.md
+            - Services Comparision: phase-2/cloud-computing/07_public_cloud_service_comparision.md
+            - Lab 11: phase-2/cloud-computing/lab11.md
+            - Cloud API & SDK: phase-2/cloud-computing/08_cloud_api_sdk.md
+            - Cloud Migration & DR: phase-2/cloud-computing/09_cloud_dr.md
+            - Config Management: phase-2/cloud-computing/10_config_mgmt.md
+            - Cloud Migration: phase-2/cloud-computing/11_cloud_migration.md
+            - Lab 12: phase-2/cloud-computing/lab12.md
+            - Lab 13: phase-2/cloud-computing/lab13.md
+            - Cloud Logging & Monitoring: phase-2/cloud-computing/12_monitoring.md
+            - Lab 14: phase-2/cloud-computing/lab14.md
+            - Lab 15: phase-2/cloud-computing/lab15.md
       - Phase 3 · DevOps Foundations (S14–S17):
           - Session 14: phase-3/session-14.md
           - Session 15: phase-3/session-15.md
@@ -91,6 +159,7 @@ nav:
           - Session 23: phase-5/session-23.md
   - Resources:
       - Tools & Setup: resources/tools.md
+      - Labs Intro: resources/labs-intro.md
       - References: resources/references.md
       - Announcements: resources/announcements.md
       - Calendar: resources/calendar.md
