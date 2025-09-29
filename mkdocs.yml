@@ -52,7 +52,11 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.highlight
   - pymdownx.inlinehilite
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -67,7 +71,7 @@ nav:
   - Course:
       - Couse Roadmap:
           - Roadmap: roadmap/roadmap.md
-      - Session 0 · Agile & Tools:
+      - Phase 0 · Agile & Tools:
           - Overview: 00-session-0/README.md
           - Agile:
             - Agile: 00-session-0/agile.md
@@ -76,7 +80,7 @@ nav:
             - Understanding Labs: 00-session-0/lab-intro-00.md
             - Lab 01: 00-session-0/lab01.md
             - Lab 02: 00-session-0/lab02.md
-      - Data Center Management:
+      - Phase 1 . Data Center Management:
           - Data Center Management: 
             - Overview: phase-1/overview.md
             - Architecture: phase-1/dc-arch.md
@@ -107,7 +111,7 @@ nav:
             - Source Security Issues: phase-1/dc-infra/13_Source_Security_Issues.md
             - Best Practices System Administration: phase-1/dc-infra/14_Best_Practices_System_Administration.md
             - System Administration Automation: phase-1/dc-infra/15_System_Administration_Automation.md
-      - Virtualization & Cloud):
+      - Pahse 2 . Virtualization & Cloud):
           - Overview: phase-2/01_Overview.md
           - Virtualization:
             - Introduction: phase-2/virtualization/01_introduction.md
@@ -144,19 +148,27 @@ nav:
             - Cloud Logging & Monitoring: phase-2/cloud-computing/12_monitoring.md
             - Lab 14: phase-2/cloud-computing/lab14.md
             - Lab 15: phase-2/cloud-computing/lab15.md
-      - Phase 3 · DevOps Foundations (S14–S17):
-          - Session 14: phase-3/session-14.md
-          - Session 15: phase-3/session-15.md
-          - Session 16: phase-3/session-16.md
-          - Session 17: phase-3/session-17.md
-      - Phase 4 · CI/CD & Monitoring (S18–S20):
-          - Session 18: phase-4/session-18.md
-          - Session 19: phase-4/session-19.md
-          - Session 20: phase-4/session-20.md
-      - Phase 5 · Security & HA (S21–S23):
-          - Session 21: phase-5/session-21.md
-          - Session 22: phase-5/session-22.md
-          - Session 23: phase-5/session-23.md
+      - Phase 3 · DevOps:
+          - DevOps Foundations: phase-3/01_devops.md
+          - DevOps Basic Tools: phase-3/02_devops_tools.md
+          - Lab 16: phase-3/lab16.md
+          - Lab 17: phase-3/lab17.md
+          - Lab 18: phase-3/lab18.md
+          - Lab 19: phase-3/lab19.md
+          - Lab 20: phase-3/lab20.md
+          - Lab 21: phase-3/lab21.md
+          - Infrastructure as Code (IaC): phase-3/03_iac.md
+          - Terraform: phase-3/00_terraform.md
+          - Container Orchestration: phase-3/04_container_orchestration.md
+          - Micro Services Deployment: phase-3/05_micro_services_deployment.md
+          - Lab 22(a) (Optional): phase-3/lab22a.md
+          - Lab 22: phase-3/lab22.md
+          - Lab 23: phase-3/lab23.md
+          - Lab 24: phase-3/lab24.md
+          - Lab 25: phase-3/lab25.md
+          - Ansible: phase-3/06_ansible.md
+          - Lab 26: phase-3/lab26.md
+          - Lab 27: phase-3/lab27.md
   - Resources:
       - Tools & Setup: resources/tools.md
       - Labs Intro: resources/labs-intro.md
