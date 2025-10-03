@@ -1,0 +1,4833 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Course site for IT Infrastructure & DevOps (PG-DITISS Aug 2025)">
+      
+      
+      
+        <link rel="canonical" href="https://skarkhanis95.github.io/ditiss-devops-course/capstone/05_lab03/">
+      
+      
+        <link rel="prev" href="../04_lab02/">
+      
+      
+        <link rel="next" href="../06_lab04/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Lab 03 - PG-DITISS 2025 · IT Infrastructure & DevOps</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/toggle-nav.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-03-aws-iam-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-header__button md-logo" aria-label="PG-DITISS 2025 · IT Infrastructure & DevOps" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PG-DITISS 2025 · IT Infrastructure & DevOps
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 03
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/skarkhanis95/ditiss-devops-course" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Course Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../roadmap/roadmap/" class="md-tabs__link">
+          
+  
+  
+  Course
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_overview/" class="md-tabs__link">
+          
+  
+  
+  Capstone Project
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../roadmap/syllabus/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-nav__button md-logo" aria-label="PG-DITISS 2025 · IT Infrastructure & DevOps" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    PG-DITISS 2025 · IT Infrastructure & DevOps
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/skarkhanis95/ditiss-devops-course" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Course Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Course
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Course
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Couse Roadmap
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Couse Roadmap
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 0 · Agile & Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 0 · Agile & Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/01_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Agile
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Agile
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/02_agile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/03_agile-methodologies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agile Methodologioes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/04_lean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lean in DevOps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/lab00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Labs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/lab01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 01
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/lab02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 02
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/knowledge-check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Knowledge Check
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 1 . Data Center Management
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 1 . Data Center Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_1" id="__nav_2_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Data Center Management
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Data Center Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-arch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-physical-area/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Physical Area
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-power/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Power
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-cooling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cooling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-weigth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Weigth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-geo-location/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Geo-Location
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-budget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Budget
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Good Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-ratings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Classification & Ratings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure in a DC
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Infrastructure in a DC
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/01_Modular_Cabling_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Moudlar Cable Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/02_Points_of_Distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Point of Distribution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/03_ISP_WAN_Links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ISP WAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/04_NOC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NOC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/05_DataCenter_Physical_Logical_Security_and_Cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataCenter Physical Logical Security and Cleaning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/06_Reasons_for_Consolidation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reasons for Consolidation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/07_Consolidation_Opportunities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consolidation Opportunities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/08_Datacenter_Servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datacenter Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/09_Server_Capacity_Planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Server Capacity Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/10_Disaster_Recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Disaster Recovery
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/11_DataCenter_Security_Guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataCenter Security Guidelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/12_Internet_Security_Guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Internet Security Guidelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/13_Source_Security_Issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Source Security Issues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/14_Best_Practices_System_Administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Best Practices System Administration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/15_System_Administration_Automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Administration Automation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/ph1-quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Knowledge Check
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Pahse 2 . Virtualization & Cloud)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Pahse 2 . Virtualization & Cloud)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/01_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4_2" id="__nav_2_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Virtualization
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Virtualization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/01_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/02_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Concepts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/03_os_virtualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OS Virtualization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/04_clusters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clusters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/lab03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 03
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/lab04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4_3" id="__nav_2_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Storage Area Network (SAN)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Storage Area Network (SAN)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/01_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/02_high_availablity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    High Availability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/03_san_components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 07
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 08
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 09
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4_4" id="__nav_2_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud Computing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud Computing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/01_cloud_computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Computing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/02_hci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HCI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/03_open_stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open Stack
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/04_sdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/05_public_cloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Public Cloud
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/06_public_cloud_services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services of Public Cloud
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/07_public_cloud_service_comparision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Comparision
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 11
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/08_cloud_api_sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud API & SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/09_cloud_dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Migration & DR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/10_config_mgmt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Config Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/11_cloud_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 13
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/12_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Logging & Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 14
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 15
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 3 · DevOps
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 3 · DevOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/01_devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DevOps Foundations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/02_devops_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DevOps Basic Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 16
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 17
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 18
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 19
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 20
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 21
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/03_iac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure as Code (IaC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/00_terraform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/04_container_orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Container Orchestration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/05_micro_services_deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Micro Services Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab22a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 22(a) (Optional)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 22
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 23
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 24
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 25
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/06_ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab26/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 26
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 27
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Capstone Project
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Capstone Project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_labs_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Labs Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_lab01." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 01
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_lab02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 02
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 03
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 03
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-plan-what-we-will-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-level plan (what we will create)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-you-will-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      Files you will create
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-instructions-copypaste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-step instructions (copy/paste)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-step instructions (copy/paste)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1 — Create group
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-simplified-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2 — Create simplified policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-roles-instance-profiles-for-ec2-jenkins-and-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3 — Create roles / instance-profiles for EC2 (Jenkins and App)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-the-terraform-service-user-and-attach-terraform-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4 — Create the Terraform service user and attach Terraform policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-create-human-users-per-role-and-attach-role-specific-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5 — Create human users per role and attach role-specific policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-commit-your-policies-to-github-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6 — Commit your policies to GitHub Repo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-validate-each-user-user-must-run-this-on-their-workstation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7 — Validate each user (user must run this on their workstation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkpoint / Validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deliverables-to-commit-hand-to-instructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deliverables (to commit / hand to instructor)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes-must-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security notes (must-read)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps-after-lab-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps (after Lab 03)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_lab04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_lab05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_lab06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_lab07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 07
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_lab08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 08
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_lab09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 09
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_lab10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_lab11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 11
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_lab12.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_lab13.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 13
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_lab14.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 14
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17_lab15.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 15
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18_lab16.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 16
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19_lab17.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 17
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20_lab18.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 18
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/syllabus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Syllabus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools & Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/labs-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Labs Intro
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/references.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/announcements.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Announcements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/calendar.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calendar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/faqs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-plan-what-we-will-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-level plan (what we will create)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-you-will-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      Files you will create
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-instructions-copypaste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-step instructions (copy/paste)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-step instructions (copy/paste)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1 — Create group
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-simplified-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2 — Create simplified policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-roles-instance-profiles-for-ec2-jenkins-and-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3 — Create roles / instance-profiles for EC2 (Jenkins and App)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-the-terraform-service-user-and-attach-terraform-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4 — Create the Terraform service user and attach Terraform policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-create-human-users-per-role-and-attach-role-specific-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5 — Create human users per role and attach role-specific policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-commit-your-policies-to-github-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6 — Commit your policies to GitHub Repo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-validate-each-user-user-must-run-this-on-their-workstation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7 — Validate each user (user must run this on their workstation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkpoint / Validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deliverables-to-commit-hand-to-instructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deliverables (to commit / hand to instructor)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes-must-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security notes (must-read)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps-after-lab-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps (after Lab 03)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  <!-- Floating toggle button -->
+  <button id="toggle-nav"
+          class="nav-toggle"
+          aria-label="Toggle left navigation"
+          title="Toggle left navigation">☰</button>
+  
+                  
+
+
+  
+  
+
+
+<h1 id="lab-03-aws-iam-setup">Lab 03 — AWS IAM Setup<a class="headerlink" href="#lab-03-aws-iam-setup" title="Permanent link">&para;</a></h1>
+<p><strong>Role(s) Responsible:</strong> Project Owner / IAM Engineer</p>
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Create IAM users for each team role with console + CLI access.</li>
+<li>Create and attach <strong>simplified, role-appropriate IAM policies</strong> (no full Admin to users).</li>
+<li>Create Terraform service user and attach Terraform policy (used by Terraform Cloud).</li>
+<li>Create Jenkins EC2 role and App EC2 role (instance profiles) with appropriate permissions.</li>
+<li>Produce and securely distribute credentials for every user in the format:</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code>Role:
+Username:
+Password:
+Account ID:
+Access Key:
+Secret Key:
+</code></pre></div>
+* Validate each user can log in and use CLI actions allowed for their role.</p>
+<hr />
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
+<ul>
+<li>You are logged into the AWS account with an IAM user that has <strong>AdministratorAccess</strong> (Project Owner / IAM Engineer).</li>
+<li>AWS CLI v2 installed and configured for the admin user (<code>aws configure</code>).</li>
+<li>A local folder for lab files, e.g. <code>labs/lab03/</code> to store policy JSON files and outputs.</li>
+</ul>
+<hr />
+<h2 id="high-level-plan-what-we-will-create">High-level plan (what we will create)<a class="headerlink" href="#high-level-plan-what-we-will-create" title="Permanent link">&para;</a></h2>
+<ol>
+<li><code>techops-teamX</code> IAM group (base membership).</li>
+<li>Per-role policies (simplified scoped): Architect, Network, SysAdmin, Storage, Monitoring, Developer, DevOps, Scrum Master.</li>
+<li>IAM users (one per role) — create login profile + access keys.</li>
+<li>Terraform service user <code>techops-terraform</code> + attach TerraformPolicy.</li>
+<li>Jenkins EC2 Role (instance profile) + App EC2 Role (instance profile).</li>
+<li>Produce per-user credential file and confirm login &amp; CLI access.</li>
+</ol>
+<hr />
+<h2 id="files-you-will-create">Files you will create<a class="headerlink" href="#files-you-will-create" title="Permanent link">&para;</a></h2>
+<p>Create a working folder and store all JSON policy files there:</p>
+<div class="highlight"><pre><span></span><code>labs/lab03/policies/
+  - terraform-policy.json
+  - architect-policy.json
+  - network-policy.json
+  - sysadmin-policy.json
+  - storage-policy.json
+  - monitoring-policy.json
+  - developer-policy.json
+  - devops-policy.json
+  - scrum-policy.json
+  - jenkins-ec2-policy.json
+  - app-ec2-policy.json
+  - ec2-trust.json
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">One Command to Create Above Strucutre</p>
+<p>You can use following command to create the folder structure in one go:</p>
+<div class="highlight"><pre><span></span><code>mkdir -p labs/lab03/policies &amp;&amp; touch labs/lab03/policies/{terraform-policy.json,architect-policy.json,network-policy.json,sysadmin-policy.json,storage-policy.json,monitoring-policy.json,developer-policy.json,devops-policy.json,scrum-policy.json,jenkins-ec2-policy.json,app-ec2-policy.json,ec2-trust.json}
+</code></pre></div>
+</div>
+<hr />
+<h2 id="step-by-step-instructions-copypaste">Step-by-step instructions (copy/paste)<a class="headerlink" href="#step-by-step-instructions-copypaste" title="Permanent link">&para;</a></h2>
+<p><strong>Step 0 — Set variables</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Adjust team name/ids</span>
+<span class="nv">TEAM</span><span class="o">=</span><span class="s2">&quot;teamX&quot;</span>
+<span class="nv">GROUP</span><span class="o">=</span><span class="s2">&quot;techops-</span><span class="si">${</span><span class="nv">TEAM</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nv">ACCOUNT_ID</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity<span class="w"> </span>--query<span class="w"> </span>Account<span class="w"> </span>--output<span class="w"> </span>text<span class="k">)</span>
+<span class="nv">REGION</span><span class="o">=</span><span class="s2">&quot;ap-south-1&quot;</span><span class="w">    </span><span class="c1"># or your chosen region</span>
+<span class="nv">OUTDIR</span><span class="o">=</span><span class="s2">&quot;labs/lab03/output&quot;</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>labs/lab03/policies<span class="w"> </span><span class="nv">$OUTDIR</span>
+</code></pre></div>
+<hr />
+<h3 id="step-1-create-group">Step 1 — Create group<a class="headerlink" href="#step-1-create-group" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>create-group<span class="w"> </span>--group-name<span class="w"> </span><span class="si">${</span><span class="nv">GROUP</span><span class="si">}</span>
+</code></pre></div>
+<hr />
+<h3 id="step-2-create-simplified-policies">Step 2 — Create simplified policies<a class="headerlink" href="#step-2-create-simplified-policies" title="Permanent link">&para;</a></h3>
+<p>Save the following JSON files under <code>labs/lab03/policies/</code> and create them via <code>aws iam create-policy</code>. (I include compact, safe-but-functional policies tailored per role.)</p>
+<div class="admonition tip">
+<p class="admonition-title">Use Nano</p>
+<ul>
+<li>Use nano editor to create policies faster. If you do not have nano install you can run <code>sudo apt install nano</code></li>
+<li>Then you can run command like <code>nano /labs/lab03/policy/terraform-policy.json</code></li>
+<li>Copy the contents from lab and paste them</li>
+<li>To save &amp; exit use shortcut <code>Crtl+O</code> -&gt; <code>Enter</code> -&gt; <code>Crtl+X</code></li>
+</ul>
+</div>
+<p><strong>A. Terraform policy (broader infra access for Terraform Cloud) — <code>terraform-policy.json</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;ec2:*&quot;</span><span class="p">,</span><span class="s2">&quot;elasticloadbalancing:*&quot;</span><span class="p">,</span><span class="s2">&quot;autoscaling:*&quot;</span><span class="p">,</span><span class="s2">&quot;vpc:*&quot;</span><span class="p">,</span><span class="s2">&quot;route53:*&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:*&quot;</span><span class="p">,</span><span class="s2">&quot;s3:*&quot;</span><span class="p">,</span><span class="s2">&quot;iam:PassRole&quot;</span><span class="p">,</span><span class="s2">&quot;cloudwatch:*&quot;</span><span class="p">,</span><span class="s2">&quot;logs:*&quot;</span><span class="p">,</span><span class="s2">&quot;kms:*&quot;</span><span class="p">,</span><span class="s2">&quot;dynamodb:*&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>B. Architect policy — <code>architect-policy.json</code></strong> (read + limited write for tagging / describe)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;ec2:Describe*&quot;</span><span class="p">,</span><span class="s2">&quot;vpc:Describe*&quot;</span><span class="p">,</span><span class="s2">&quot;route53:ListHostedZones&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DescribeTags&quot;</span><span class="p">,</span><span class="s2">&quot;s3:ListAllMyBuckets&quot;</span><span class="p">,</span><span class="s2">&quot;s3:GetBucketLocation&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;tag:GetResources&quot;</span><span class="p">,</span><span class="s2">&quot;tag:TagResources&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>C. Network policy — <code>network-policy.json</code></strong> (VPC, subnets, SG manage)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;ec2:CreateVpc&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DeleteVpc&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:CreateSubnet&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:ModifySubnetAttribute&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:CreateSecurityGroup&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:AuthorizeSecurityGroupIngress&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:RevokeSecurityGroupIngress&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DeleteSecurityGroup&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:Describe*&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>D. SysAdmin policy — <code>sysadmin-policy.json</code></strong> (manage EC2 instances, EBS, SSM)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;ec2:RunInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:TerminateInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:StartInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:StopInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DescribeInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:CreateTags&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:AttachVolume&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DetachVolume&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DescribeVolumes&quot;</span><span class="p">,</span><span class="s2">&quot;ssm:SendCommand&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>E. Storage policy — <code>storage-policy.json</code></strong> (S3 + EBS operations)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span><span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span><span class="s2">&quot;s3:ListBucket&quot;</span><span class="p">,</span><span class="s2">&quot;s3:CreateBucket&quot;</span><span class="p">,</span><span class="s2">&quot;s3:DeleteObject&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:CreateSnapshot&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DeleteSnapshot&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DescribeVolumes&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>F. Monitoring policy — <code>monitoring-policy.json</code></strong> (logs, create metric filters; since we use Prometheus, grant EC2 + S3)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;logs:CreateLogGroup&quot;</span><span class="p">,</span><span class="s2">&quot;logs:CreateLogStream&quot;</span><span class="p">,</span><span class="s2">&quot;logs:PutLogEvents&quot;</span><span class="p">,</span><span class="s2">&quot;logs:DescribeLogStreams&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DescribeInstances&quot;</span><span class="p">,</span><span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span><span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span><span class="s2">&quot;cloudwatch:PutMetricData&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>G. Developer policy — <code>developer-policy.json</code></strong> (limited EC2, ECR push/pull)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;ecr:GetAuthorizationToken&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:BatchGetImage&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:GetDownloadUrlForLayer&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:BatchCheckLayerAvailability&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:InitiateLayerUpload&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:UploadLayerPart&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:CompleteLayerUpload&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:PutImage&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;ec2:DescribeInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:RunInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:StopInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:StartInstances&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>H. DevOps policy — <code>devops-policy.json</code></strong> (ECR push/pull, S3 for artifacts, and limited EC2 deploy)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;ecr:*&quot;</span><span class="p">,</span><span class="s2">&quot;s3:*&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:DescribeInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:StartInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ec2:StopInstances&quot;</span><span class="p">,</span><span class="s2">&quot;ssm:SendCommand&quot;</span><span class="p">,</span><span class="s2">&quot;iam:PassRole&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>I. Scrum Master policy — <code>scrum-policy.json</code></strong> (read-only)</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;ec2:Describe*&quot;</span><span class="p">,</span><span class="s2">&quot;vpc:Describe*&quot;</span><span class="p">,</span><span class="s2">&quot;s3:ListAllMyBuckets&quot;</span><span class="p">,</span><span class="s2">&quot;s3:GetBucketLocation&quot;</span><span class="p">,</span><span class="s2">&quot;cloudwatch:GetMetricData&quot;</span><span class="p">,</span><span class="s2">&quot;logs:DescribeLogGroups&quot;</span><span class="p">,</span><span class="s2">&quot;logs:DescribeLogStreams&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>J. Jenkins EC2 policy — <code>jenkins-ec2-policy.json</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;ecr:GetAuthorizationToken&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:BatchGetImage&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:GetDownloadUrlForLayer&quot;</span><span class="p">,</span><span class="s2">&quot;ecr:BatchCheckLayerAvailability&quot;</span><span class="p">,</span><span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span><span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span><span class="s2">&quot;ssm:GetParameters&quot;</span><span class="p">,</span><span class="s2">&quot;ssm:GetParameter&quot;</span><span class="p">,</span><span class="s2">&quot;secretsmanager:GetSecretValue&quot;</span><span class="p">,</span><span class="s2">&quot;iam:PassRole&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>K. App EC2 policy — <code>app-ec2-policy.json</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="nt">&quot;Action&quot;</span><span class="p">:[</span><span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span><span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span><span class="s2">&quot;logs:CreateLogStream&quot;</span><span class="p">,</span><span class="s2">&quot;logs:PutLogEvents&quot;</span><span class="p">],</span><span class="nt">&quot;Resource&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>L. EC2 trust policy for instance profiles — <code>ec2-trust.json</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Version&quot;</span><span class="p">:</span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Statement&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Effect&quot;</span><span class="p">:</span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Principal&quot;</span><span class="p">:{</span><span class="nt">&quot;Service&quot;</span><span class="p">:</span><span class="s2">&quot;ec2.amazonaws.com&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;Action&quot;</span><span class="p">:</span><span class="s2">&quot;sts:AssumeRole&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Create all policies</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>labs/lab03/policies
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_TerraformPolicy<span class="w"> </span>--policy-document<span class="w"> </span>file://terraform-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_ArchitectPolicy<span class="w"> </span>--policy-document<span class="w"> </span>file://architect-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_NetworkPolicy<span class="w"> </span>--policy-document<span class="w"> </span>file://network-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_SysAdminPolicy<span class="w"> </span>--policy-document<span class="w"> </span>file://sysadmin-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_StoragePolicy<span class="w"> </span>--policy-document<span class="w"> </span>file://storage-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_MonitoringPolicy<span class="w"> </span>--policy-document<span class="w"> </span>file://monitoring-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_DeveloperPolicy<span class="w"> </span>--policy-document<span class="w"> </span>file://developer-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_DevOpsPolicy<span class="w"> </span>--policy-document<span class="w"> </span>file://devops-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_ScrumPolicy<span class="w"> </span>--policy-document<span class="w"> </span>file://scrum-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_JenkinsEC2Policy<span class="w"> </span>--policy-document<span class="w"> </span>file://jenkins-ec2-policy.json
+aws<span class="w"> </span>iam<span class="w"> </span>create-policy<span class="w"> </span>--policy-name<span class="w"> </span>TechOps_AppEC2Policy<span class="w"> </span>--policy-document<span class="w"> </span>file://app-ec2-policy.json
+</code></pre></div>
+<blockquote>
+<p>Note: <code>create-policy</code> will output the policy ARN — copy them or run <code>aws iam list-policies --scope Local</code> later.</p>
+</blockquote>
+<hr />
+<h3 id="step-3-create-roles-instance-profiles-for-ec2-jenkins-and-app">Step 3 — Create roles / instance-profiles for EC2 (Jenkins and App)<a class="headerlink" href="#step-3-create-roles-instance-profiles-for-ec2-jenkins-and-app" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>create-role<span class="w"> </span>--role-name<span class="w"> </span>TechOps_JenkinsRole<span class="w"> </span>--assume-role-policy-document<span class="w"> </span>file://labs/lab03/policies/ec2-trust.json
+aws<span class="w"> </span>iam<span class="w"> </span>attach-role-policy<span class="w"> </span>--role-name<span class="w"> </span>TechOps_JenkinsRole<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::<span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span>:policy/TechOps_JenkinsEC2Policy
+aws<span class="w"> </span>iam<span class="w"> </span>create-instance-profile<span class="w"> </span>--instance-profile-name<span class="w"> </span>TechOps_JenkinsInstanceProfile
+aws<span class="w"> </span>iam<span class="w"> </span>add-role-to-instance-profile<span class="w"> </span>--instance-profile-name<span class="w"> </span>TechOps_JenkinsInstanceProfile<span class="w"> </span>--role-name<span class="w"> </span>TechOps_JenkinsRole
+
+aws<span class="w"> </span>iam<span class="w"> </span>create-role<span class="w"> </span>--role-name<span class="w"> </span>TechOps_AppRole<span class="w"> </span>--assume-role-policy-document<span class="w"> </span>file://labs/lab03/policies/ec2-trust.json
+aws<span class="w"> </span>iam<span class="w"> </span>attach-role-policy<span class="w"> </span>--role-name<span class="w"> </span>TechOps_AppRole<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::<span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span>:policy/TechOps_AppEC2Policy
+aws<span class="w"> </span>iam<span class="w"> </span>create-instance-profile<span class="w"> </span>--instance-profile-name<span class="w"> </span>TechOps_AppInstanceProfile
+aws<span class="w"> </span>iam<span class="w"> </span>add-role-to-instance-profile<span class="w"> </span>--instance-profile-name<span class="w"> </span>TechOps_AppInstanceProfile<span class="w"> </span>--role-name<span class="w"> </span>TechOps_AppRole
+</code></pre></div>
+<hr />
+<h3 id="step-4-create-the-terraform-service-user-and-attach-terraform-policy">Step 4 — Create the Terraform service user and attach Terraform policy<a class="headerlink" href="#step-4-create-the-terraform-service-user-and-attach-terraform-policy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>create-user<span class="w"> </span>--user-name<span class="w"> </span>techops-terraform
+aws<span class="w"> </span>iam<span class="w"> </span>add-user-to-group<span class="w"> </span>--group-name<span class="w"> </span><span class="si">${</span><span class="nv">GROUP</span><span class="si">}</span><span class="w"> </span>--user-name<span class="w"> </span>techops-terraform
+
+<span class="c1"># Attach policy (use ARN from create-policy or list-policies)</span>
+aws<span class="w"> </span>iam<span class="w"> </span>attach-user-policy<span class="w"> </span>--user-name<span class="w"> </span>techops-terraform<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::<span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span>:policy/TechOps_TerraformPolicy
+
+<span class="c1"># Create access keys (save output)</span>
+aws<span class="w"> </span>iam<span class="w"> </span>create-access-key<span class="w"> </span>--user-name<span class="w"> </span>techops-terraform<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">OUTDIR</span><span class="si">}</span>/techops-terraform-keys.json
+</code></pre></div>
+<p>Record <code>AccessKeyId</code> and <code>SecretAccessKey</code> from <code>${OUTDIR}/techops-terraform-keys.json</code>.</p>
+<p><strong>Add these as environment variables in Terraform Cloud workspace</strong> (sensitive):</p>
+<ul>
+<li>AWS_ACCESS_KEY_ID = <code>AccessKeyId</code></li>
+<li>AWS_SECRET_ACCESS_KEY = <code>SecretAccessKey</code></li>
+<li>AWS_DEFAULT_REGION = <code>${REGION}</code></li>
+</ul>
+<hr />
+<h3 id="step-5-create-human-users-per-role-and-attach-role-specific-policies">Step 5 — Create human users per role and attach role-specific policies<a class="headerlink" href="#step-5-create-human-users-per-role-and-attach-role-specific-policies" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Install <code>jq</code> libraries by running command <code>sudo apt install jq -y</code></li>
+<li><strong>Create bsah script:</strong> <code>nano create_iam_users.sh</code></li>
+<li>Copy and paste below script then save and exit <code>(Ctrl+O, Enter, Ctrl+X)</code>.</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Exit on any error</span>
+<span class="nb">set</span><span class="w"> </span>-e
+
+<span class="c1"># Validate environment variables</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ACCOUNT_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$GROUP</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OUTDIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Error: ACCOUNT_ID, GROUP, and OUTDIR must be set.&quot;</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="c1"># Ensure output directory exists</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OUTDIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to create </span><span class="nv">$OUTDIR</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+<span class="nb">declare</span><span class="w"> </span>-A<span class="w"> </span>USERS
+<span class="nv">USERS</span><span class="o">=(</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;iam-engineer&quot;</span><span class="o">]=</span><span class="s2">&quot;iam_engineer&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;architect&quot;</span><span class="o">]=</span><span class="s2">&quot;architect1&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;network&quot;</span><span class="o">]=</span><span class="s2">&quot;network1&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;sysadmin&quot;</span><span class="o">]=</span><span class="s2">&quot;sysadmin1&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;storage&quot;</span><span class="o">]=</span><span class="s2">&quot;storage1&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;monitoring&quot;</span><span class="o">]=</span><span class="s2">&quot;monitoring1&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;developer&quot;</span><span class="o">]=</span><span class="s2">&quot;developer1&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;devops&quot;</span><span class="o">]=</span><span class="s2">&quot;devops1&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;scrum&quot;</span><span class="o">]=</span><span class="s2">&quot;scrum1&quot;</span>
+<span class="o">)</span>
+
+<span class="nb">declare</span><span class="w"> </span>-A<span class="w"> </span>POLICYMAP
+<span class="nv">POLICYMAP</span><span class="o">=(</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;iam-engineer&quot;</span><span class="o">]=</span><span class="s2">&quot;arn:aws:iam::</span><span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span><span class="s2">:policy/TechOps_TerraformPolicy&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;architect&quot;</span><span class="o">]=</span><span class="s2">&quot;arn:aws:iam::</span><span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span><span class="s2">:policy/TechOps_ArchitectPolicy&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;network&quot;</span><span class="o">]=</span><span class="s2">&quot;arn:aws:iam::</span><span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span><span class="s2">:policy/TechOps_NetworkPolicy&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;sysadmin&quot;</span><span class="o">]=</span><span class="s2">&quot;arn:aws:iam::</span><span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span><span class="s2">:policy/TechOps_SysAdminPolicy&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;storage&quot;</span><span class="o">]=</span><span class="s2">&quot;arn:aws:iam::</span><span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span><span class="s2">:policy/TechOps_StoragePolicy&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;monitoring&quot;</span><span class="o">]=</span><span class="s2">&quot;arn:aws:iam::</span><span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span><span class="s2">:policy/TechOps_MonitoringPolicy&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;developer&quot;</span><span class="o">]=</span><span class="s2">&quot;arn:aws:iam::</span><span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span><span class="s2">:policy/TechOps_DeveloperPolicy&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;devops&quot;</span><span class="o">]=</span><span class="s2">&quot;arn:aws:iam::</span><span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span><span class="s2">:policy/TechOps_DevOpsPolicy&quot;</span>
+<span class="w">  </span><span class="o">[</span><span class="s2">&quot;scrum&quot;</span><span class="o">]=</span><span class="s2">&quot;arn:aws:iam::</span><span class="si">${</span><span class="nv">ACCOUNT_ID</span><span class="si">}</span><span class="s2">:policy/TechOps_ScrumPolicy&quot;</span>
+<span class="o">)</span>
+
+<span class="k">for</span><span class="w"> </span>role<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="p">!USERS[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nv">username</span><span class="o">=</span><span class="si">${</span><span class="nv">USERS</span><span class="p">[</span><span class="nv">$role</span><span class="p">]</span><span class="si">}</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Creating user </span><span class="nv">$username</span><span class="s2"> for role </span><span class="nv">$role</span><span class="s2">&quot;</span>
+
+<span class="w">  </span><span class="c1"># Skip if user exists</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span>aws<span class="w"> </span>iam<span class="w"> </span>get-user<span class="w"> </span>--user-name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$username</span><span class="s2">&quot;</span><span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;User </span><span class="nv">$username</span><span class="s2"> already exists, skipping.&quot;</span>
+<span class="w">    </span><span class="k">continue</span>
+<span class="w">  </span><span class="k">fi</span>
+
+<span class="w">  </span>aws<span class="w"> </span>iam<span class="w"> </span>create-user<span class="w"> </span>--user-name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$username</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to create user </span><span class="nv">$username</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="w">  </span>aws<span class="w"> </span>iam<span class="w"> </span>add-user-to-group<span class="w"> </span>--group-name<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">GROUP</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--user-name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$username</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to add </span><span class="nv">$username</span><span class="s2"> to group&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+<span class="w">  </span><span class="c1"># Create console password</span>
+<span class="w">  </span><span class="nv">PASSWORD</span><span class="o">=</span><span class="s2">&quot;ChangeMe!</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-hex<span class="w"> </span><span class="m">4</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">  </span>aws<span class="w"> </span>iam<span class="w"> </span>create-login-profile<span class="w"> </span>--user-name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$username</span><span class="s2">&quot;</span><span class="w"> </span>--password<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span><span class="w"> </span>--password-reset-required<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to create login profile for </span><span class="nv">$username</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+<span class="w">  </span><span class="c1"># Create access key</span>
+<span class="w">  </span><span class="nv">KEY_OUTPUT</span><span class="o">=</span><span class="k">$(</span>aws<span class="w"> </span>iam<span class="w"> </span>create-access-key<span class="w"> </span>--user-name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$username</span><span class="s2">&quot;</span><span class="k">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to create access key for </span><span class="nv">$username</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="w">  </span><span class="nv">AKID</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$KEY_OUTPUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.AccessKey.AccessKeyId&#39;</span><span class="k">)</span>
+<span class="w">  </span><span class="nv">SAK</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$KEY_OUTPUT</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.AccessKey.SecretAccessKey&#39;</span><span class="k">)</span>
+
+<span class="w">  </span><span class="c1"># Attach role policy</span>
+<span class="w">  </span>aws<span class="w"> </span>iam<span class="w"> </span>attach-user-policy<span class="w"> </span>--user-name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$username</span><span class="s2">&quot;</span><span class="w"> </span>--policy-arn<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">POLICYMAP</span><span class="p">[</span><span class="nv">$role</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to attach policy for </span><span class="nv">$username</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+<span class="w">  </span><span class="c1"># Save credentials</span>
+<span class="w">  </span>cat<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">OUTDIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">username</span><span class="si">}</span><span class="s2">.txt&quot;</span><span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<span class="s">Role: $role</span>
+<span class="s">Username: $username</span>
+<span class="s">Password: $PASSWORD</span>
+<span class="s">Account ID: $ACCOUNT_ID</span>
+<span class="s">Access Key: $AKID</span>
+<span class="s">Secret Key: $SAK</span>
+<span class="s">EOF</span>
+
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Created </span><span class="nv">$username</span><span class="s2">; credentials saved to </span><span class="si">${</span><span class="nv">OUTDIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">username</span><span class="si">}</span><span class="s2">.txt&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+4. <strong>Make the Script Executable:</strong>
+   <div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>create_iam_users.sh
+</code></pre></div>
+5. <strong>Run the Script:</strong> Execute the script:
+   <div class="highlight"><pre><span></span><code>./create_iam_users.sh
+</code></pre></div></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Attach additional permissions if needed</p>
+<p>If any role needs an extra permission discovered during manual testing, attach it with:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>attach-user-policy<span class="w"> </span>--user-name<span class="w"> </span>developer1<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::aws:policy/AmazonS3FullAccess
+</code></pre></div>
+<p>(Prefer attaching your custom TechOps_* policies, not AWS managed full-access policies unless needed.)</p>
+</div>
+<hr />
+<h3 id="step-6-commit-your-policies-to-github-repo">Step 6 — Commit your policies to GitHub Repo<a class="headerlink" href="#step-6-commit-your-policies-to-github-repo" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create directories inside your <strong>repo folder</strong> <em>(Replace <your-team-name> with your actual team name and repo folder</em>)
+   <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>techops-capstone-&lt;your-team-name&gt;/infrastructure/iam
+mkdir<span class="w"> </span>techops-capstone-&lt;your-team-name&gt;/infrastructure/iam/policies
+cp<span class="w"> </span>labs/lab03/policies/*.json<span class="w"> </span>techops-capstone-&lt;your-team-name&gt;/infrastructure/iam/policies/
+</code></pre></div></li>
+<li><code>cd</code> into your repo folder
+   <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>techops-capstone-&lt;your-team-name&gt;
+</code></pre></div></li>
+<li>Commit and push to new Git branch
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Added IAM Policies&quot;</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="s2">&quot;iam-1&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>iam-1
+</code></pre></div></li>
+<li>Go to Github and in your orgisation where you have created the repo. For example <em>https://github.com/ditiss-your-team-name/techops-capstone-your-team-name</em></li>
+<li>Click on <code>Compare &amp; pull Request</code></li>
+<li>
+<p>Add following Details</p>
+<ul>
+<li>Title: <code>Added IAM Policies</code></li>
+<li>Description: <code>Created policies and users in AWS IAM</code></li>
+</ul>
+</li>
+<li>
+<p>Click on <code>Create pull request</code></p>
+</li>
+<li>Ask Project Owner/Any other person in your team to go your repo</li>
+<li>Click on <code>Pull Requests</code></li>
+<li>Click on <code>Added IAM Policies</code> or any other title that you have given in above step 6.1</li>
+<li>Click on <code>Files Changed</code></li>
+<li>Click on <code>Review Changes</code></li>
+<li>Select <code>Approve</code> radio button</li>
+<li>Click on <code>Submit review</code></li>
+<li>Now back on your screen, refresh the page and you will see <code>Merge Pull request</code> button enabled. Click on it to Merge the pull request </li>
+<li>Click on <code>Confirm merge</code></li>
+</ol>
+<p>You have successfully merged your chagnes to your Github Repo now!</p>
+<h3 id="step-7-validate-each-user-user-must-run-this-on-their-workstation">Step 7 — Validate each user (user must run this on their workstation)<a class="headerlink" href="#step-7-validate-each-user-user-must-run-this-on-their-workstation" title="Permanent link">&para;</a></h3>
+<p>Each user should run:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>configure<span class="w">      </span><span class="c1"># enter their Access Key &amp; Secret Key, region, json</span>
+aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+</code></pre></div>
+<p>Expected: JSON with <code>Account</code> = <code>${ACCOUNT_ID}</code> and <code>Arn</code> containing <code>user/&lt;username&gt;</code>.</p>
+<p>Test role-specific actions (examples):</p>
+<ul>
+<li><strong>Architect</strong> (describe VPC):</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-vpcs
+</code></pre></div>
+* <strong>Network</strong> (create a test security group in test VPC):</p>
+<p><div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>create-security-group<span class="w"> </span>--group-name<span class="w"> </span>test-sg<span class="w"> </span>--description<span class="w"> </span><span class="s2">&quot;test&quot;</span>
+</code></pre></div>
+* <strong>SysAdmin</strong> (launch a test EC2 instance):</p>
+<p><div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>run-instances<span class="w"> </span>--image-id<span class="w"> </span>ami-XXXX<span class="w"> </span>--count<span class="w"> </span><span class="m">1</span><span class="w"> </span>--instance-type<span class="w"> </span>t3.micro<span class="w"> </span>--security-group-ids<span class="w"> </span>sg-XXXX
+</code></pre></div>
+* <strong>Developer</strong> (attempt ECR login/push — use Docker credentials flow later during pipeline).
+* <strong>Scrum Master</strong> (try a describe command, should return OK but not allow destructive actions).</p>
+<hr />
+<h2 id="checkpoint-validation">Checkpoint / Validation<a class="headerlink" href="#checkpoint-validation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Per-user credential files exist in <code>${OUTDIR}</code> for distribution (format exactly):</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code>Role:
+Username:
+Password:
+Account ID:
+Access Key:
+Secret Key:
+</code></pre></div>
+* All custom policies exist (<code>aws iam list-policies --scope Local</code>).
+* Instance roles and instance profiles exist:</p>
+<p><div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-role<span class="w"> </span>--role-name<span class="w"> </span>TechOps_JenkinsRole
+aws<span class="w"> </span>iam<span class="w"> </span>get-instance-profile<span class="w"> </span>--instance-profile-name<span class="w"> </span>TechOps_JenkinsInstanceProfile
+aws<span class="w"> </span>iam<span class="w"> </span>get-role<span class="w"> </span>--role-name<span class="w"> </span>TechOps_AppRole
+aws<span class="w"> </span>iam<span class="w"> </span>get-instance-profile<span class="w"> </span>--instance-profile-name<span class="w"> </span>TechOps_AppInstanceProfile
+</code></pre></div>
+* Terraform user keys saved at <code>${OUTDIR}/techops-terraform-keys.json</code>. (Instructor must add to Terraform Cloud workspace variables.)
+* Each user confirmed by running <code>aws sts get-caller-identity</code> with their CLI creds.</p>
+<hr />
+<h2 id="deliverables-to-commit-hand-to-instructor">Deliverables (to commit / hand to instructor)<a class="headerlink" href="#deliverables-to-commit-hand-to-instructor" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Commit to repo: <code>infrastructure/iam/policies/*.json</code> (policy definitions only, <strong>do not</strong> commit any keys/passwords).</li>
+<li>Submit <code>labs/lab03/output/</code> directory to instructor <strong>securely</strong> (zipped and shared privately) — includes per-user credential files (or better: instructor distributes them individually).</li>
+<li>
+<p><code>iam-report.md</code> in <code>/docs/</code> listing:</p>
+</li>
+<li>
+<p>Users created &amp; matching roles</p>
+</li>
+<li>Policy ARNs (custom TechOps_*)</li>
+<li>Role ARNs &amp; instance-profile names</li>
+<li>Confirmation that Terraform keys were added to Terraform Cloud (note only, do not paste keys in report)</li>
+</ul>
+<hr />
+<h2 id="troubleshooting-tips">Troubleshooting tips<a class="headerlink" href="#troubleshooting-tips" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>create-login-profile</code> fails</strong>: user might already have login profile; remove then recreate or reset password in Console.</li>
+<li><strong>Access key lost</strong>: you cannot retrieve SecretAccessKey after creation — create a new key and delete the old one.</li>
+<li><strong>User gets AccessDenied on action</strong>: check the policy attached to their user and augment minimally (use CloudTrail / CLI error message to find missing action).</li>
+<li><strong>Terraform Cloud fails with IAM permissions</strong>: use <code>terraform plan</code> failure output to identify missing actions and add them to <code>TechOps_TerraformPolicy</code>.</li>
+<li><strong>Credentials files left on disk</strong>: instruct IAM Engineer to securely delete after distribution (use <code>shred</code>/secure delete if required).</li>
+</ul>
+<hr />
+<h2 id="security-notes-must-read">Security notes (must-read)<a class="headerlink" href="#security-notes-must-read" title="Permanent link">&para;</a></h2>
+<ul>
+<li>DO NOT commit keys or passwords to Git. Commit only policy JSONs.</li>
+<li>Store per-user credentials <strong>securely</strong> when distributing (private message, encrypted file).</li>
+<li>Enforce <code>password-reset-required</code> on first login (script above sets that).</li>
+<li>Consider rotating Terraform user keys after the lab.</li>
+<li>Consider removing <code>AdministratorAccess</code> from human accounts after setup.</li>
+</ul>
+<hr />
+<h2 id="reflection-questions">Reflection Questions<a class="headerlink" href="#reflection-questions" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Why do we give <code>techops-terraform</code> broader infra permissions while giving humans role-specific, limited permissions?</li>
+<li>What are the risks of giving every human a programmatic access key, and how would you mitigate them in a production environment?</li>
+</ol>
+<hr />
+<h2 id="next-steps-after-lab-03">Next steps (after Lab 03)<a class="headerlink" href="#next-steps-after-lab-03" title="Permanent link">&para;</a></h2>
+<ul>
+<li>IAM Engineer adds <code>techops-terraform</code> keys to Terraform Cloud workspace (Lab 04).</li>
+<li>Architect links GitHub repo to Terraform Cloud (Lab 04).</li>
+<li>Network team begins Lab 05 (Networking with Terraform) using Terraform Cloud execution.</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../04_lab02/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 02">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 02
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../06_lab04/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 04">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 04
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.collapse", "navigation.sections", "navigation.instant", "navigation.footer", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../assets/javascripts/toggle-nav.js"></script>
+      
+    
+  </body>
+</html>

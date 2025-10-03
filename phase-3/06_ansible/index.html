@@ -1,0 +1,2194 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Course site for IT Infrastructure &amp; DevOps (PG-DITISS Aug 2025)" name="description"/>
+<link href="https://skarkhanis95.github.io/ditiss-devops-course/phase-3/06_ansible/" rel="canonical"/>
+<link href="../lab25/" rel="prev"/>
+<link href="../lab26/" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.18" name="generator"/>
+<title>Ansible - PG-DITISS 2025 · IT Infrastructure &amp; DevOps</title>
+<link href="../../assets/stylesheets/main.7e37652d.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../assets/stylesheets/toggle-nav.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#ansible-and-configuration-management">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-header__button md-logo" data-md-component="logo" href="../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            PG-DITISS 2025 · IT Infrastructure &amp; DevOps
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Ansible
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/skarkhanis95/ditiss-devops-course" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4" fill="currentColor"></path></svg>
+</div>
+<div class="md-source__repository">
+    Course Repo
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../roadmap/roadmap/">
+          
+  
+  
+  Course
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../capstone/01_overview/">
+          
+  
+  
+  Capstone Project
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../roadmap/syllabus/">
+          
+  
+  
+  Resources
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"></path></svg>
+</a>
+    PG-DITISS 2025 · IT Infrastructure &amp; DevOps
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/skarkhanis95/ditiss-devops-course" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4" fill="currentColor"></path></svg>
+</div>
+<div class="md-source__repository">
+    Course Repo
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    Home
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-ellipsis">
+    Course
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            Course
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+<span class="md-ellipsis">
+    Couse Roadmap
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_1">
+<span class="md-nav__icon md-icon"></span>
+            Couse Roadmap
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../roadmap/roadmap/">
+<span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+<span class="md-ellipsis">
+    Phase 0 · Agile &amp; Tools
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Phase 0 · Agile &amp; Tools
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-0/01_overview/">
+<span class="md-ellipsis">
+    Overview
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Agile
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_2_2">
+<span class="md-nav__icon md-icon"></span>
+            Agile
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-0/02_agile/">
+<span class="md-ellipsis">
+    Agile
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-0/03_agile-methodologies/">
+<span class="md-ellipsis">
+    Agile Methodologioes
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-0/04_lean/">
+<span class="md-ellipsis">
+    Lean in DevOps
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-0/lab00/">
+<span class="md-ellipsis">
+    Understanding Labs
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-0/lab01/">
+<span class="md-ellipsis">
+    Lab 01
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-0/lab02/">
+<span class="md-ellipsis">
+    Lab 02
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-0/knowledge-check/">
+<span class="md-ellipsis">
+    Knowledge Check
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+<span class="md-ellipsis">
+    Phase 1 . Data Center Management
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            Phase 1 . Data Center Management
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3_1" id="__nav_2_3_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Data Center Management
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_1_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_3_1">
+<span class="md-nav__icon md-icon"></span>
+            Data Center Management
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/overview/">
+<span class="md-ellipsis">
+    Overview
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-arch/">
+<span class="md-ellipsis">
+    Architecture
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-physical-area/">
+<span class="md-ellipsis">
+    Physical Area
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-power/">
+<span class="md-ellipsis">
+    Power
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-cooling/">
+<span class="md-ellipsis">
+    Cooling
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-networks/">
+<span class="md-ellipsis">
+    Networks
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-weigth/">
+<span class="md-ellipsis">
+    Weigth
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-geo-location/">
+<span class="md-ellipsis">
+    Geo-Location
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-budget/">
+<span class="md-ellipsis">
+    Budget
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-design/">
+<span class="md-ellipsis">
+    Good Design
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-ratings/">
+<span class="md-ellipsis">
+    Classification &amp; Ratings
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Infrastructure in a DC
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_3_2">
+<span class="md-nav__icon md-icon"></span>
+            Infrastructure in a DC
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/00_Overview/">
+<span class="md-ellipsis">
+    Overview
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/01_Modular_Cabling_Design/">
+<span class="md-ellipsis">
+    Moudlar Cable Design
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/02_Points_of_Distribution/">
+<span class="md-ellipsis">
+    Point of Distribution
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/03_ISP_WAN_Links/">
+<span class="md-ellipsis">
+    ISP WAN
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/04_NOC/">
+<span class="md-ellipsis">
+    NOC
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/05_DataCenter_Physical_Logical_Security_and_Cleaning/">
+<span class="md-ellipsis">
+    DataCenter Physical Logical Security and Cleaning
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/06_Reasons_for_Consolidation/">
+<span class="md-ellipsis">
+    Reasons for Consolidation
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/07_Consolidation_Opportunities/">
+<span class="md-ellipsis">
+    Consolidation Opportunities
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/08_Datacenter_Servers/">
+<span class="md-ellipsis">
+    Datacenter Servers
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/09_Server_Capacity_Planning/">
+<span class="md-ellipsis">
+    Server Capacity Planning
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/10_Disaster_Recovery/">
+<span class="md-ellipsis">
+    Disaster Recovery
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/11_DataCenter_Security_Guidelines/">
+<span class="md-ellipsis">
+    DataCenter Security Guidelines
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/12_Internet_Security_Guidelines/">
+<span class="md-ellipsis">
+    Internet Security Guidelines
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/13_Source_Security_Issues/">
+<span class="md-ellipsis">
+    Source Security Issues
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/14_Best_Practices_System_Administration/">
+<span class="md-ellipsis">
+    Best Practices System Administration
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/dc-infra/15_System_Administration_Automation/">
+<span class="md-ellipsis">
+    System Administration Automation
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-1/ph1-quiz/">
+<span class="md-ellipsis">
+    Knowledge Check
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+<span class="md-ellipsis">
+    Pahse 2 . Virtualization &amp; Cloud)
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            Pahse 2 . Virtualization &amp; Cloud)
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/01_Overview/">
+<span class="md-ellipsis">
+    Overview
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4_2" id="__nav_2_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Virtualization
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_4_2">
+<span class="md-nav__icon md-icon"></span>
+            Virtualization
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/virtualization/01_introduction/">
+<span class="md-ellipsis">
+    Introduction
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/virtualization/02_concepts/">
+<span class="md-ellipsis">
+    Concepts
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/virtualization/03_os_virtualization/">
+<span class="md-ellipsis">
+    OS Virtualization
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/virtualization/04_clusters/">
+<span class="md-ellipsis">
+    Clusters
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/virtualization/lab03/">
+<span class="md-ellipsis">
+    Lab 03
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/virtualization/lab04/">
+<span class="md-ellipsis">
+    Lab 04
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4_3" id="__nav_2_4_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Storage Area Network (SAN)
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_4_3">
+<span class="md-nav__icon md-icon"></span>
+            Storage Area Network (SAN)
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/san/01_overview/">
+<span class="md-ellipsis">
+    Introduction
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/san/02_high_availablity/">
+<span class="md-ellipsis">
+    High Availability
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/san/03_san_components/">
+<span class="md-ellipsis">
+    Components
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/san/lab05/">
+<span class="md-ellipsis">
+    Lab 05
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/san/lab06/">
+<span class="md-ellipsis">
+    Lab 06
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/san/lab07/">
+<span class="md-ellipsis">
+    Lab 07
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/san/lab08/">
+<span class="md-ellipsis">
+    Lab 08
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/san/lab09/">
+<span class="md-ellipsis">
+    Lab 09
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4_4" id="__nav_2_4_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Cloud Computing
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_4_4">
+<span class="md-nav__icon md-icon"></span>
+            Cloud Computing
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/01_cloud_computing/">
+<span class="md-ellipsis">
+    Cloud Computing
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/02_hci/">
+<span class="md-ellipsis">
+    HCI
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/03_open_stack/">
+<span class="md-ellipsis">
+    Open Stack
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/04_sdn/">
+<span class="md-ellipsis">
+    SDN
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/lab10/">
+<span class="md-ellipsis">
+    Lab 10
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/05_public_cloud/">
+<span class="md-ellipsis">
+    Public Cloud
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/06_public_cloud_services/">
+<span class="md-ellipsis">
+    Services of Public Cloud
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/07_public_cloud_service_comparision/">
+<span class="md-ellipsis">
+    Services Comparision
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/lab11/">
+<span class="md-ellipsis">
+    Lab 11
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/08_cloud_api_sdk/">
+<span class="md-ellipsis">
+    Cloud API &amp; SDK
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/09_cloud_dr/">
+<span class="md-ellipsis">
+    Cloud Migration &amp; DR
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/10_config_mgmt/">
+<span class="md-ellipsis">
+    Config Management
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/11_cloud_migration/">
+<span class="md-ellipsis">
+    Cloud Migration
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/lab12/">
+<span class="md-ellipsis">
+    Lab 12
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/lab13/">
+<span class="md-ellipsis">
+    Lab 13
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/12_monitoring/">
+<span class="md-ellipsis">
+    Cloud Logging &amp; Monitoring
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/lab14/">
+<span class="md-ellipsis">
+    Lab 14
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../phase-2/cloud-computing/lab15/">
+<span class="md-ellipsis">
+    Lab 15
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+<span class="md-ellipsis">
+    Phase 3 · DevOps
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_5">
+<span class="md-nav__icon md-icon"></span>
+            Phase 3 · DevOps
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../01_devops/">
+<span class="md-ellipsis">
+    DevOps Foundations
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../02_devops_tools/">
+<span class="md-ellipsis">
+    DevOps Basic Tools
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab16/">
+<span class="md-ellipsis">
+    Lab 16
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab17/">
+<span class="md-ellipsis">
+    Lab 17
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab18/">
+<span class="md-ellipsis">
+    Lab 18
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab19/">
+<span class="md-ellipsis">
+    Lab 19
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab20/">
+<span class="md-ellipsis">
+    Lab 20
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab21/">
+<span class="md-ellipsis">
+    Lab 21
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../03_iac/">
+<span class="md-ellipsis">
+    Infrastructure as Code (IaC)
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../00_terraform/">
+<span class="md-ellipsis">
+    Terraform
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../04_container_orchestration/">
+<span class="md-ellipsis">
+    Container Orchestration
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../05_micro_services_deployment/">
+<span class="md-ellipsis">
+    Micro Services Deployment
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab22a/">
+<span class="md-ellipsis">
+    Lab 22(a) (Optional)
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab22/">
+<span class="md-ellipsis">
+    Lab 22
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab23/">
+<span class="md-ellipsis">
+    Lab 23
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab24/">
+<span class="md-ellipsis">
+    Lab 24
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab25/">
+<span class="md-ellipsis">
+    Lab 25
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Ansible
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    Ansible
+    
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-what-is-ansible">
+<span class="md-ellipsis">
+      1. What is Ansible?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-where-is-ansible-used">
+<span class="md-ellipsis">
+      2. Where is Ansible Used?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-who-does-ansible-compete-with">
+<span class="md-ellipsis">
+      3. Who Does Ansible Compete With?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-benefits-of-ansible">
+<span class="md-ellipsis">
+      4. Benefits of Ansible
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-how-organizations-use-the-paid-ansible-automation-platform">
+<span class="md-ellipsis">
+      5. How Organizations Use the Paid “Ansible Automation Platform”
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-why-ansible-is-easier-than-competitors">
+<span class="md-ellipsis">
+      6. Why Ansible is Easier than Competitors
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-core-components-of-ansible">
+<span class="md-ellipsis">
+      7. Core Components of Ansible
+    </span>
+</a>
+<nav aria-label="7. Core Components of Ansible" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-inventory">
+<span class="md-ellipsis">
+      (a) Inventory
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#b-modules">
+<span class="md-ellipsis">
+      (b) Modules
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#c-tasks">
+<span class="md-ellipsis">
+      (c) Tasks
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#d-plays">
+<span class="md-ellipsis">
+      (d) Plays
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#e-playbooks">
+<span class="md-ellipsis">
+      (e) Playbooks
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#f-handlers">
+<span class="md-ellipsis">
+      (f) Handlers
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#g-variables">
+<span class="md-ellipsis">
+      (g) Variables
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#h-templates">
+<span class="md-ellipsis">
+      (h) Templates
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#i-roles">
+<span class="md-ellipsis">
+      (i) Roles
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#j-plugins">
+<span class="md-ellipsis">
+      (j) Plugins
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#understanding-architecture">
+<span class="md-ellipsis">
+      Understanding Architecture
+    </span>
+</a>
+<nav aria-label="Understanding Architecture" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#high-level-control-node-inventory-managed-nodes">
+<span class="md-ellipsis">
+      High Level - (Control node → Inventory → Managed nodes)
+    </span>
+</a>
+<nav aria-label="High Level - (Control node → Inventory → Managed nodes)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#explanation">
+<span class="md-ellipsis">
+      Explanation:
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#playbook-execution-flow">
+<span class="md-ellipsis">
+      Playbook execution flow
+    </span>
+</a>
+<nav aria-label="Playbook execution flow" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#explanation_1">
+<span class="md-ellipsis">
+      Explanation:
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-setting-up-ansible-environment">
+<span class="md-ellipsis">
+      8. Setting Up Ansible Environment
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#9-ansible-playbooks-and-yaml-basics">
+<span class="md-ellipsis">
+      9. Ansible Playbooks and YAML Basics
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#10-managing-ansible-inventory">
+<span class="md-ellipsis">
+      10. Managing Ansible Inventory
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-ansible-roles-and-reusability">
+<span class="md-ellipsis">
+      11. Ansible Roles and Reusability
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab26/">
+<span class="md-ellipsis">
+    Lab 26
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lab27/">
+<span class="md-ellipsis">
+    Lab 27
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Capstone Project
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Capstone Project
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+<span class="md-ellipsis">
+    Project
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_1">
+<span class="md-nav__icon md-icon"></span>
+            Project
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/01_overview/">
+<span class="md-ellipsis">
+    Overview
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/02_labs_guide/">
+<span class="md-ellipsis">
+    Labs Guide
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/03_lab01.">
+<span class="md-ellipsis">
+    Lab 01
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/04_lab02/">
+<span class="md-ellipsis">
+    Lab 02
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/05_lab03/">
+<span class="md-ellipsis">
+    Lab 03
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/06_lab04/">
+<span class="md-ellipsis">
+    Lab 04
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/07_lab05/">
+<span class="md-ellipsis">
+    Lab 05
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/08_lab06/">
+<span class="md-ellipsis">
+    Lab 06
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/09_lab07/">
+<span class="md-ellipsis">
+    Lab 07
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/10_lab08/">
+<span class="md-ellipsis">
+    Lab 08
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/11_lab09/">
+<span class="md-ellipsis">
+    Lab 09
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/12_lab10/">
+<span class="md-ellipsis">
+    Lab 10
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/13_lab11/">
+<span class="md-ellipsis">
+    Lab 11
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/14_lab12.md">
+<span class="md-ellipsis">
+    Lab 12
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/15_lab13.md">
+<span class="md-ellipsis">
+    Lab 13
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/16_lab14.md">
+<span class="md-ellipsis">
+    Lab 14
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/17_lab15.md">
+<span class="md-ellipsis">
+    Lab 15
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/18_lab16.md">
+<span class="md-ellipsis">
+    Lab 16
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/19_lab17.md">
+<span class="md-ellipsis">
+    Lab 17
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../capstone/20_lab18.md">
+<span class="md-ellipsis">
+    Lab 18
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Resources
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../roadmap/syllabus/">
+<span class="md-ellipsis">
+    Syllabus
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/tools/">
+<span class="md-ellipsis">
+    Tools &amp; Setup
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/labs-intro/">
+<span class="md-ellipsis">
+    Labs Intro
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/references.md">
+<span class="md-ellipsis">
+    References
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/announcements.md">
+<span class="md-ellipsis">
+    Announcements
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/calendar.md">
+<span class="md-ellipsis">
+    Calendar
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/faqs.md">
+<span class="md-ellipsis">
+    FAQs
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden="">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-what-is-ansible">
+<span class="md-ellipsis">
+      1. What is Ansible?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-where-is-ansible-used">
+<span class="md-ellipsis">
+      2. Where is Ansible Used?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-who-does-ansible-compete-with">
+<span class="md-ellipsis">
+      3. Who Does Ansible Compete With?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-benefits-of-ansible">
+<span class="md-ellipsis">
+      4. Benefits of Ansible
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-how-organizations-use-the-paid-ansible-automation-platform">
+<span class="md-ellipsis">
+      5. How Organizations Use the Paid “Ansible Automation Platform”
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-why-ansible-is-easier-than-competitors">
+<span class="md-ellipsis">
+      6. Why Ansible is Easier than Competitors
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-core-components-of-ansible">
+<span class="md-ellipsis">
+      7. Core Components of Ansible
+    </span>
+</a>
+<nav aria-label="7. Core Components of Ansible" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-inventory">
+<span class="md-ellipsis">
+      (a) Inventory
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#b-modules">
+<span class="md-ellipsis">
+      (b) Modules
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#c-tasks">
+<span class="md-ellipsis">
+      (c) Tasks
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#d-plays">
+<span class="md-ellipsis">
+      (d) Plays
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#e-playbooks">
+<span class="md-ellipsis">
+      (e) Playbooks
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#f-handlers">
+<span class="md-ellipsis">
+      (f) Handlers
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#g-variables">
+<span class="md-ellipsis">
+      (g) Variables
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#h-templates">
+<span class="md-ellipsis">
+      (h) Templates
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#i-roles">
+<span class="md-ellipsis">
+      (i) Roles
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#j-plugins">
+<span class="md-ellipsis">
+      (j) Plugins
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#understanding-architecture">
+<span class="md-ellipsis">
+      Understanding Architecture
+    </span>
+</a>
+<nav aria-label="Understanding Architecture" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#high-level-control-node-inventory-managed-nodes">
+<span class="md-ellipsis">
+      High Level - (Control node → Inventory → Managed nodes)
+    </span>
+</a>
+<nav aria-label="High Level - (Control node → Inventory → Managed nodes)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#explanation">
+<span class="md-ellipsis">
+      Explanation:
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#playbook-execution-flow">
+<span class="md-ellipsis">
+      Playbook execution flow
+    </span>
+</a>
+<nav aria-label="Playbook execution flow" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#explanation_1">
+<span class="md-ellipsis">
+      Explanation:
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-setting-up-ansible-environment">
+<span class="md-ellipsis">
+      8. Setting Up Ansible Environment
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#9-ansible-playbooks-and-yaml-basics">
+<span class="md-ellipsis">
+      9. Ansible Playbooks and YAML Basics
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#10-managing-ansible-inventory">
+<span class="md-ellipsis">
+      10. Managing Ansible Inventory
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-ansible-roles-and-reusability">
+<span class="md-ellipsis">
+      11. Ansible Roles and Reusability
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<!-- Floating toggle button -->
+<button aria-label="Toggle left navigation" class="nav-toggle" id="toggle-nav" title="Toggle left navigation">☰</button>
+<p><img alt="Ansible" src="../../assets/images/ansible.jpeg"/></p>
+<h1 id="ansible-and-configuration-management">Ansible and Configuration Management<a class="headerlink" href="#ansible-and-configuration-management" title="Permanent link">¶</a></h1>
+<hr/>
+<h2 id="1-what-is-ansible">1. What is Ansible?<a class="headerlink" href="#1-what-is-ansible" title="Permanent link">¶</a></h2>
+<p>Ansible is an <strong>open-source IT automation and configuration management tool</strong>.</p>
+<ul>
+<li>It helps system administrators, DevOps engineers, and cloud teams <strong>automate repetitive tasks</strong> like installing software, configuring servers, deploying applications, and managing security patches.</li>
+<li>Instead of logging into 50 servers one by one, you write a simple script (called a <strong>Playbook</strong>) in YAML, and Ansible executes it on all servers at once using <strong>SSH</strong> (Linux) or <strong>WinRM</strong> (Windows).</li>
+</ul>
+<p>📌 <strong>Think of Ansible as a remote control for your entire infrastructure.</strong></p>
+<hr/>
+<h2 id="2-where-is-ansible-used">2. Where is Ansible Used?<a class="headerlink" href="#2-where-is-ansible-used" title="Permanent link">¶</a></h2>
+<p>Organizations use Ansible in many domains:</p>
+<ul>
+<li><strong>Server Provisioning:</strong> Setting up new Linux/Windows servers in AWS, Azure, or on-premise data centers.</li>
+<li><strong>Configuration Management:</strong> Ensuring all servers have the same OS settings, firewall rules, users, and security patches.</li>
+<li><strong>Application Deployment:</strong> Automating deployment of apps (e.g., deploying a web app to Kubernetes clusters).</li>
+<li><strong>Cloud Orchestration:</strong> Managing AWS EC2, Azure VMs, GCP instances, Kubernetes pods.</li>
+<li><strong>Security Automation:</strong> Enforcing compliance policies, applying OS hardening, rolling out security updates.</li>
+<li><strong>CI/CD Pipelines:</strong> Integrating with Jenkins/GitHub Actions to deploy apps automatically after every code change.</li>
+</ul>
+<hr/>
+<h2 id="3-who-does-ansible-compete-with">3. Who Does Ansible Compete With?<a class="headerlink" href="#3-who-does-ansible-compete-with" title="Permanent link">¶</a></h2>
+<p>Ansible operates in the <strong>Configuration Management &amp; Automation space</strong>, competing with:</p>
+<ul>
+<li><strong>Puppet</strong> – Agent-based, declarative, uses its own DSL (harder to learn).</li>
+<li><strong>Chef</strong> – Agent-based, Ruby DSL, popular in early DevOps adoption.</li>
+<li><strong>SaltStack</strong> – Uses an agent (Salt Minion), scales well, strong event-driven automation.</li>
+<li><strong>Terraform</strong> – Infrastructure as Code (IaC) tool, focuses more on provisioning infra rather than config mgmt.</li>
+</ul>
+<p>👉 <strong>Ansible’s edge:</strong> Unlike Puppet and Chef, <strong>no agent is required</strong>. It’s agentless, uses existing SSH/WinRM, and YAML (easy to read/write).</p>
+<hr/>
+<h2 id="4-benefits-of-ansible">4. Benefits of Ansible<a class="headerlink" href="#4-benefits-of-ansible" title="Permanent link">¶</a></h2>
+<p>Why do so many companies love Ansible?</p>
+<ul>
+<li><strong>Agentless:</strong> No extra software required on managed nodes. Only Python/SSH is needed.</li>
+<li><strong>Human-readable YAML:</strong> Easy to learn for beginners and non-programmers.</li>
+<li><strong>Idempotency:</strong> If a task is already applied (e.g., “Apache installed”), Ansible won’t repeat it unnecessarily.</li>
+<li><strong>Cross-platform:</strong> Works on Linux, Windows, cloud, and network devices (Cisco, Juniper).</li>
+<li><strong>Scalable:</strong> Can manage 10 or 10,000 nodes with the same simplicity.</li>
+<li><strong>Community + Enterprise Support:</strong> Huge open-source community, plus enterprise-grade Red Hat support.</li>
+<li><strong>Integration:</strong> Works with CI/CD, cloud APIs, security tools, Kubernetes.</li>
+</ul>
+<p>📌 <strong>In short: Simple, scalable, and safe automation.</strong></p>
+<hr/>
+<h2 id="5-how-organizations-use-the-paid-ansible-automation-platform">5. How Organizations Use the Paid “Ansible Automation Platform”<a class="headerlink" href="#5-how-organizations-use-the-paid-ansible-automation-platform" title="Permanent link">¶</a></h2>
+<p>Red Hat offers a <strong>commercial version</strong> called <strong>Ansible Automation Platform (AAP)</strong>.
+Enterprises adopt it for:</p>
+<ul>
+<li><strong>Centralized Control:</strong> AAP includes <strong>Ansible Tower (now Automation Controller)</strong> → Web UI, RBAC (role-based access), logging, scheduling.</li>
+<li><strong>Collaboration:</strong> Teams can run playbooks securely without needing direct SSH access.</li>
+<li><strong>Governance:</strong> Tracks who ran which playbook, when, and on which servers (audit trails).</li>
+<li><strong>Automation Hub:</strong> Private library of approved roles/playbooks for reuse.</li>
+<li><strong>Scalability:</strong> Handles thousands of nodes with job distribution and high availability.</li>
+<li><strong>Compliance &amp; Security:</strong> Integrates with LDAP, SSO, enterprise-grade monitoring.</li>
+</ul>
+<p>💡 <strong>Example:</strong> A bank uses AAP to ensure all servers always comply with PCI-DSS security standards. Instead of manual audits, they run Ansible playbooks daily to check and fix compliance.</p>
+<hr/>
+<h2 id="6-why-ansible-is-easier-than-competitors">6. Why Ansible is Easier than Competitors<a class="headerlink" href="#6-why-ansible-is-easier-than-competitors" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>No new language:</strong> Puppet (DSL), Chef (Ruby), SaltStack (Jinja + YAML). Ansible → plain <strong>YAML</strong>.</li>
+<li><strong>Agentless:</strong> No background services or daemons to maintain on target systems.</li>
+<li><strong>Quick adoption:</strong> New engineers can learn YAML playbooks in a day or two.</li>
+<li><strong>Push-based model:</strong> Immediate execution from control node (unlike Puppet/Chef which rely on agents pulling configs).</li>
+<li><strong>Consistency across hybrid environments:</strong> Same playbook works for AWS, Azure, on-prem, or containers.</li>
+</ul>
+<p>📌 That’s why many organizations migrating from Puppet/Chef have chosen Ansible as a <strong>simpler, modern alternative</strong>.</p>
+<hr/>
+<h2 id="7-core-components-of-ansible">7. Core Components of Ansible<a class="headerlink" href="#7-core-components-of-ansible" title="Permanent link">¶</a></h2>
+<p>To understand Ansible deeply, you need to know its <strong>building blocks</strong>:</p>
+<h3 id="a-inventory">(a) <strong>Inventory</strong><a class="headerlink" href="#a-inventory" title="Permanent link">¶</a></h3>
+<ul>
+<li>A file that defines <strong>which machines</strong> Ansible manages.</li>
+<li>Example:</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="k">[webservers]</span>
+<span class="na">192.168.1.10</span>
+<span class="na">192.168.1.11</span>
+</code></pre></div>
+* Can be static (INI/YAML file) or dynamic (cloud inventory scripts that auto-fetch AWS EC2 instances).</p>
+<hr/>
+<h3 id="b-modules">(b) <strong>Modules</strong><a class="headerlink" href="#b-modules" title="Permanent link">¶</a></h3>
+<ul>
+<li>Small programs that Ansible runs on managed nodes to perform tasks (install package, start service, copy file).</li>
+<li>Example: <code>apt</code>, <code>yum</code>, <code>service</code>, <code>user</code>, <code>ec2_instance</code>.</li>
+<li>Thousands of built-in modules for Linux, Windows, cloud, and network devices.</li>
+</ul>
+<hr/>
+<h3 id="c-tasks">(c) <strong>Tasks</strong><a class="headerlink" href="#c-tasks" title="Permanent link">¶</a></h3>
+<ul>
+<li>A single action that Ansible performs (e.g., install Apache).</li>
+<li>Example:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Apache</span>
+<span class="w">  </span><span class="nt">apt</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache2</span>
+<span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+</code></pre></div>
+<hr/>
+<h3 id="d-plays">(d) <strong>Plays</strong><a class="headerlink" href="#d-plays" title="Permanent link">¶</a></h3>
+<ul>
+<li>A <strong>mapping between hosts and tasks</strong>.</li>
+<li>Example: Run Apache installation tasks only on <code>webservers</code>.</li>
+</ul>
+<hr/>
+<h3 id="e-playbooks">(e) <strong>Playbooks</strong><a class="headerlink" href="#e-playbooks" title="Permanent link">¶</a></h3>
+<ul>
+<li>YAML files that contain one or more <strong>Plays</strong>.</li>
+<li>They describe <strong>what should be done, on which servers, in what order</strong>.</li>
+<li>Example: Install Apache + start service across all web servers.</li>
+</ul>
+<hr/>
+<h3 id="f-handlers">(f) <strong>Handlers</strong><a class="headerlink" href="#f-handlers" title="Permanent link">¶</a></h3>
+<ul>
+<li>Special tasks that run only when triggered. Useful for restarting services after a config change.</li>
+<li>Example:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">handlers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restart apache</span>
+<span class="w">    </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache2</span>
+<span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restarted</span>
+</code></pre></div>
+<hr/>
+<h3 id="g-variables">(g) <strong>Variables</strong><a class="headerlink" href="#g-variables" title="Permanent link">¶</a></h3>
+<ul>
+<li>Used to customize playbooks for different environments.</li>
+<li>Example:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">vars</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">http_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div>
+<hr/>
+<h3 id="h-templates">(h) <strong>Templates</strong><a class="headerlink" href="#h-templates" title="Permanent link">¶</a></h3>
+<ul>
+<li>Jinja2-based configuration files with variables.</li>
+<li>Example: Apache config template with <code>{{ http_port }}</code>.</li>
+</ul>
+<hr/>
+<h3 id="i-roles">(i) <strong>Roles</strong><a class="headerlink" href="#i-roles" title="Permanent link">¶</a></h3>
+<ul>
+<li>A <strong>structured way</strong> to organize playbooks for reusability.</li>
+<li>Example: A “webserver” role contains tasks, handlers, templates, and vars all bundled together.</li>
+<li>Encourages modular design → teams can share and reuse roles.</li>
+</ul>
+<hr/>
+<h3 id="j-plugins">(j) <strong>Plugins</strong><a class="headerlink" href="#j-plugins" title="Permanent link">¶</a></h3>
+<ul>
+<li>Extend Ansible with extra features (connection plugins, lookup plugins, filter plugins).</li>
+</ul>
+<hr/>
+<p>✅ Together, these components make Ansible <strong>powerful yet simple</strong>:</p>
+<ul>
+<li><strong>Inventory → Where to run</strong></li>
+<li><strong>Modules → What to run</strong></li>
+<li><strong>Playbooks/Plays → How to run it</strong></li>
+<li><strong>Roles → How to reuse it</strong></li>
+</ul>
+<h2 id="understanding-architecture">Understanding Architecture<a class="headerlink" href="#understanding-architecture" title="Permanent link">¶</a></h2>
+<h3 id="high-level-control-node-inventory-managed-nodes">High Level - (Control node → Inventory → Managed nodes)<a class="headerlink" href="#high-level-control-node-inventory-managed-nodes" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart LR
+  A[Control Node - Ansible] --&gt; B[Inventory]
+  B --&gt; C1[webservers group]
+  B --&gt; C2[dbservers group]
+  C1 --&gt; D1[web-01 - SSH/WinRM]
+  C1 --&gt; D2[web-02 - SSH/WinRM]
+  C2 --&gt; E1[db-01 - SSH/WinRM]
+  A --&gt; F[Playbooks - YAML]
+  F --&gt; G[Modules - apt, yum, service, template, ec2, etc.]
+  G --&gt; D1
+  G --&gt; D2
+  G --&gt; E1
+  A -.-&gt; H[Ansible Automation Platform - UI, RBAC, Logging] 
+  H -.-&gt; A
+</code></pre>
+<h4 id="explanation">Explanation:<a class="headerlink" href="#explanation" title="Permanent link">¶</a></h4>
+<p>Control Node runs Ansible and playbooks. Inventory describes hosts and groups. Playbooks use modules to perform actions on the managed nodes over SSH/WinRM. In enterprise, Ansible Automation Platform sits on top to provide UI, RBAC, scheduling, and audit trails.</p>
+<h3 id="playbook-execution-flow">Playbook execution flow<a class="headerlink" href="#playbook-execution-flow" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart TD
+  P[Playbook.yml] --&gt; PL[Play 1: hosts: webservers]
+  PL --&gt; T1[Task 1: Install package - module: apt/yum]
+  PL --&gt; T2[Task 2: Deploy template - module: template]
+  PL --&gt; T3[Task 3: Start service - module: service]
+  T2 --&gt; H{Template changed?}
+  H --&gt;|yes| R[Notify handler: restart web service]
+  H --&gt;|no| S[Do nothing]
+  R --&gt; HND[Handler: restart web service]
+  T1 &amp; T2 &amp; T3 --&gt; RESULT[Return status per-host - changed/ok/failed]
+  RESULT --&gt; LOGS[Logs / stdout / Automation Controller]
+</code></pre>
+<h4 id="explanation_1">Explanation:<a class="headerlink" href="#explanation_1" title="Permanent link">¶</a></h4>
+<p>A playbook contains one or more plays. Each play targets a host/group and defines tasks. Tasks call modules. If a task that modifies configuration triggers a handler, the handler runs at the end of the play. Each host returns results (ok/changed/failed) which go to logs or the Automation Controller.</p>
+<hr/>
+<h2 id="8-setting-up-ansible-environment">8. Setting Up Ansible Environment<a class="headerlink" href="#8-setting-up-ansible-environment" title="Permanent link">¶</a></h2>
+<p><strong>Objectives:</strong></p>
+<ul>
+<li>Install Ansible on Linux/Mac/Windows WSL.</li>
+<li>Verify installation and configure first control node.</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li><strong>Control Node:</strong> Machine where Ansible is installed.</li>
+<li><strong>Managed Nodes:</strong> Target systems (Linux/Windows).</li>
+<li><strong>Requirements:</strong> Python 3, SSH access, sudo privileges.</li>
+</ul>
+<p><strong>Setup Overview:</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><input id="__tabbed_1_4" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">On Linux (Ubuntu)</label><label for="__tabbed_1_2">On CentOS/RHEL</label><label for="__tabbed_1_3">On macOS (Homebrew)</label><label for="__tabbed_1_4">On Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ansible<span class="w"> </span>-y
+ansible<span class="w"> </span>--version
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>epel-release<span class="w"> </span>-y
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>ansible<span class="w"> </span>-y
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>ansible
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Use <strong>WSL2</strong> or Ansible via <strong>Docker</strong>.</p>
+</div>
+</div>
+</input></input></input></input></div>
+<hr/>
+<h2 id="9-ansible-playbooks-and-yaml-basics">9. Ansible Playbooks and YAML Basics<a class="headerlink" href="#9-ansible-playbooks-and-yaml-basics" title="Permanent link">¶</a></h2>
+<p><strong>Objectives:</strong></p>
+<ul>
+<li>Learn YAML syntax used in Ansible.</li>
+<li>Write your first playbook.</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li><strong>Playbooks:</strong> Declarative scripts written in YAML describing desired system states.</li>
+<li>
+<p><strong>YAML Rules:</strong></p>
+</li>
+<li>
+<p>Indentation with spaces (no tabs).</p>
+</li>
+<li>Key-value pairs.</li>
+<li>Lists start with <code>-</code>.</li>
+</ul>
+<p><strong>Example Playbook:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Apache on webservers</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webservers</span>
+<span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Apache package</span>
+<span class="w">      </span><span class="nt">apt</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache2</span>
+<span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+</code></pre></div>
+<hr/>
+<h2 id="10-managing-ansible-inventory">10. Managing Ansible Inventory<a class="headerlink" href="#10-managing-ansible-inventory" title="Permanent link">¶</a></h2>
+<p><strong>Objectives:</strong></p>
+<ul>
+<li>Understand inventory formats and groups.</li>
+<li>Configure static and dynamic inventories.</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li><strong>Inventory:</strong> File listing managed nodes.</li>
+<li><strong>Static Inventory (INI format):</strong></li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="k">[webservers]</span>
+<span class="na">server1 ansible_host</span><span class="o">=</span><span class="s">192.168.1.10 ansible_user=ubuntu</span>
+<span class="na">server2 ansible_host</span><span class="o">=</span><span class="s">192.168.1.11 ansible_user=ubuntu</span>
+</code></pre></div>
+* <strong>Dynamic Inventory:</strong> Pulls hosts from cloud providers (AWS EC2, Azure).
+* <strong>Ansible Config File (<code>ansible.cfg</code>):</strong> Defines inventory path, defaults, SSH settings.</p>
+<hr/>
+<h2 id="11-ansible-roles-and-reusability">11. Ansible Roles and Reusability<a class="headerlink" href="#11-ansible-roles-and-reusability" title="Permanent link">¶</a></h2>
+<p><strong>Objectives:</strong></p>
+<ul>
+<li>Learn role-based structure for scalable automation.</li>
+<li>Explore Galaxy for reusable roles.</li>
+</ul>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li><strong>Role:</strong> Predefined structure for tasks, variables, templates, files. Promotes <strong>modularity</strong>.</li>
+<li><strong>Role Directory Layout:</strong></li>
+</ul>
+<p><div class="highlight"><pre><span></span><code>roles/
+  webserver/
+    tasks/main.yml
+    handlers/main.yml
+    templates/
+    vars/main.yml
+</code></pre></div>
+* <strong>Ansible Galaxy:</strong> Public repository of community roles.</p>
+<p><div class="highlight"><pre><span></span><code>ansible-galaxy<span class="w"> </span>install<span class="w"> </span>geerlingguy.apache
+</code></pre></div>
+* <strong>Best Practices:</strong></p>
+<ul>
+<li>Use roles for repeatable patterns (e.g., LAMP stack).</li>
+<li>Version-control roles in GitHub.</li>
+<li>Tag tasks for selective execution.</li>
+</ul>
+<hr/>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Lab 25" class="md-footer__link md-footer__link--prev" href="../lab25/">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Previous
+              </span>
+<div class="md-ellipsis">
+                Lab 25
+              </div>
+</div>
+</a>
+<a aria-label="Next: Lab 26" class="md-footer__link md-footer__link--next" href="../lab26/">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Next
+              </span>
+<div class="md-ellipsis">
+                Lab 26
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.collapse", "navigation.sections", "navigation.instant", "navigation.footer", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+<script src="../../assets/javascripts/toggle-nav.js"></script>
+</body>
+</html>
