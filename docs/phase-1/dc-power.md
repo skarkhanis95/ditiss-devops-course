@@ -1,3 +1,7 @@
+---
+hide:
+    - toc
+---
 ## Required Power
 
 #### What is it?

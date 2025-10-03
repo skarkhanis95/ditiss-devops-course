@@ -1,4 +1,8 @@
-# Session 6 — Data Center Management
+---
+hide:
+    - toc
+---
+# Data Center Management
 
 ## What is a Data Center?
 A **data center** is a facility that houses servers, storage, networking devices, and supporting infrastructure needed to deliver applications and services.  

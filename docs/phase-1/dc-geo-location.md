@@ -1,3 +1,7 @@
+---
+hide:
+    - toc
+---
 ## Selecting a Geographic Location
 
 #### What is it?

@@ -1,3 +1,7 @@
+---
+hide:
+    - toc
+---
 ## Required Physical Area
 
 #### What is it?

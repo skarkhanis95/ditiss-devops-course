@@ -1,4 +1,4 @@
-# Session 7: Infrastructure in a Data Center — Overview
+# Infrastructure in a Data Center — Overview
 
 ## 1. What this section is all about
 This session explores the **core infrastructure of a modern data center**, focusing on both the **physical and logical aspects**. Students will learn how cables, servers, monitoring systems, and security controls are planned, deployed, and maintained to ensure seamless IT operations. The session also covers disaster recovery, consolidation strategies, and system administration practices that directly impact business continuity and cost optimization.

@@ -4,120 +4,97 @@ hide:
   - navigation
 # IT Infrastructure & DevOps — PG‑DITISS Aug 2025
 ---
-
-Welcome! This course blends **real-world infrastructure** and **DevOps practice** using a company simulation: **TechOps Inc.**  
-You’ll guide six teams (10 students each) through designing, building, automating, and operating production-like systems.
-
-!!! info "How to use this site"
-    - Start with **[Session 0 · Agile & Tools](00-session-0/README.md)** to set up Slack, Taiga, and plan the first sprint.  
-    - Then follow **Phase 1 → Phase 5** in order.  
-    - Each session page includes: Objectives · Theory summary · Practical scenario · Lab guide · Checkpoints · Quiz · Deliverables · Rubric.
+# 🚀 PG-DITISS: IT Infrastructure & DevOps  
 
 ---
 
-## What students will build (end-to-end)
-- **On‑prem lab** with VMs, NAS and SAN storage
-- **AWS environment** (EC2, S3/MinIO, VPC with public/private subnets)
-- **Containerized app** (Docker) orchestrated on **Kubernetes/Minikube**
-- **Infrastructure as Code** (Ansible/Terraform) for repeatable provisioning
-- **CI/CD pipeline** (Jenkins or GitHub Actions) with automated builds & deploys
-- **Monitoring & logging** (Prometheus + Grafana) with useful dashboards
-- **Security & HA** (IAM, secrets, hardened configs, load balancing/auto-scaling)
+## 🌐 About the Course
+The **Post Graduate Diploma in IT Infrastructure & Systems Security (PG-DITISS)** blends **theory, labs, and real-world simulations** to prepare you for the rapidly evolving world of **cloud, data centers, and DevOps practices**.  
+
+Think of this course not as a classroom, but as your onboarding at **TechOps Inc.** – a fictional tech company where you’ll play the role of a **DevOps Engineer, Cloud Architect, or System Administrator**. You’ll solve real challenges, build scalable systems, and automate workflows — just like in industry.
 
 ---
 
-## Course phases & syllabus mapping
-
-| Phase | Sessions | Theme | Key Deliverables |
-|------:|:--------:|-------|------------------|
-| Phase 0 | 0 | Agile & Tools | Slack workspace, Taiga project, Sprint plan |
-| Phase 1 | 6–9 | Infrastructure Foundations | VM baseline, DC design, NAS, SAN |
-| Phase 2 | 10–13 | Virtualization & Cloud | VM cluster, EC2, S3/MinIO, VPC |
-| Phase 3 | 14–17 | DevOps Foundations | DevOps roadmap, Dockerized app, K8s, IaC |
-| Phase 4 | 18–20 | CI/CD & Monitoring | Jenkins/GitHub Actions, Prometheus+Grafana |
-| Phase 5 | 21–23 | Security & HA | IAM/secrets, hardening, HA deployment, final demo |
-
-> Full session list: see left navigation or jump to  
-> **Phase 1** → [S6](phase-1/session-06.md) · [S7](phase-1/session-07.md) · [S8](phase-1/session-08.md) · [S9](phase-1/session-09.md)
+## 🎯 What You’ll Learn
+- How to **design, manage, and secure data centers**.  
+- The power of **virtualization, SANs, and cloud platforms**.  
+- Hands-on **DevOps tools**: Git, Jenkins, Docker, Kubernetes, Terraform, Ansible.  
+- Building **CI/CD pipelines** and deploying **microservices at scale**.  
+- Automating infrastructure and monitoring systems like an enterprise pro.  
 
 ---
 
-## Tools & platforms (mandated)
+## 🏗️ Course Structure
 
-- **Slack** — team communication & incidents (ChatOps)  
-- **Taiga** — Agile board (Scrum/Kanban), backlog, sprints, reviews  
-- **GitHub** — version control & submissions (PRs)  
-- **VirtualBox/VMware**, **TrueNAS CORE**, **Docker**, **Minikube/Kubernetes**  
-- **AWS Free Tier** (EC2, S3, VPC), **Jenkins**, **Ansible**, **Terraform**, **Prometheus/Grafana**
+The course is structured into **3 Phases + Foundation**. Each phase includes **theory + labs** (2–6 hours per module) and culminates in checkpoints that mimic **real workplace reviews**.
 
-See **[Tools & Setup](resources/tools.md)** for install links and quick-start notes.
-
----
-
-## Evaluation & checkpoints
-
-- **Theory exam:** 40%  
-- **Lab exam:** 40%  
-- **Internal assessment:** 20% (Taiga activity, Slack discipline, documentation quality)
-
-**Phase checkpoints** (graded):
-1. **Infra Blueprint** (after S9) — VM baseline, DC layout, NAS/SAN
-2. **Hybrid Infra** (after S13) — VM cluster + AWS VPC + object store
-3. **CI/CD‑ready Infra** (after S17) — Docker + K8s + IaC
-4. **Ops Dashboard** (after S20) — CI/CD + monitoring in place
-5. **Final Demo** (S23) — integrated system + security + HA
+### 📖 Foundation (Phase 0) – *Agile & DevOps Mindset*
+- Agile, Scrum, Kanban, Lean Thinking.  
+- Slack, Jira, GitHub onboarding.  
+- Labs: Team collaboration, backlog creation, Kanban workflows.  
 
 ---
 
-## Class workflow (every week)
-
-1. **Before class**: Read the session page; prep tools & accounts.  
-2. **In class**: 2h theory → 2h/4h lab with team roles.  
-3. **After class**: Push commits/notes to GitHub; move Taiga stories to *Done*; post a short Slack update.  
-4. **End of phase**: Submit checkpoint (repo link + screenshots + short readme).
-
-!!! tip "Daily team habits (recommended)"
-    - Quick async stand‑up in Slack (yesterday/today/blockers)  
-    - Keep Taiga board updated (no secret work)  
-    - Small, frequent commits and short PRs
+### 🏢 Phase 1 – *Data Center Management*
+- Data center architecture, power, cooling, networks, and site selection.  
+- Infrastructure: cabling, WAN links, NOC operations, servers, and DR planning.  
+- Security: physical, logical, and internet-level protections.  
+- Labs: Design a data center for **TechOps Inc.** with budget and resilience constraints.  
 
 ---
 
-## Getting started (instructor checklist)
-
-- [ ] **Publish** this site (GitHub Pages/Netlify/Vercel)  
-- [ ] Create **Slack** workspace & channels (`#general`, `#announcements`, `#helpdesk`, per‑team channels)  
-- [ ] Create **Taiga** projects (one per team) & preload epics/stories for S6–S9  
-- [ ] Share **starter team repo template** on GitHub (folders for infra/app/docs)  
-- [ ] Verify **lab images** (Ubuntu LTS ISO, TrueNAS ISO, Minikube, kubectl)  
-- [ ] Post **Session 0 brief** in Slack with links to this site
+### ☁️ Phase 2 – *Virtualization & Cloud*
+- Virtualization concepts, hypervisors, and clusters.  
+- SAN design and high availability labs.  
+- Cloud computing with OpenStack, AWS, Azure, GCP.  
+- Labs: Deploy VMs, configure SAN, launch EC2 instances, simulate cloud migration, set up monitoring.  
 
 ---
 
-## Course policies
-
-!!! warning "Collaboration & academic integrity"
-    Work as a team, but credit sources and document who did what. Copy‑paste without understanding will hurt your lab exam.
-
-!!! info "Submissions"
-    - Everything via **GitHub PRs** to your team repo  
-    - Include a short **README** with steps, configs, screenshots where needed  
-    - Link the PR to the **Taiga story** and mention it in your **Slack** update
+### ⚡ Phase 3 – *DevOps*
+- DevOps lifecycle and culture.  
+- Git, Jenkins, Docker, Kubernetes basics → advanced orchestration.  
+- Infrastructure as Code with Terraform.  
+- Microservices deployment and automation with Ansible.  
+- Labs: End-to-end CI/CD pipeline, Terraform infra, Kubernetes microservices, Ansible playbooks.  
 
 ---
 
-## References
-
-- Primary text: *Cloud Computing Black Book* (Wiley India, 2024) — Kogent Learning Solutions Inc., Kailash Jayaswal  
-- Official docs: AWS, Docker, Kubernetes, Ansible, Terraform, Jenkins, Prometheus, Grafana  
-- See **[References](resources/references.md)** for a curated list.
+## 🎮 Course Experience
+- **Simulation**: You’re part of *TechOps Inc.* — every lab is a mission.  
+- **Gamification**: Earn badges for completing sprints, solving outages, or optimizing deployments.  
+- **Collaboration**: Work in squads, review each other’s code, and submit via GitHub PRs.  
+- **Evaluation**:  
+  - 40% Theory Exam  
+  - 40% Lab Exam  
+  - 20% Internal Assessment (sprints, checkpoints, peer reviews)  
 
 ---
 
-## Quick links
+## 🛠️ Tools You’ll Use
+- VirtualBox, FreeNAS (TrueNAS CORE), MinIO.  
+- AWS Free Tier, Azure for Students, OpenStack.  
+- Docker, Kubernetes (Minikube).  
+- Jenkins, GitHub Actions, Terraform, Ansible.  
+- Nagios, Prometheus.  
+- Ansible, Chef
 
-- Start here → **[Session 0 · Agile & Tools](00-session-0/README.md)**  
-- Ready for infra? → **[Session 6](phase-1/session-06.md)**  
-- Tools install → **[Tools & Setup](resources/tools.md)**  
-- About the course → **[Overview](about/overview.md)**
+<img src="./assets/images/tools.png" alt="Dell Server2" width=50% />
+
+---
+
+## 🌟 Why This Course Stands Out
+- **Hands-on first**: Every session ties to a lab.  
+- **Industry workflows**: GitHub repos, CI/CD pipelines, team retrospectives.  
+- **Career-ready skills**: Everything you do here mirrors **real DevOps engineer roles**.  
+- **Innovation focus**: Learn not just to use tools, but to design and optimize infrastructure.  
+
+---
+
+## 📌 Next Steps
+- Start with **[Syllabus](../docs/roadmap/syllabus.md)** for a detailed breakdown.  
+- Join the Slack workspace and set up your Jira board (see Phase 0 Lab 00).  
+- Clone the starter GitHub repo and get ready to push your first PR.  
+
+Welcome aboard, Engineer. **Your first sprint at TechOps Inc. begins now.** 🚀
 

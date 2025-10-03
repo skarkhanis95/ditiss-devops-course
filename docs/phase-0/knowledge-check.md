@@ -1,10 +1,10 @@
-# Phase 1 - Data Center Management - Knowledge Check
+# Phase 0 - Agile Mindset Knowledge Check
 
 
-It's time to assess your understanding of the topics covered in Phase 1: Data Center Management Please follow the steps below to take the exam:
+It's time to assess your understanding of the topics covered in Phase 0: Agile Mindset and ChatOps. Please follow the steps below to take the exam:
 
 1. Scan the provided QR code or visit the designated link to register for the exam (if you haven't already).
-2. Locate the exam titled **Phase 1: Data Center Management**.
+2. Locate the exam titled **"Phase 0 - Checkpoint"**.
 3. The exam will be unlocked by the instructor once all students are ready.
 
 

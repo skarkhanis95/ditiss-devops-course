@@ -8,10 +8,13 @@ Agile is the philosophy. **Scrum** and **Kanban** are two popular ways to implem
 
 ### Scrum (time-boxed approach)
 - **Sprints:** Short, fixed-length cycles (1–3 weeks).
+
 - **Roles:**  
-  - Product Owner (sets priorities)  
-  - Scrum Master (facilitates, removes blockers)  
-  - Development Team (does the work)
+
+    - Product Owner (sets priorities)  
+    - Scrum Master (facilitates, removes blockers)  
+    - Development Team (does the work)
+
 - **Events:** Sprint Planning, Daily Stand-ups, Sprint Review, Retrospective.
 - **Artifacts:** Product Backlog, Sprint Backlog, Increment.
 
@@ -30,9 +33,10 @@ Agile is the philosophy. **Scrum** and **Kanban** are two popular ways to implem
 
 !!! example "Kanban Example"
     An ops team gets requests: create users, patch servers, rotate keys.  
-    - They allow only **3 tasks max** “In Progress”.  
-    - When one finishes, they **pull** the next.  
-    → Result: fewer half-done tasks, faster average completion.
+
+      - They allow only **3 tasks max** “In Progress”.  
+      - When one finishes, they **pull** the next.  
+      → Result: fewer half-done tasks, faster average completion.
 
 ---
 

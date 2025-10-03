@@ -2,18 +2,21 @@
 hide:
     - toc
 ---
-# Session 0 — Agile Foundations & Tool Setup (Slack + Taiga + GitHub)
+# Session 0 — Agile Foundations & Tool Setup (Slack + Jira + GitHub)
 
 !!! info "Format"
-    **2h theory + 2h lab** · Team size: 10 (each team = a mini‑company inside **TechOps Inc.**)  
-    Tools: Slack, Taiga, GitHub · Output: Working Slack workspace + Taiga project + Sprint‑1 plan + Team repo
+    **2h theory + 2h lab**
+
+    - Team size: 10 (each team = a mini‑company inside **TechOps Inc.**)  
+    - Tools: Slack, Jira, GitHub
+    - Output: Working Slack workspace + Jira project + Sprint‑1 plan
 
 ---
 
 ## Objectives
 - Explain **Agile values & principles**, and the differences between **Scrum** and **Kanban** in the context of IT Infrastructure & DevOps.
-- Set up **team collaboration** tools: Slack (ChatOps) and Taiga (Agile project management).
-- Create a **syllabus‑mapped backlog** and plan **Sprint 1** (Sessions 6–9).
+- Set up **team collaboration** tools: Slack (ChatOps) and Jira (Agile project management).
+- Create a **syllabus‑mapped backlog** and plan **Sprint 1**
 - Establish **working agreements**, roles, and a **definition of done (DoD)** for the team.
 - Prepare a **GitHub team repo** structure that will be used throughout the course.
 
@@ -28,11 +31,11 @@ Agile emerged to counter rigid, plan‑heavy delivery models that struggled with
 
 **Kanban** suits ongoing ops (tickets, incidents, enhancements). You’ll use Kanban columns (To Do → In Progress → Review → Done) with **WIP limits** to prevent overload while doing labs and hardening.
 
-In DevOps culture, **ChatOps** (tooling + conversation) turns Slack into the central nervous system: GitHub PRs, Jenkins builds, monitoring alerts, and Taiga updates surface in channels so decision‑making is transparent and fast. **Taiga** anchors planning and tracking: epics for phases (Infra, Cloud, DevOps, CI/CD, Security/HA), stories for sessions, and tasks for lab steps. Your **Definition of Done** ensures quality (docs/screenshots/automation checked in, peer review done, Taiga story moved to Done, Slack summary posted).
+In DevOps culture, **ChatOps** (tooling + conversation) turns Slack into the central nervous system: GitHub PRs, Jenkins builds, monitoring alerts, and Jira updates surface in channels so decision‑making is transparent and fast. **Jira** anchors planning and tracking: epics for phases (Infra, Cloud, DevOps, CI/CD, Security/HA), stories for sessions, and tasks for lab steps. Your **Definition of Done** ensures quality (docs/screenshots/automation checked in, peer review done, Jira story moved to Done, Slack summary posted).
 
 Key benefits you’ll feel immediately:
 - **Visibility**: everyone sees who’s doing what, what’s blocked, and what’s next.  
-- **Traceability**: each lab deliverable ties to a Taiga story and a GitHub PR.  
+- **Traceability**: each lab deliverable ties to a Jira story and a GitHub PR.  
 - **Incremental progress**: you’ll produce checkpoints that layer into the final demo.
 
 ---
@@ -40,7 +43,7 @@ Key benefits you’ll feel immediately:
 
 
 ## Practical Application (TechOps Inc. Simulation)
-**Scenario:** You’ve just joined TechOps Inc. as a 10‑person platform team. You have four weeks to deliver the first milestone: **Infra Blueprint** (Sessions 6–9). Today you will create your **communication hub**, **project board**, **repo**, and a **working plan** for Sprint‑1.
+**Scenario:** You’ve just joined TechOps Inc. as a 10‑person platform team. You have two weeks to deliver the project **Infra Blueprint**. Today you will create your **communication hub**, **project board**, **repo**, and a **working plan** for Sprint‑1.
 
 ---
 
@@ -55,7 +58,7 @@ Key benefits you’ll feel immediately:
    - Optional cross‑team: `#devops`, `#cloud`, `#storage`, `#monitoring`
 3. Add integrations (you can wire these fully in later sessions):
    - **GitHub**: repo notifications to `#team-<company-name>`
-   - **Taiga**: story updates → `#team-<company-name>`
+   - **Jira**: story updates → `#team-<company-name>`
 4. Pin a **Team Charter** (copy, edit, and post):
    - Team name, members & roles (Cloud Architect, SysAdmin, DevOps x2, Developers x2, Security, Monitoring, Storage/Network, Project Lead)
    - Working hours, response times
@@ -66,13 +69,13 @@ Key benefits you’ll feel immediately:
 - Code/config committed with README and comments  
 - Steps reproducible; credentials redacted; screenshots added  
 - PR raised & reviewed by ≥1 peer  
-- Taiga story moved to **Done** with link to PR and short summary  
+- Jira story moved to **Done** with link to PR and short summary  
 - Slack update posted (`#team-...`): what changed, who reviews, where to test
 
 ---
 
-### B. Taiga Project — 35 min
-1. Create a **Taiga project**: *TechOps Inc. – Company <X>*  
+### B. Jira Project — 35 min
+1. Create a **Jira project**: *TechOps Inc. – Company <X>*  
 2. Create **Epics** (map to course phases):
    - Infra Foundations (S6–S9)
    - Virtualization & Cloud (S10–S13)
@@ -92,7 +95,7 @@ Key benefits you’ll feel immediately:
 5. Add **Definition of Done** at project level (and link to the Slack post).
 6. Set **Sprint‑1** dates (cover S6–S9 timeline); assign story owners; estimate points.
 
-*(Optional) CSV import: you can prepare a CSV of stories/tasks to import into Taiga if you prefer. Keep a copy in `docs/assets/taiga-backlog/`.*
+*(Optional) CSV import: you can prepare a CSV of stories/tasks to import into Jira if you prefer. Keep a copy in `docs/assets/Jira-backlog/`.*
 
 ---
 
@@ -116,7 +119,7 @@ Key benefits you’ll feel immediately:
 3. Add a **root README.md** with:
 - Team roster & roles
 - How to clone & run labs
-- Links to Slack channel & Taiga board
+- Links to Slack channel & Jira board
 4. Create a **`docs/lab-notes/session-06.md`** file and add checklists for VM setup.
 5. Set up **branch protection** (require PR review by at least one teammate).
 6. Connect **GitHub → Slack** notifications to your team channel.
@@ -134,9 +137,9 @@ Key benefits you’ll feel immediately:
 
 ## Checkpoints (end of session)
 - [ ] Slack workspace & **team channel** ready; Team Charter pinned  
-- [ ] **Taiga project** created with Epics, Stories (S6–S9), Tasks, Sprint‑1 dates  
+- [ ] **Jira project** created with Epics, Stories (S6–S9), Tasks, Sprint‑1 dates  
 - [ ] **GitHub repo** created with agreed folder structure + initial README  
-- [ ] **Definition of Done** documented and referenced in both Slack & Taiga  
+- [ ] **Definition of Done** documented and referenced in both Slack & Jira  
 - [ ] Sprint‑1 plan posted in Slack (owner per story + acceptance criteria)
 
 ---
@@ -157,14 +160,14 @@ Key benefits you’ll feel immediately:
 ??? question "What belongs in our Definition of Done (pick all that apply)?"
  - [x] Reproducible steps & docs in repo
  - [x] PR reviewed by a teammate
- - [x] Taiga story moved to Done with links
+ - [x] Jira story moved to Done with links
  - [ ] Only a verbal confirmation in class
 
 ---
 
 ## Deliverables (to be graded)
 1. **Slack**: Link to team channel + pinned Team Charter & DoD  
-2. **Taiga**: Project URL + screenshot of Sprint‑1 board  
+2. **Jira**: Project URL + screenshot of Sprint‑1 board  
 3. **GitHub**: Repo URL + screenshot of repo structure  
 4. **Sprint‑1 plan**: Short note in Slack with owners & dates
 

@@ -1,3 +1,7 @@
+---
+hide:
+    - toc
+---
 ## Required Weight
 
 #### What is it?

@@ -1,3 +1,7 @@
+---
+hide:
+    - toc
+---
 # Data Center Ratings & Classifications
 
 ---

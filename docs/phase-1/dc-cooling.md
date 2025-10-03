@@ -1,3 +1,7 @@
+---
+hide:
+    - toc
+---
 ## Required Cooling & HVAC
 
 #### What is it?

@@ -1,3 +1,7 @@
+---
+hide:
+    - toc
+---
 ## Characteristics of an Outstanding Design
 
 #### What is it?

@@ -15,7 +15,7 @@ By the end of this lab, you will:
 - Work inside your **team’s private channel**.  
 - Explore public channels (`#announcements`, `#q-and-a`, etc.).  
 - Practice **1-on-1 and group chats**.  
-- Learn how Slack will integrate with **project tools (Taiga, GitHub, Jenkins)** in future labs.  
+- Learn how Slack will integrate with **project tools (Jira, GitHub, Jenkins)** in future labs.  
 
 ---
 
@@ -43,7 +43,15 @@ By the end of this lab, you will:
 3. Install and open Slack.  
 4. Sign in using the **invite link** your instructor provides.  
 
+**Invite Link**: [https://join.slack.com/t/ditiss2025/shared_invite/zt-3f29pl275-qgUA67iSVLSHi9Q5o3BPZw](https://join.slack.com/t/ditiss2025/shared_invite/zt-3f29pl275-qgUA67iSVLSHi9Q5o3BPZw)
+
+**QR Code:** 
+
+<img src="../../assets/images/slack-qr-code.png" alt="Dell Server2" width=15% />
+
+
 ---
+
 
 ## Step 3 — Join the workspace
 1. Click the invite link → accept.  
@@ -124,23 +132,6 @@ This format will be used in **every lab going forward** (mini status update = pa
 - Posted test message in **#q-and-a**.  
 - Sent at least one DM to a teammate.  
 - Posted first **Lab 01 update** in team channel.  
-
----
-
-## Rubric (10 points)
-- Joined workspace (2)  
-- Intro in team channel (2)  
-- Message in #q-and-a (2)  
-- DM tested (2)  
-- Lab update posted (2)  
-
----
-
-## Reflection (write in lab notebook)
-Answer briefly:
-1. Was Slack easy to set up?  
-2. What feature do you think will be most useful for teamwork?  
-3. Did you face any challenges (login, joining channels)?  
 
 ---
 

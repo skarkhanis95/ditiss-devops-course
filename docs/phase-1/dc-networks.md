@@ -1,3 +1,7 @@
+---
+hide:
+    - toc
+---
 ## Required Network Bandwidth
 
 #### What is it?

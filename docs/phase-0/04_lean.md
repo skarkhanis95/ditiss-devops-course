@@ -58,12 +58,14 @@ Originating in Toyota’s production system, it maps perfectly to IT and DevOps.
 - **DevOps** = culture + automation bridging Dev & Ops.
 
 **Practical intersections**
+
 - Agile sprints + Lean small batches → **CI/CD pipelines**.  
 - Lean “reduce handoffs” + Agile “cross-functional teams” → fewer silos.  
 - Limit WIP + short sprints → steadier throughput.  
 - Retrospectives (Agile) + Kaizen (Lean) → continuous improvement.
 
 **DevOps practices showing Lean + Agile**
+
 - Small PRs + trunk-based development.  
 - Automated testing & deployments.  
 - Infrastructure as Code (standardization).  

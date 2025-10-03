@@ -1,3 +1,7 @@
+---
+hide:
+    - toc
+---
 ## Budget Constraints
 
 #### What is it?

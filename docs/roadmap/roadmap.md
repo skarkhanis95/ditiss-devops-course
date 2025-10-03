@@ -4,118 +4,103 @@ hide:
 ---
 # Course Roadmap — IT Infrastructure & DevOps (PG-DITISS Aug 2025)
 
-Welcome to the **Course Roadmap**. This page gives you a **high-level overview** of all sessions (0–23), showing what you’ll learn in each, before diving into the detailed session pages.
+Welcome to the **Course Roadmap**. This page gives you a **high-level overview** of all sessions, showing what you’ll learn in each, before diving into the detailed session pages.
 
 ---
 
-## Session 0 · Agile Foundations & Tools
-- **What you’ll learn:** Agile principles, Scrum vs Kanban, Lean, and how Agile + DevOps fit together.  
-- **Hands-on:** Set up Slack workspace, Taiga boards, team roles, and plan Sprint-1 backlog.
+## Phase 0 – Foundations: Agile & DevOps Mindset
+
+!!! info "Target Dates"
+
+    - **Start Date:** 04-Oct-2025
+    - **End Date:** 04-Oct-2025
+
+Phase 0 lays the foundation for the course by shifting the students’ mindset from traditional IT delivery to Agile and DevOps-oriented thinking.
+
+- Students begin with Agile principles and frameworks (Scrum, Kanban, XP) to internalize iterative, customer-focused development.
+- They then connect these ideas with Lean practices to understand waste reduction, value streams, and continuous improvement.
+- The **lab track** is designed to immediately immerse students in real-world Agile environments:
+    - Lab 00 gets them onboarded with Slack, Taiga, and GitHub—the same tools used in enterprise DevOps teams.
+    - Lab 01 simulates a Scrum sprint, ensuring they grasp backlog creation, ceremonies, and roles.
+    - Lab 02 introduces Kanban workflows to highlight flow and WIP limits.
+
+By the end of Phase 0, students are **“workplace ready”** with collaboration platforms configured and hands-on experience in Agile project execution. This prepares them to enter the infrastructure and DevOps-heavy sessions in later phases with the right team-based, iterative mindset.
 
 ---
 
-## Phase 1 · Infrastructure Foundations (Sessions 6–9)
-**Theme:** *Building the digital workplace*  
-You’ll explore physical and virtual infrastructure, storage, and data center basics.
+## Phase 1 – Data Center Management
 
-- **Session 6:** IT Infrastructure Overview  
-  Learn the core building blocks of IT infrastructure (compute, storage, networking, virtualization).  
-- **Session 7:** Data Center Management  
-  Understand racks, servers, power, cooling, and design a data center with constraints.  
-- **Session 8:** Storage Technologies  
-  Explore DAS, NAS, SAN, RAID, ZFS, and set up a network-attached storage (NAS).  
-- **Session 9:** Storage Area Network (SAN)  
-  Discover SAN concepts (iSCSI, Fibre Channel) and configure shared block storage.
+!!! info "Target Dates"
 
-✅ **Checkpoint 1:** Infra Blueprint — baseline VMs, DC layout, NAS + SAN setup.
+    - **Start Date:** 05-Oct-2025
+    - **End Date:** 05-Oct-2025
 
----
 
-## Phase 2 · Virtualization & Cloud (Sessions 10–13)
-**Theme:** *Scaling the enterprise*  
-Learn how enterprises use virtualization and cloud to grow.
+Phase 1 dives into Data Center Management, equipping students with the knowledge to design, evaluate, and operate enterprise-class data centers.
 
-- **Session 10:** Server Virtualization  
-  Understand hypervisors, VM lifecycle, snapshots, and multi-VM clusters.  
-- **Session 11:** Cloud Computing Basics  
-  Explore cloud models (IaaS, PaaS, SaaS) and launch an AWS EC2 instance.  
-- **Session 12:** Cloud Storage & Databases  
-  Learn object storage (S3/MinIO), block storage, and DBaaS.  
-- **Session 13:** Virtual Private Cloud (VPC)  
-  Build secure VPCs with subnets, routing, and security groups.
+- **Part A** introduces data center management fundamentals: architecture, physical requirements, power and cooling systems, networking, site selection, and budget considerations. Students learn what constitutes a “good design” and how classification standards like Uptime Institute Tiers guide resilience and availability.
 
-✅ **Checkpoint 2:** Hybrid Infra — VM cluster + AWS VPC + storage/database integration.
+- **Part B** focuses on the infrastructure inside the data center, covering modular cabling, distribution points, WAN connectivity, NOC operations, and security measures (physical, logical, and internet-facing). Students also explore consolidation strategies, server design, capacity planning, and disaster recovery.
+
+The phase ends with security guidelines, source security issues, and system administration best practices, culminating in automation approaches to streamline operations.
+
+By completing Phase 1, students will be able to design and evaluate a data center for TechOps Inc., considering cost, performance, and resilience trade-offs—a crucial foundation before moving into virtualization, cloud, and DevOps practices in later phases.
 
 ---
 
-## Phase 3 · DevOps Foundations (Sessions 14–17)
-**Theme:** *From manual to automated*  
-Shift from manual system admin tasks to automated, containerized workflows.
+## Phase 2 · Virtualization & Cloud
 
-- **Session 14:** DevOps Principles  
-  Learn DevOps culture, CI/CD, automation, and collaboration models.  
-- **Session 15:** Containers (Docker)  
-  Build and run containerized apps; compare containers vs VMs.  
-- **Session 16:** Container Orchestration (Kubernetes)  
-  Deploy multi-container apps with scaling and service discovery.  
-- **Session 17:** Infrastructure Automation (Ansible/Terraform)  
-  Use Infrastructure as Code to automate provisioning.
+!!! info "Target Dates"
 
-✅ **Checkpoint 3:** CI/CD-ready Infra — Dockerized app, Kubernetes deployment, automation scripts.
+    - **Start Date:** 06-Oct-2025
+    - **End Date:** 12-Oct-2025
 
----
 
-## Phase 4 · CI/CD & Monitoring (Sessions 18–20)
-**Theme:** *Continuous everything*  
-Learn how modern teams ship changes fast and safely, with observability.
+Phase 2 transitions students from traditional infrastructure (Phase 1) to virtualization and cloud environments.
 
-- **Session 18:** CI/CD Pipelines  
-  Build pipelines using Jenkins or GitHub Actions for automated builds/deploys.  
-- **Session 19:** Monitoring & Logging  
-  Collect metrics and logs using Prometheus and Grafana dashboards.  
-- **Session 20:** Configuration Management  
-  Standardize environments using Ansible, Chef, or Puppet.
+**Virtualization:** Students begin with concepts, hypervisors, OS virtualization, and clustering. Labs 03–04 provide hands-on VM deployment and networking with VirtualBox.
 
-✅ **Checkpoint 4:** Ops Dashboard — functional CI/CD + monitoring setup.
+**SAN:** They then explore enterprise storage with SANs, including high availability, redundancy, and performance testing (Labs 05–09).
+
+**Cloud Computing:** The final and largest part of Phase 2 covers public and private clouds, starting with OpenStack and SDN, then moving to AWS/Azure/GCP. Students complete labs in cloud migration, monitoring, and disaster recovery (Labs 10–15).
+
+By the end of Phase 2, students can:
+
+- Build and manage virtualized infrastructure.
+- Configure SAN storage systems with high availability.
+- Deploy workloads to public cloud platforms.
+- Automate, monitor, and migrate resources across hybrid environments.
+
+This phase builds the practical foundation for DevOps workflows, setting the stage for CI/CD, containers, and automation in Phase 3.
 
 ---
 
-## Phase 5 · Security & Enterprise Readiness (Sessions 21–23)
-**Theme:** *Running like a real enterprise*  
-Ensure your infra is secure, reliable, and resilient.
+## Phase 3 · DevOps
 
-- **Session 21:** Security in Cloud & DevOps  
-  IAM, secrets management, vulnerability scanning, and secure configurations.  
-- **Session 22:** High Availability & Fault Tolerance  
-  Load balancing, redundancy, multi-AZ deployments.  
-- **Session 23:** Final Integration & Demo  
-  Integrate everything; teams present their full infra with CI/CD, monitoring, security, and HA.
+!!! info "Target Dates"
 
-✅ **Final Deliverable:** TechOps Inc. Company Portfolio — GitHub repo, infra demo, and presentation.
+    - **Start Date:** 13-Oct-2025
+    - **End Date:** 19-Oct-2025
 
----
+Phase 3 is the core DevOps implementation phase, where students move from infrastructure and cloud (Phase 2) into automation, orchestration, and continuous delivery.
 
-## Key Checkpoints & Milestones
-- **Checkpoint 1:** Infra Blueprint (end of Session 9)  
-- **Checkpoint 2:** Hybrid Infra (end of Session 13)  
-- **Checkpoint 3:** CI/CD-ready Infra (end of Session 17)  
-- **Checkpoint 4:** Ops Dashboard (end of Session 20)  
-- **Final Demo:** Integrated system with security + HA (Session 23)
+- **Foundations:** Students learn DevOps culture, lifecycle, and foundational tools like Git, Jenkins, Docker, and Kubernetes. Labs 16–21 ensure hands-on tool familiarity.
 
----
+- **IaC with Terraform:** Students provision real cloud infrastructure (EC2, VPCs) using Terraform, practicing declarative automation (Labs 22–23).
 
-## Evaluation (aligned with syllabus)
-- **Theory exam:** 40%  
-- **Lab exam:** 40%  
-- **Internal assessment:** 20% (Slack + Taiga activity, team contributions)
+- **Containers & Microservices:** Students build and orchestrate containerized applications with Kubernetes, simulating real enterprise microservices deployments (Labs 24–25).
+
+- **Configuration Management:** Students automate server provisioning and configuration using Ansible (Labs 26–27).
+
+By the end of Phase 3, students can:
+
+- Set up complete DevOps toolchains.
+- Automate cloud infrastructure provisioning.
+- Deploy and scale microservices with Kubernetes.
+- Manage configurations using Ansible.
+
+This phase makes them job-ready as DevOps engineers, integrating tools, automation, and real-world workflows.
 
 ---
 
-## TL;DR
-You’ll start with **Agile + collaboration tools**, then build step-by-step:
-1. On-prem infra (VMs, DC, storage)  
-2. Hybrid cloud (AWS + virtualization)  
-3. Containers & automation (DevOps basics)  
-4. CI/CD + monitoring (delivery pipelines & observability)  
-5. Security + HA → full enterprise-ready demo  
 
