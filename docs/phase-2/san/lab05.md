@@ -105,11 +105,12 @@ You are now inside the **TrueNAS Web Interface**.
 1. Go to **Storage → Pools** in the web interface.
 2. Click **Add → Create new pool**.
 3. Name the pool: `TechOpsPool`
-4. Select the **3 data disks (10 GB each)** you created earlier.
-5. Choose a **RAID-Z1** configuration (similar to RAID-5).
-
-    - This provides redundancy: the pool can survive one disk failure.
-6. Confirm and create the pool.
+4. Layout: **RAID-Z1**
+5. Width: **3**
+6. Number of VDEVs: **1**
+7. Click on **Next**, untill you are at last step (leave all other fields as default)
+8. Click on **Create Pool**
+9. Confirm and create the pool.
 
 ✅ You now have a ZFS storage pool.
 
@@ -119,7 +120,7 @@ You are now inside the **TrueNAS Web Interface**.
 Datasets are like folders within a ZFS pool, optimized for different use cases.
 
 1. In the TrueNAS web interface → **Storage → Pools → TechOpsPool**.
-2. Click the 3-dot menu → **Add Dataset**.
+2. Click the 3-dot menu → **Add Dataset**. OR directly click on **Add Dateset**
 3. Name it: `ProjectData`
 4. Accept defaults (compression on, share type: generic).
 

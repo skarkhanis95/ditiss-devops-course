@@ -1,8 +1,5 @@
 # Lab 09: Deploying Object Storage with MinIO
 
-**File:** Lab\_09\_MinIO\_Object\_Storage.md
-**UUID:** 63b6b9e7-9202-4d67-91f0-0e3f47f084a1
-
 ---
 
 ## Introduction
@@ -108,13 +105,14 @@ This simulates how enterprises use **object storage** for unstructured data like
 
 ---
 
-## Step 7: Configuring Access Policies
+## Step 7: Sharing the files
 
-1. In the MinIO console, go to **Buckets → techops-bucket → Manage → Access Policy**.
-2. Set policy to **Public** (for testing only).
-3. Copy the object link and open it in a browser without logging in.
+1. In the `techops-bucket` that you created, select the file you just uploaded by selecting checkmark on the left side of the file name.
+2. In the sub-menu on right side, you will find the **Share** button, click on it.
+3. Accept the default values for sharing time or add as per your needs.
+4. Copy the link and share to your instructor on Slack and updte your Jira Card for the lab.
 
-✅ You can now access the file directly via URL.
+✅ You can now access the file directly via URL now.
 
 ⚠️ **Note:** In production, access policies should be restricted for security.
 

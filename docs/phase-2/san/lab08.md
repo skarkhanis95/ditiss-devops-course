@@ -1,7 +1,4 @@
-# Lab 08: Configuring File-Based Storage with NFS and SMB
-
-**File:** Lab\_08\_NFS\_SMB.md
-**UUID:** 5b52a2e7-5c19-4b65-b10b-4a394b0bb113
+# Lab 08: Configuring File-Based Storage with NFS and SMB (OPTIONAL)
 
 ---
 

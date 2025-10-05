@@ -1,0 +1,4589 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Course site for IT Infrastructure & DevOps (PG-DITISS Aug 2025)">
+      
+      
+      
+        <link rel="canonical" href="https://skarkhanis95.github.io/ditiss-devops-course/capstone/13_lab11/">
+      
+      
+        <link rel="prev" href="../12_lab10/">
+      
+      
+        <link rel="next" href="../../roadmap/syllabus/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Lab 11 - PG-DITISS 2025 · IT Infrastructure & DevOps</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/toggle-nav.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-11-jenkins-pipeline-setup-ci-full-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-header__button md-logo" aria-label="PG-DITISS 2025 · IT Infrastructure & DevOps" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PG-DITISS 2025 · IT Infrastructure & DevOps
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 11
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/skarkhanis95/ditiss-devops-course" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Course Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../roadmap/roadmap/" class="md-tabs__link">
+          
+  
+  
+  Course
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_overview/" class="md-tabs__link">
+          
+  
+  
+  Capstone Project
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../roadmap/syllabus/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-nav__button md-logo" aria-label="PG-DITISS 2025 · IT Infrastructure & DevOps" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+
+    </a>
+    PG-DITISS 2025 · IT Infrastructure & DevOps
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/skarkhanis95/ditiss-devops-course" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Course Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Course
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Course
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Couse Roadmap
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Couse Roadmap
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 0 · Agile & Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 0 · Agile & Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/01_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Agile
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Agile
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/02_agile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/03_agile-methodologies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agile Methodologioes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/04_lean/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lean in DevOps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/lab00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Understanding Labs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/lab01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 01
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/lab02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 02
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-0/knowledge-check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Knowledge Check
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 1 . Data Center Management
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 1 . Data Center Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_1" id="__nav_2_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Data Center Management
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Data Center Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-arch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-physical-area/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Physical Area
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-power/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Power
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-cooling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cooling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-weigth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Weigth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-geo-location/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Geo-Location
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-budget/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Budget
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Good Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-ratings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Classification & Ratings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure in a DC
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Infrastructure in a DC
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/00_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/01_Modular_Cabling_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Moudlar Cable Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/02_Points_of_Distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Point of Distribution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/03_ISP_WAN_Links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ISP WAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/04_NOC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NOC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/05_DataCenter_Physical_Logical_Security_and_Cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataCenter Physical Logical Security and Cleaning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/06_Reasons_for_Consolidation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reasons for Consolidation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/07_Consolidation_Opportunities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consolidation Opportunities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/08_Datacenter_Servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datacenter Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/09_Server_Capacity_Planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Server Capacity Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/10_Disaster_Recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Disaster Recovery
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/11_DataCenter_Security_Guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataCenter Security Guidelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/12_Internet_Security_Guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Internet Security Guidelines
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/13_Source_Security_Issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Source Security Issues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/14_Best_Practices_System_Administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Best Practices System Administration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-infra/15_System_Administration_Automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Administration Automation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-1/ph1-quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Knowledge Check
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Pahse 2 . Virtualization & Cloud)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Pahse 2 . Virtualization & Cloud)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/01_Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4_2" id="__nav_2_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Virtualization
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Virtualization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/01_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/02_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Concepts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/03_os_virtualization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OS Virtualization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/04_clusters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clusters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/lab03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 03
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/virtualization/lab04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4_3" id="__nav_2_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Storage Area Network (SAN)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Storage Area Network (SAN)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/01_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/02_high_availablity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    High Availability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/03_san_components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 07
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 08
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/lab09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 09
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4_4" id="__nav_2_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Cloud Computing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Cloud Computing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/01_cloud_computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Computing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/02_hci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HCI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/03_open_stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open Stack
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/04_sdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SDN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/05_public_cloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Public Cloud
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/06_public_cloud_services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services of Public Cloud
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/07_public_cloud_service_comparision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Comparision
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 11
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/08_cloud_api_sdk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud API & SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/09_cloud_dr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Migration & DR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/10_config_mgmt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Config Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/11_cloud_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 13
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/12_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloud Logging & Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 14
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-2/cloud-computing/lab15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 15
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 3 · DevOps
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 3 · DevOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/01_devops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DevOps Foundations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/02_devops_tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DevOps Basic Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 16
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 17
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 18
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 19
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 20
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 21
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/03_iac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure as Code (IaC)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/00_terraform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/04_container_orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Container Orchestration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/05_micro_services_deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Micro Services Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab22a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 22(a) (Optional)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 22
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 23
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 24
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 25
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/06_ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab26/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 26
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase-3/lab27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 27
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Capstone Project
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Capstone Project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_labs_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Labs Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_lab01." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 01
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_lab02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 02
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_lab03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 03
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_lab04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_lab05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_lab06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_lab07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 07
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_lab08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 08
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_lab09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 09
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_lab10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 11
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 11
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites-exact-checklist-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisites (exact checklist &amp; commands)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jenkinsfile-what-to-add-to-the-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkinsfile — what to add to the repo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps-create-commit-jenkinsfile-studentdevops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps: create / commit Jenkinsfile (student/devops)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-jenkins-job-devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Jenkins Job (DevOps)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-github-webhook-no-polling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup GitHub Webhook (no polling)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint-validation-what-students-should-provide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkpoint / Validation (what students should provide)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-common-errors-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting (common errors &amp; fixes)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deliverables-what-to-submit-for-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deliverables (what to submit for evaluation)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Question
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-tips-for-instructors-devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick tips for instructors / DevOps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_lab12.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 12
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_lab13.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 13
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_lab14.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 14
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17_lab15.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 15
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18_lab16.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 16
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19_lab17.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 17
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20_lab18.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 18
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/syllabus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Syllabus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools & Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/labs-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Labs Intro
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/references.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    References
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/announcements.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Announcements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/calendar.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calendar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/faqs.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites-exact-checklist-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisites (exact checklist &amp; commands)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jenkinsfile-what-to-add-to-the-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkinsfile — what to add to the repo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps-create-commit-jenkinsfile-studentdevops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps: create / commit Jenkinsfile (student/devops)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-jenkins-job-devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Jenkins Job (DevOps)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-github-webhook-no-polling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup GitHub Webhook (no polling)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint-validation-what-students-should-provide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkpoint / Validation (what students should provide)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-common-errors-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting (common errors &amp; fixes)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deliverables-what-to-submit-for-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deliverables (what to submit for evaluation)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Question
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-tips-for-instructors-devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick tips for instructors / DevOps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  <!-- Floating toggle button -->
+  <button id="toggle-nav"
+          class="nav-toggle"
+          aria-label="Toggle left navigation"
+          title="Toggle left navigation">☰</button>
+  
+                  
+
+
+  
+  
+
+
+<h1 id="lab-11-jenkins-pipeline-setup-ci-full-guide">Lab 11: Jenkins Pipeline Setup (CI) — Full Guide<a class="headerlink" href="#lab-11-jenkins-pipeline-setup-ci-full-guide" title="Permanent link">&para;</a></h1>
+<p><strong>Role(s) Responsible:</strong> DevOps (with help from Developers for creating the <code>Jenkinsfile</code>)</p>
+<hr />
+<h2 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Add a <code>Jenkinsfile</code> to the team repo (created by Developers / DevOps).</li>
+<li>Configure Jenkins to run a pipeline that: checks out code, runs tests, builds Docker image and pushes to the developer’s Docker Hub repo using credentials from <strong>Lab 08</strong>.</li>
+<li>Ensure pipeline: runs only on <code>main</code> <strong>and</strong> only when <code>apps/flask-sample-webapp/**</code> files changed.</li>
+<li>Configure GitHub webhook so pushes/PR merges trigger Jenkins builds (no polling).</li>
+</ul>
+<hr />
+<h2 id="pre-requisites-exact-checklist-commands">Pre-requisites (exact checklist &amp; commands)<a class="headerlink" href="#pre-requisites-exact-checklist-commands" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Jenkins server provisioned and reachable (from Lab 06/07).</li>
+<li>Jenkins host has Docker available and Jenkins user can run Docker:</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># on Jenkins host</span>
+docker<span class="w"> </span>--version
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span>jenkins<span class="w">   </span><span class="c1"># if permission issues; then restart jenkins</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>jenkins
+</code></pre></div>
+3. Plugins installed on Jenkins:</p>
+<ul>
+<li>GitHub Branch Source (for multibranch pipelines/webhooks)</li>
+<li>Pipeline (workflow-aggregator)</li>
+<li>Credentials Plugin</li>
+<li>Docker Pipeline (optional/helpful)</li>
+<li>
+<p><strong>Docker Hub credential already present from Lab 08</strong> — note the <strong>Credential ID</strong> (e.g., <code>dockerhub-token</code> or <code>dockerhub-credentials</code>). You will use this ID in the Jenkinsfile.</p>
+</li>
+<li>
+<p>To find it: Jenkins → Credentials → System → Global credentials (unrestricted) → note the <em>ID</em> column.</p>
+</li>
+<li>Team GitHub repo cloned locally (or access to edit). We will place the <code>Jenkinsfile</code> in the repo <strong>before</strong> configuring Jenkins. Recommended location: at <code>apps/flask-sample-webapp/Jenkinsfile</code> (makes multibranch scanning straightforward).</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:&lt;your-org-or-team-repo&gt;.git
+<span class="nb">cd</span><span class="w"> </span>&lt;repo&gt;
+</code></pre></div>
+6. Developers have pushed the Dockerized app (Lab 09) and updated <code>apps/flask-sample-webapp</code> with <code>Dockerfile</code>, tests, etc.</p>
+<hr />
+<h2 id="jenkinsfile-what-to-add-to-the-repo">Jenkinsfile — what to add to the repo<a class="headerlink" href="#jenkinsfile-what-to-add-to-the-repo" title="Permanent link">&para;</a></h2>
+<p><strong>Important:</strong> Devs / DevOps must create and commit a <code>Jenkinsfile</code> into the repo <em>before</em> creating the Jenkins job. Place it at <code>apps/flask-sample-webapp/Jenkinsfile</code> or root and point the job to that path.</p>
+<p>Below is a robust <strong>Declarative Jenkinsfile</strong> that:</p>
+<ul>
+<li>checks branch is <code>main</code>,</li>
+<li>inspects the commit changeSets and runs only if something under <code>apps/flask-sample-webapp/</code> changed,</li>
+<li>runs tests, builds the Docker image and pushes to Docker Hub using the credential created in Lab 08.</li>
+</ul>
+<blockquote>
+<p>Replace <code>YOUR_DOCKERHUB_CRED_ID</code> and your <code>your_dockerhub_username</code> with the <em>actual credential ID</em> created in Lab 08 and username on which the image is pushed at DockerHub.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="c1">// apps/flask-sample-webapp/Jenkinsfile</span>
+<span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="n">agent</span><span class="w"> </span><span class="n">any</span>
+
+<span class="w">  </span><span class="n">parameters</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1">// Set this to the credential ID you created in Lab 08 (or let DevOps set it via Job defaults)</span>
+<span class="w">    </span><span class="n">string</span><span class="o">(</span><span class="nl">name:</span><span class="w"> </span><span class="s1">&#39;DOCKERHUB_CRED_ID&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">defaultValue:</span><span class="w"> </span><span class="s1">&#39;YOUR_DOCKERHUB_CRED_ID&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">description:</span><span class="w"> </span><span class="s1">&#39;Jenkins credential ID for Docker Hub (username+token)&#39;</span><span class="o">)</span>
+<span class="w">    </span><span class="n">string</span><span class="o">(</span><span class="nl">name:</span><span class="w"> </span><span class="s1">&#39;DOCKERHUB_USER&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">defaultValue:</span><span class="w"> </span><span class="s1">&#39;your_dockerhub_username&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">description:</span><span class="w"> </span><span class="s1">&#39;Docker Hub username/namespace (developer should set their username)&#39;</span><span class="o">)</span>
+<span class="w">    </span><span class="n">string</span><span class="o">(</span><span class="nl">name:</span><span class="w"> </span><span class="s1">&#39;IMAGE_NAME&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">defaultValue:</span><span class="w"> </span><span class="s1">&#39;flask-sample-webapp&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">description:</span><span class="w"> </span><span class="s1">&#39;Image name&#39;</span><span class="o">)</span>
+<span class="w">    </span><span class="n">string</span><span class="o">(</span><span class="nl">name:</span><span class="w"> </span><span class="s1">&#39;IMAGE_TAG&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">defaultValue:</span><span class="w"> </span><span class="s2">&quot;lab11-${env.BUILD_ID}&quot;</span><span class="o">,</span><span class="w"> </span><span class="nl">description:</span><span class="w"> </span><span class="s1">&#39;Image tag (auto default)&#39;</span><span class="o">)</span>
+<span class="w">  </span><span class="o">}</span>
+
+<span class="w">  </span><span class="n">environment</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">APP_PATH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;apps/flask-sample-webapp&quot;</span>
+<span class="w">    </span><span class="n">IMAGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${params.DOCKERHUB_USER}/${params.IMAGE_NAME}:${params.IMAGE_TAG}&quot;</span>
+<span class="w">    </span><span class="n">IMAGE_LATEST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;${params.DOCKERHUB_USER}/${params.IMAGE_NAME}:latest&quot;</span>
+<span class="w">  </span><span class="o">}</span>
+
+<span class="w">  </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Should we run?&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">script</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="c1">// Fail fast if not on main branch</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="o">(!</span><span class="n">env</span><span class="o">.</span><span class="na">BRANCH_NAME</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="c1">// For single pipeline jobs, BRANCH_NAME may not be set; try GIT_BRANCH</span>
+<span class="w">            </span><span class="n">env</span><span class="o">.</span><span class="na">BRANCH_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">env</span><span class="o">.</span><span class="na">GIT_BRANCH</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">env</span><span class="o">.</span><span class="na">BRANCH_NAME</span>
+<span class="w">          </span><span class="o">}</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">env</span><span class="o">.</span><span class="na">BRANCH_NAME</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;BRANCH_NAME not set — continuing (job may be configured as single-branch pipeline).&quot;</span>
+<span class="w">          </span><span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;Branch: ${env.BRANCH_NAME}&quot;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">env</span><span class="o">.</span><span class="na">BRANCH_NAME</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;main&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">              </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;Not main branch (${env.BRANCH_NAME}) — skipping remaining stages.&quot;</span>
+<span class="w">              </span><span class="n">currentBuild</span><span class="o">.</span><span class="na">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NOT_BUILT&#39;</span>
+<span class="w">              </span><span class="n">error</span><span class="o">(</span><span class="s2">&quot;Stopping pipeline: not main branch&quot;</span><span class="o">)</span>
+<span class="w">            </span><span class="o">}</span>
+<span class="w">          </span><span class="o">}</span>
+
+<span class="w">          </span><span class="c1">// Determine whether files under APP_PATH changed in this build.</span>
+<span class="w">          </span><span class="kt">boolean</span><span class="w"> </span><span class="n">pathChanged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">          </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">changeSet</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">currentBuild</span><span class="o">.</span><span class="na">changeSets</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">entry</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">changeSet</span><span class="o">.</span><span class="na">items</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">              </span><span class="k">for</span><span class="w"> </span><span class="o">(</span><span class="n">file</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">entry</span><span class="o">.</span><span class="na">affectedFiles</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">path</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s2">&quot;${APP_PATH}/&quot;</span><span class="o">))</span><span class="w"> </span><span class="o">{</span>
+<span class="w">                  </span><span class="n">pathChanged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">                  </span><span class="k">break</span>
+<span class="w">                </span><span class="o">}</span>
+<span class="w">              </span><span class="o">}</span>
+<span class="w">              </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">pathChanged</span><span class="o">)</span><span class="w"> </span><span class="k">break</span>
+<span class="w">            </span><span class="o">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="n">pathChanged</span><span class="o">)</span><span class="w"> </span><span class="k">break</span>
+<span class="w">          </span><span class="o">}</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="o">(!</span><span class="n">pathChanged</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;No changes under ${APP_PATH} detected in this build. Exiting.&quot;</span>
+<span class="w">            </span><span class="n">currentBuild</span><span class="o">.</span><span class="na">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NOT_BUILT&#39;</span>
+<span class="w">            </span><span class="n">error</span><span class="o">(</span><span class="s2">&quot;No relevant changes&quot;</span><span class="o">)</span>
+<span class="w">          </span><span class="o">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;Changes detected under ${APP_PATH} — continuing pipeline.&quot;</span>
+<span class="w">          </span><span class="o">}</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Checkout&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="c1">// Checkout the commit that triggered the build</span>
+<span class="w">        </span><span class="n">checkout</span><span class="w"> </span><span class="n">scm</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Unit Tests&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${APP_PATH}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            set -e</span>
+<span class="s1">            python3 -m venv .venv || true</span>
+<span class="s1">            . .venv/bin/activate</span>
+<span class="s1">            pip install --upgrade pip</span>
+<span class="s1">            pip install -r requirements.txt || true</span>
+<span class="s1">            pytest -q || true</span>
+<span class="s1">          &#39;&#39;&#39;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">      </span><span class="c1">// Do not fail the whole build on flaky tests by default; you can alter to fail</span>
+<span class="w">      </span><span class="n">post</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">unsuccessful</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;Unit tests stage reported issues (see logs).&quot;</span><span class="w"> </span><span class="o">}</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Build Docker Image&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">dir</span><span class="o">(</span><span class="s2">&quot;${APP_PATH}&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            docker build -t &quot;${IMAGE}&quot; .</span>
+<span class="s1">          &#39;&#39;&#39;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Docker Login &amp; Push&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="c1">// Use credential added in Lab 08. DevOps/Students must replace DOCKERHUB_CRED_ID or set it in job parameters</span>
+<span class="w">        </span><span class="n">withCredentials</span><span class="o">([</span><span class="n">usernamePassword</span><span class="o">(</span><span class="nl">credentialsId:</span><span class="w"> </span><span class="n">params</span><span class="o">.</span><span class="na">DOCKERHUB_CRED_ID</span><span class="o">,</span><span class="w"> </span><span class="nl">usernameVariable:</span><span class="w"> </span><span class="s1">&#39;DOCKER_USER&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">passwordVariable:</span><span class="w"> </span><span class="s1">&#39;DOCKER_PASS&#39;</span><span class="o">)])</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            echo &quot;$DOCKER_PASS&quot; | docker login --username &quot;$DOCKER_USER&quot; --password-stdin</span>
+<span class="s1">            docker tag &quot;${IMAGE}&quot; &quot;${IMAGE_LATEST}&quot; || true</span>
+<span class="s1">            docker push &quot;${IMAGE}&quot;</span>
+<span class="s1">            docker push &quot;${IMAGE_LATEST}&quot;</span>
+<span class="s1">            docker logout</span>
+<span class="s1">          &#39;&#39;&#39;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Cleanup&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;docker image prune -f || true&#39;</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="c1">// stages</span>
+
+<span class="w">  </span><span class="n">post</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">success</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;Pipeline completed successfully. Image pushed: ${IMAGE}&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="n">failure</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;Pipeline failed. Check console output for errors.&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="n">always</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="c1">// optional: collect junit/test reports if produced</span>
+<span class="w">      </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;Build finished: ${currentBuild.currentResult}&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<hr />
+<h2 id="steps-create-commit-jenkinsfile-studentdevops">Steps: create / commit Jenkinsfile (student/devops)<a class="headerlink" href="#steps-create-commit-jenkinsfile-studentdevops" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create the <code>Jenkinsfile</code> locally (path recommended: <code>apps/flask-sample-webapp/Jenkinsfile</code>) and paste the content above (update default parameters).
+   Example:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/your/local/repo
+mkdir<span class="w"> </span>-p<span class="w"> </span>apps/flask-sample-webapp
+cat<span class="w"> </span>&gt;<span class="w"> </span>apps/flask-sample-webapp/Jenkinsfile<span class="w"> </span><span class="s">&lt;&lt;&#39;JENK&#39;</span>
+<span class="s">&lt;paste Jenkinsfile content here&gt;</span>
+<span class="s">JENK</span>
+</code></pre></div>
+<ol>
+<li>
+<p>Update placeholders:</p>
+</li>
+<li>
+<p>Replace <code>YOUR_DOCKERHUB_CRED_ID</code> with the Jenkins credential ID created in <strong>Lab 08</strong> (or leave as-is if job will set parameter defaults).</p>
+</li>
+<li>
+<p>Set <code>DOCKERHUB_USER</code> to your Docker Hub username (or leave as parameter to set at job-level).</p>
+</li>
+<li>
+<p>Commit &amp; push:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/add-jenkinsfile
+git<span class="w"> </span>add<span class="w"> </span>apps/flask-sample-webapp/Jenkinsfile
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Lab11: add Jenkinsfile for CI (build &amp; push Docker image)&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>feature/add-jenkinsfile
+<span class="c1"># Create a PR and merge into main (since pipeline only runs on main)</span>
+</code></pre></div>
+<blockquote>
+<p>Important: merge the PR into <code>main</code> so Jenkins multibranch or webhook-triggered job can see the <code>Jenkinsfile</code> on <code>main</code>.</p>
+</blockquote>
+<hr />
+<h2 id="configure-jenkins-job-devops">Configure Jenkins Job (DevOps)<a class="headerlink" href="#configure-jenkins-job-devops" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Jenkins → <strong>New Item</strong> → give a name (e.g., <code>techops-flask-multibranch</code>) → <strong>Multibranch Pipeline</strong> → OK.</li>
+<li>
+<p>Under <strong>Branch Sources</strong> → Add → <strong>Git</strong> (or <strong>GitHub</strong> if plugin installed).</p>
+</li>
+<li>
+<p><strong>Repository</strong>: <code>git@github.com:&lt;org-or-team&gt;/&lt;repo&gt;.git</code> (or HTTPS)</p>
+</li>
+<li>Add credentials if necessary for Jenkins to read the repo.</li>
+<li>Under <strong>Build Configuration</strong> set <strong>Script Path</strong> to:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>apps/flask-sample-webapp/Jenkinsfile
+</code></pre></div>
+<p>(This makes multibranch create jobs for branches that have that Jenkinsfile in that path.)
+4. Save.</p>
+<blockquote>
+<p>We will not rely on interval scanning — webhooks will trigger indexing/builds (see webhook steps below).</p>
+</blockquote>
+<hr />
+<h2 id="setup-github-webhook-no-polling">Setup GitHub Webhook (no polling)<a class="headerlink" href="#setup-github-webhook-no-polling" title="Permanent link">&para;</a></h2>
+<ol>
+<li>In GitHub: go to the team repo → <strong>Settings → Webhooks → Add webhook</strong>.</li>
+<li><strong>Payload URL</strong>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>https://&lt;your-jenkins-public-url&gt;/github-webhook/
+</code></pre></div>
+<p>(If Jenkins is behind auth or firewall, ensure GitHub can reach it — you may need to use a public IP / DNS or a tunneling service during lab.)
+3. <strong>Content type</strong>: <code>application/json</code>
+4. <strong>Secret</strong>: optional (if you configure secret on Jenkins side; can be left empty for classroom).
+5. <strong>Which events would you like to trigger this webhook?</strong> → Choose <strong>Let me select individual events</strong> → check <strong>Push</strong> and <strong>Pull request</strong>.
+6. Add webhook.
+7. In Jenkins, ensure GitHub plugin/webhook handling is enabled: Manage Jenkins → Configure Global Security / or check GitHub webhook logs.</p>
+<p><strong>Test:</strong> Merge the PR with <code>Jenkinsfile</code> into <code>main</code> (or push a change to <code>main</code> under <code>apps/flask-sample-webapp/</code>) — GitHub webhook should POST to Jenkins and Jenkins should trigger a build. Verify webhook delivery status in GitHub UI (should show 200 response).</p>
+<hr />
+<h2 id="checkpoint-validation-what-students-should-provide">Checkpoint / Validation (what students should provide)<a class="headerlink" href="#checkpoint-validation-what-students-should-provide" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Jenkinsfile</strong> exists and was merged into <code>main</code> at <code>apps/flask-sample-webapp/Jenkinsfile</code>. (PR link + commit sha)</li>
+<li>Jenkins job created (multibranch/pipeline) and configured <code>Script Path</code> as <code>apps/flask-sample-webapp/Jenkinsfile</code>. (screenshot)</li>
+<li>Jenkins Credentials (from Lab 08) are visible and you used that credential ID in the job or Jenkinsfile. (screenshot of credentials list showing the credential ID)</li>
+<li>GitHub webhook created and shows successful recent deliveries (screenshot).</li>
+<li>A merge/commit to <code>main</code> that changed files under <code>apps/flask-sample-webapp/</code> has triggered Jenkins and resulted in console logs showing: checkout → tests → docker build → docker push (copy of log lines showing <code>docker push</code>).</li>
+<li>Docker Hub shows the pushed tag (screenshot of your Docker Hub repo with <code>lab11-&lt;buildId&gt;</code> and <code>latest</code>).</li>
+</ol>
+<hr />
+<h2 id="troubleshooting-common-errors-fixes">Troubleshooting (common errors &amp; fixes)<a class="headerlink" href="#troubleshooting-common-errors-fixes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Webhook not triggering / 404 / 403 responses</strong></p>
+</li>
+<li>
+<p>Ensure Jenkins is reachable from the public internet (GitHub must reach it). If Jenkins is internal, use a public tunneling service (e.g., ngrok) for the lab or configure GitHub App. Check firewall/security group on Jenkins host.</p>
+</li>
+<li>Verify webhook payload URL ends with <code>/github-webhook/</code>.</li>
+<li>
+<p>Check GitHub webhook delivery logs for response codes.</p>
+</li>
+<li>
+<p><strong><code>BRANCH_NAME</code> or <code>currentBuild.changeSets</code> empty</strong></p>
+</li>
+<li>
+<p>For some job types (single pipeline) environment variables differ — the Jenkinsfile handles common variants but if changeSets are empty, the pipeline may not detect changes. In that case, as a fallback run tests/build only when you cannot inspect changeSets (or set up job to run on PR merges only). Multibranch pipeline tends to populate these.</p>
+</li>
+<li>
+<p><strong><code>denied: requested access to the resource is denied</code> (docker push)</strong></p>
+</li>
+<li>
+<p>Ensure Jenkins Credential corresponds to the Docker namespace you are pushing to (i.e., the credential username must match <code>DOCKERHUB_USER</code> in the Jenkinsfile). Use tokens not passwords when possible. Confirm the credential ID in the Jenkinsfile matches the one created in Lab 08.</p>
+</li>
+<li>
+<p><strong>Permissions to run Docker on Jenkins host</strong></p>
+</li>
+<li>
+<p><code>sudo usermod -aG docker jenkins</code> and restart Jenkins. Ensure the Jenkins process is restarted and has group membership.</p>
+</li>
+<li>
+<p><strong>Tests failing in Jenkins but pass locally</strong></p>
+</li>
+<li>
+<p>Ensure Jenkins workspace uses same Python version and installs dependencies. Cache discrepancies or network issues can cause failure. Collect logs, run same commands locally in a clean venv to reproduce.</p>
+</li>
+</ul>
+<hr />
+<h2 id="deliverables-what-to-submit-for-evaluation">Deliverables (what to submit for evaluation)<a class="headerlink" href="#deliverables-what-to-submit-for-evaluation" title="Permanent link">&para;</a></h2>
+<ol>
+<li>PR link for <code>Jenkinsfile</code> merged to <code>main</code>.</li>
+<li>Screenshots: Jenkins job config (script path), Jenkins credentials list (showing credential ID), GitHub webhook config (showing successful deliveries).</li>
+<li>Console log excerpt showing <code>docker build</code> and <code>docker push</code>.</li>
+<li>Docker Hub screenshot showing pushed image tag.</li>
+<li>Short explanation (1–2 lines) of how you verified the pipeline only ran for <code>main</code> and only when <code>apps/flask-sample-webapp/</code> changed.</li>
+</ol>
+<p><strong>Rubric:</strong></p>
+<ul>
+<li>Jenkinsfile present &amp; merged before job creation (20%)</li>
+<li>Webhook configured and triggering builds (25%)</li>
+<li>Build runs tests and pushes image using Lab08 credentials (40%)</li>
+<li>Pipeline only runs for main + path filter logic works (15%)</li>
+</ul>
+<hr />
+<h2 id="reflection-question">Reflection Question<a class="headerlink" href="#reflection-question" title="Permanent link">&para;</a></h2>
+<p>Explain how the <code>changeSets</code> check in the Jenkinsfile prevents unnecessary CI usage and why this matters in shared monorepos.</p>
+<hr />
+<h2 id="quick-tips-for-instructors-devops">Quick tips for instructors / DevOps<a class="headerlink" href="#quick-tips-for-instructors-devops" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Teach students to <strong>merge the <code>Jenkinsfile</code> to <code>main</code> first</strong>; otherwise multibranch jobs might not discover the script.</li>
+<li>If some students’ Docker Hub usernames differ from the credential username, make sure <code>DOCKERHUB_USER</code> parameter is set to match the credential username (or DevOps creates a per-developer credential with a matching username).</li>
+<li>Encourage use of Docker Hub tokens and to rotate them frequently; store tokens in Jenkins credentials (username = docker username, password = token).</li>
+</ul>
+<hr />
+<p>If you want, I can now:</p>
+<ul>
+<li>Produce a <strong>short shell script</strong> developers can use to create and push the <code>Jenkinsfile</code> (automates the <code>git</code> steps), <strong>or</strong></li>
+<li>Produce a <strong>one-page student checklist</strong> (PDF/markdown) summarizing exactly what screenshots/links they must submit for grading.</li>
+</ul>
+<p>Which of those should I produce next?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../12_lab10/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 10">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 10
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../roadmap/syllabus/" class="md-footer__link md-footer__link--next" aria-label="Next: Syllabus">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Syllabus
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.collapse", "navigation.sections", "navigation.instant", "navigation.footer", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../assets/javascripts/toggle-nav.js"></script>
+      
+    
+  </body>
+</html>

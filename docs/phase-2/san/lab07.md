@@ -1,7 +1,8 @@
 # Lab 07: Configuring iSCSI Targets and Multipath I/O (High Availability Simulation)
 
-**File:** Lab\_07\_iSCSI\_MPIO.md
-**UUID:** 02a9a72e-61d6-47f8-9f4c-749ae6eaf0e2
+!!! danger "Alert"
+      This lab is not tested and may result in unexpected outcomes. The idea is to show how iSCSI is configured on TrueNAS
+
 
 ---
 
@@ -32,43 +33,111 @@ By the end of this lab, you will:
 
 ---
 
-## Step 2: Configuring an iSCSI Target in TrueNAS
 
-1. Log in to the **TrueNAS Web Interface**.
-2. Go to **Sharing → Block Shares (iSCSI)**.
-3. Click **Wizard**.
+## Step 2: Create a Zvol
 
-### iSCSI Wizard Steps
+1. Browse to **Datasets** → Click on your **TechOpsPool**
+2. Click **Add Zvol** → Zvol name: `iscsi_zvol`, Size for this zvol: `10 GiB`.
+3. Leve all other fields as default
+4. Click on **Save**
 
-1. **Portal Setup**
+## Step 3: Enable iSCSI Service
 
-   * Add Portal → IP: `<truenas-ip>`
-   * Save.
+* Go to **System → Services**
+* **iSCSI** → Running (Select) + Start Automatically (Select).
 
-2. **Initiators**
 
-   * Leave default (allow all).
+## Step 4: Configure iSCSI Target Wizard
 
-3. **Targets**
+Go to **Shares → Block Shares (iSCSI) → Wizard**. 
 
-   * Name: `TechOpsTarget`
-   * Group ID: 1
+1. **Target**
 
-4. **Extents**
+      * Target → *Create New*.
 
-   * Type: `File` or `Device`
-   * Path: `/mnt/TechOpsPool/iscsi_extent.img`
-   * Size: 2 GB
+2. **Extent**
 
-5. **Associated Targets**
+      * Name: `extent0`.
+      * Extent Type: **Device**.
+      * Device: Select the Zvol (`iscsi_zvol`).
+      * All other settings as default.
 
-   * Link `TechOpsTarget` with the extent.
+3. **Portal Options**
 
-6. Save and restart the iSCSI service when prompted.
-
-✅ You have now created an iSCSI target backed by your ZFS pool.
+      * **Portal:** `Create New`
+      * **IP Address:** `Add`
+        * IP Address: 0.0.0.0   
+      * **Initiators:** `Leave Blank`
+  
+4. Click on `Save`
 
 ---
+
+## Step 3: Adding a 2nd NIC in VirtualBox (Bridged Mode)
+
+### 1. Power Down TrueNAS VM
+
+* In VirtualBox main window → **select TrueNAS VM**
+* Click **Close → Power Off** (or shut down gracefully inside TrueNAS).
+
+---
+
+### 2. Open VM Settings
+
+* Highlight your TrueNAS VM.
+* Click **⚙️ Settings** on the toolbar.
+
+---
+
+### 3. Go to **Network**
+
+* In the left menu → click **Network**.
+* You’ll see **Adapter 1** already enabled (your current NIC).
+
+---
+
+### 4. Enable Adapter 2
+
+* Click the **Adapter 2** tab.
+* Tick ✅ **Enable Network Adapter**.
+
+---
+
+### 5. Configure Adapter 2
+
+* **Attached to:** `Bridged Adapter`
+* **Name:** Select your host’s actual physical network interface (e.g. Wi-Fi card or Ethernet port).
+* **Promiscuous Mode:** `Allow All` (recommended for iSCSI multipath so no weird filtering happens).
+* **Cable Connected:** ✅ checked.
+
+---
+
+### 6. Save & Boot
+
+* Click **OK**.
+* Start the TrueNAS VM.
+
+---
+
+### 7. Assign IP to New NIC inside TrueNAS
+
+* Log into TrueNAS web UI → **Network → Interfaces → Add**.
+* Select the new NIC (will likely show up as `enp0s8`, `em1`, etc.).
+* Set **Static IP** (e.g. `192.168.1.187/24`).
+* Save + Apply.
+
+Now TrueNAS has:
+
+* NIC1 → `192.168.1.186`
+* NIC2 → `192.168.1.187`
+
+---
+
+### 8. Update iSCSI Portals
+
+* Go to **Sharing → Block Shares (iSCSI) → Portals → Add**.
+* Create one portal bound to `192.168.1.186`.
+* Create another portal bound to `192.168.1.187`.
 
 ## Step 3: Simulating Multiple Network Paths
 
