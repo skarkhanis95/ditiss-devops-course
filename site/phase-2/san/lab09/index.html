@@ -2189,9 +2189,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-configuring-access-policies" class="md-nav__link">
+  <a href="#step-7-sharing-the-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 7: Configuring Access Policies
+      Step 7: Sharing the files
     </span>
   </a>
   
@@ -4088,9 +4088,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-configuring-access-policies" class="md-nav__link">
+  <a href="#step-7-sharing-the-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 7: Configuring Access Policies
+      Step 7: Sharing the files
     </span>
   </a>
   
@@ -4140,8 +4140,6 @@
 
 
 <h1 id="lab-09-deploying-object-storage-with-minio">Lab 09: Deploying Object Storage with MinIO<a class="headerlink" href="#lab-09-deploying-object-storage-with-minio" title="Permanent link">&para;</a></h1>
-<p><strong>File:</strong> Lab_09_MinIO_Object_Storage.md
-<strong>UUID:</strong> 63b6b9e7-9202-4d67-91f0-0e3f47f084a1</p>
 <hr />
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>In this lab, you will deploy <strong>MinIO</strong>, an open-source, high-performance object storage server. MinIO is compatible with the <strong>Amazon S3 API</strong>, making it perfect for learning modern cloud-native storage concepts.</p>
@@ -4217,13 +4215,14 @@
 </ol>
 <p>✅ You have successfully uploaded and downloaded objects.</p>
 <hr />
-<h2 id="step-7-configuring-access-policies">Step 7: Configuring Access Policies<a class="headerlink" href="#step-7-configuring-access-policies" title="Permanent link">&para;</a></h2>
+<h2 id="step-7-sharing-the-files">Step 7: Sharing the files<a class="headerlink" href="#step-7-sharing-the-files" title="Permanent link">&para;</a></h2>
 <ol>
-<li>In the MinIO console, go to <strong>Buckets → techops-bucket → Manage → Access Policy</strong>.</li>
-<li>Set policy to <strong>Public</strong> (for testing only).</li>
-<li>Copy the object link and open it in a browser without logging in.</li>
+<li>In the <code>techops-bucket</code> that you created, select the file you just uploaded by selecting checkmark on the left side of the file name.</li>
+<li>In the sub-menu on right side, you will find the <strong>Share</strong> button, click on it.</li>
+<li>Accept the default values for sharing time or add as per your needs.</li>
+<li>Copy the link and share to your instructor on Slack and updte your Jira Card for the lab.</li>
 </ol>
-<p>✅ You can now access the file directly via URL.</p>
+<p>✅ You can now access the file directly via URL now.</p>
 <p>⚠️ <strong>Note:</strong> In production, access policies should be restricted for security.</p>
 <hr />
 <h2 id="step-8-optional-using-minio-client-mc">Step 8: (Optional) Using MinIO Client (mc)<a class="headerlink" href="#step-8-optional-using-minio-client-mc" title="Permanent link">&para;</a></h2>

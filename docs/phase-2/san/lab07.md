@@ -73,91 +73,106 @@ Go to **Shares → Block Shares (iSCSI) → Wizard**.
 
 ---
 
-## Step 3: Adding a 2nd NIC in VirtualBox (Bridged Mode)
 
-### 1. Power Down TrueNAS VM
 
-* In VirtualBox main window → **select TrueNAS VM**
-* Click **Close → Power Off** (or shut down gracefully inside TrueNAS).
+## Step 5: Adding a 2nd NIC in VirtualBox
+
+
+=== "If you are on bridged mode"
+
+      **Power Down TrueNAS VM**
+
+      * In VirtualBox main window → **select TrueNAS VM**
+      * Click **Close → Power Off** (or shut down gracefully inside TrueNAS).
+
+
+       **2. Open VM Settings **
+
+      * Highlight your TrueNAS VM.
+      * Click **⚙️ Settings** on the toolbar.
+
+
+
+      **Go to Network**
+
+      * In the left menu → click **Network**.
+      * You’ll see **Adapter 1** already enabled (your current NIC).
+
+
+
+      **Enable Adapter 2**
+
+      * Click the **Adapter 2** tab.
+      * Tick ✅ **Enable Network Adapter**.
+
+
+
+      **Configure Adapter 2**
+
+      * **Attached to:** `Bridged Adapter`
+      * **Name:** Select your host’s actual physical network interface (e.g. Wi-Fi card or Ethernet port).
+      * **Promiscuous Mode:** `Allow All` (recommended for iSCSI multipath so no weird filtering happens).
+      * **Cable Connected:** ✅ checked.
+
+
+      **Save & Boot**
+
+      * Click **OK**.
+      * Start the TrueNAS VM.
+
+=== "If you are on NAT + Host Only Network"
+
+      **Change your network settings for `192.x.x.x`**
+
+      * Go to **Networks** from right side menu
+      * Under the **Interfaces** -> Note down your both of the IPs that are listed
+      * Click on **Pencil** icon of the interface which has IP starting from `192.168.x.x`
+      * Unselect **DHCP**
+      * Unselect **Autoconfigure IPv6**
+      * Under the **Aliases**
+          * Enter the IP that you have noted down which started from `192.168.x.x` and `/24`
+      * Click on `Save`
+      * On the `Networks` page you will see `Test Changes` button
+      * Above the said button you will see `Test network interace changes for **60** seconds`
+      * Click on the `60` and change to `10`
+      * Click on 'Test Changes`
+      * Click on `Confirm` and `Save Changes`
+      * **Immediately you will see another button on page saying `Save Changes` click on that within **10** seconds.
+
+      **Change your network settings for NAT network**
+
+      * Go to **Networks** from right side menu
+      * Under the **Interfaces** -> Note down your both of the IPs that are listed
+      * Click on **Pencil** icon of the interface which has IP starting from `10.0.x.x`
+      * `Unselect` **DHCP**
+      * `Unselect` **Autoconfigure IPv6**
+      * Under the **Aliases**
+          * Enter the IP that you have noted down which started from `10.0.x.x` and `/24`
+      * Click on `Save`
+      * On the `Networks` page you will see `Test Changes` button
+      * Above the said button you will see `Test network interace changes for **60** seconds`
+      * Click on the `60` and change to `10`
+      * Click on 'Test Changes`
+      * Click on `Confirm` and `Save Changes`
+      * **Immediately you will see another button on page saying `Save Changes` click on that within **10** seconds.
+
+      **Add additonal portal**
+
+      * In the search above, type `portals` and select **Shares -> iSCSI -> Portals**
+      * Click on the pencil icon of on the existing portal which will start from `0.0.0.0`
+      * In the **IP Address** section:
+          * Click on drop down which says 0.0.0.0 and select the IP which you have configured in previous step starting from `10.0.x.x`
+          * Click on `Save`
+      * Click on `Add` button:
+          * In IP Address section again click on `Add`
+          * Select the IP from drop down which starts from `192.168.x.x`
+          * Click on `Save`
+  
+
 
 ---
 
-### 2. Open VM Settings
-
-* Highlight your TrueNAS VM.
-* Click **⚙️ Settings** on the toolbar.
-
----
-
-### 3. Go to **Network**
-
-* In the left menu → click **Network**.
-* You’ll see **Adapter 1** already enabled (your current NIC).
-
----
-
-### 4. Enable Adapter 2
-
-* Click the **Adapter 2** tab.
-* Tick ✅ **Enable Network Adapter**.
-
----
-
-### 5. Configure Adapter 2
-
-* **Attached to:** `Bridged Adapter`
-* **Name:** Select your host’s actual physical network interface (e.g. Wi-Fi card or Ethernet port).
-* **Promiscuous Mode:** `Allow All` (recommended for iSCSI multipath so no weird filtering happens).
-* **Cable Connected:** ✅ checked.
-
----
-
-### 6. Save & Boot
-
-* Click **OK**.
-* Start the TrueNAS VM.
-
----
-
-### 7. Assign IP to New NIC inside TrueNAS
-
-* Log into TrueNAS web UI → **Network → Interfaces → Add**.
-* Select the new NIC (will likely show up as `enp0s8`, `em1`, etc.).
-* Set **Static IP** (e.g. `192.168.1.187/24`).
-* Save + Apply.
-
-Now TrueNAS has:
-
-* NIC1 → `192.168.1.186`
-* NIC2 → `192.168.1.187`
-
----
-
-### 8. Update iSCSI Portals
-
-* Go to **Sharing → Block Shares (iSCSI) → Portals → Add**.
-* Create one portal bound to `192.168.1.186`.
-* Create another portal bound to `192.168.1.187`.
-
-## Step 3: Simulating Multiple Network Paths
-
-To simulate **multipathing** in VirtualBox:
-
-1. In **TrueNAS VM → Settings → Network**:
-
-   * Add a **second network adapter** (also set to Bridged Mode).
-2. Restart the TrueNAS VM.
-3. Assign an IP address to the second NIC inside TrueNAS (use the console menu if needed).
-   Example:
-
-   * NIC1: 192.168.1.120
-   * NIC2: 192.168.1.121
-
-✅ Now the same iSCSI target is reachable through two network paths.
-
----
-
-## Step 4: Connecting Lubuntu to iSCSI Target
+## Step 6: Connecting Lubuntu to iSCSI Target
 
 1. On Lubuntu VM, install iSCSI initiator tools:
 
@@ -188,7 +203,7 @@ To simulate **multipathing** in VirtualBox:
 
 ---
 
-## Step 5: Configuring Multipath I/O (MPIO)
+## Step 7: Configuring Multipath I/O (MPIO)
 
 1. Enable multipath service:
 

@@ -4257,14 +4257,12 @@
 <li>Go to <strong>Storage → Pools</strong> in the web interface.</li>
 <li>Click <strong>Add → Create new pool</strong>.</li>
 <li>Name the pool: <code>TechOpsPool</code></li>
-<li>Select the <strong>3 data disks (10 GB each)</strong> you created earlier.</li>
-<li>
-<p>Choose a <strong>RAID-Z1</strong> configuration (similar to RAID-5).</p>
-<ul>
-<li>This provides redundancy: the pool can survive one disk failure.</li>
+<li>Layout: <strong>RAID-Z1</strong></li>
+<li>Width: <strong>3</strong></li>
+<li>Number of VDEVs: <strong>1</strong></li>
+<li>Click on <strong>Next</strong>, untill you are at last step (leave all other fields as default)</li>
+<li>Click on <strong>Create Pool</strong></li>
 <li>Confirm and create the pool.</li>
-</ul>
-</li>
 </ol>
 <p>✅ You now have a ZFS storage pool.</p>
 <hr />
@@ -4272,7 +4270,7 @@
 <p>Datasets are like folders within a ZFS pool, optimized for different use cases.</p>
 <ol>
 <li>In the TrueNAS web interface → <strong>Storage → Pools → TechOpsPool</strong>.</li>
-<li>Click the 3-dot menu → <strong>Add Dataset</strong>.</li>
+<li>Click the 3-dot menu → <strong>Add Dataset</strong>. OR directly click on <strong>Add Dateset</strong></li>
 <li>Name it: <code>ProjectData</code></li>
 <li>Accept defaults (compression on, share type: generic).</li>
 </ol>
