@@ -2,119 +2,130 @@
 hide:
     - toc
 ---
-# OpenStack: The Open-Source Cloud Platform
+
+# Proxmox VE: The Open-Source Virtualization & Private Cloud Platform
 
 ---
 
-## What is OpenStack?
+## What is Proxmox?
 
-![OpenStack Logo](../../assets/images/openstack.png)
+![Proxmox Logo](../../assets/images/proxmox.png)
 
 ### What is it?
-**OpenStack** is an **open-source cloud computing platform** for building and managing **private and public clouds**. It provides Infrastructure-as-a-Service (**IaaS**) by pooling compute, storage, and networking resources, all managed through a **dashboard (Horizon)** or **RESTful APIs**.
 
-In simple terms:  
-OpenStack lets organizations build their own **private cloud** — similar to AWS or Azure, but on their **own hardware** and fully customizable.
+**Proxmox VE (Virtual Environment)** is an **open-source platform** for running and managing **virtual machines (KVM)** and **containers (LXC)**, clustering multiple hosts, and providing enterprise-grade features (HA, live migration, backups, software-defined storage). It exposes a **web GUI**, CLI tools, and **RESTful APIs** so you can operate everything from a browser, scripts, or automation tools.
+
+In simple terms:
+Proxmox lets organizations run VMs and containers on their own hardware with built-in clustering, storage integrations (ZFS, Ceph, LVM, NFS), and backup — giving a lightweight private-cloud-like experience focused on virtualization and operational simplicity.
 
 ---
 
 ## Theoretical Definition
-OpenStack is a **modular cloud operating system** that controls large pools of compute, storage, and networking resources in a data center, managed through a web interface, APIs, or CLI.  
 
-It was originally created in 2010 by **Rackspace Hosting and NASA** and is now maintained by the **OpenInfra Foundation**.
+Proxmox VE is a **converged virtualization platform** that combines a KVM hypervisor, LXC containers, software-defined storage integrations, clustering and high-availability services, and management tooling (web UI and API) into a single distribution. It’s maintained and developed by **Proxmox Server Solutions GmbH** and distributed under open-source licenses, with an optional commercial subscription for enterprise support.
 
 ---
 
-## Why OpenStack? (Role in Private Cloud)
+## Why Proxmox? (Role in Private Cloud / Virtual Infrastructure)
 
-![Private Cloud Diagram](../../assets/images/open_stack_arch.jpg)
+![Proxmox Architecture Diagram](../../assets/images/proxmox_arch.jpg)
 
 ### Key Benefits
-- **Open-source**: No vendor lock-in, fully customizable.
-- **Private Cloud Enabler**: Build your own AWS/Azure-like infrastructure inside your data center.
-- **Scalable**: Supports small labs to large enterprise deployments.
-- **Multi-tenancy**: Securely isolates workloads for different users/teams.
-- **API-driven**: Integrates with DevOps and automation tools (Terraform, Ansible, Kubernetes).
 
-👉 OpenStack is widely used by telecom providers, governments, and enterprises that want **cloud agility while retaining control**.
+* **Open-source with commercial support option** — no vendor lock-in, but enterprise subscription available.
+* **All-in-one virtualization** — runs both KVM VMs and LXC containers from the same UI.
+* **Simple clustering & HA** — build multi-node clusters with Corosync, enable HA for VMs/containers.
+* **Flexible storage** — integrates ZFS, Ceph/RBD, LVM, NFS, iSCSI, directory storages and Proxmox Backup Server.
+* **Web UI + API + CLI** — manage everything from the browser, scripts, or automation (Terraform, Ansible).
+* **Lightweight private cloud** — ideal for labs, dev/test, edge, and many production uses where full cloud orchestration isn't required.
 
----
-
-## OpenStack Core Components
-
-OpenStack is made of many services, each handling a specific function:
-
-- **Nova** → Compute service (manages VMs and instances).  
-- **Neutron** → Networking (virtual networks, routers, firewalls, SDN integration).  
-- **Cinder** → Block Storage (persistent storage for VMs).  
-- **Swift** → Object Storage (similar to Amazon S3).  
-- **Glance** → Image service (stores VM images and templates).  
-- **Keystone** → Identity service (authentication, authorization).  
-- **Horizon** → Dashboard (web UI for managing OpenStack).  
-- **Heat** → Orchestration (templates for automated cloud deployments).  
-- **Ceilometer** → Telemetry (monitoring, billing, usage).  
+👉 Proxmox is widely used by small/medium enterprises, educational labs, and companies that want the operational advantages of a private cloud but with simpler deployment than a full cloud fabric.
 
 ---
 
-## OpenStack vs Public Cloud (AWS/Azure)
+## Proxmox Core Components
 
-| Feature           | OpenStack (Private Cloud)                      | AWS/Azure (Public Cloud)                  |
-|-------------------|------------------------------------------------|-------------------------------------------|
-| **Ownership**     | Organization-owned and managed                 | Provider-owned and managed                |
-| **Deployment**    | Runs in local data center                      | Runs on provider’s global infrastructure  |
-| **Cost Model**    | CapEx (hardware) + maintenance                 | OpEx (pay-as-you-go)                      |
-| **Customization** | Fully customizable (open-source)               | Limited to provider’s services            |
-| **Use Case**      | Private cloud, compliance-driven workloads     | Public-facing apps, global scale          |
+Proxmox VE bundles several components and integrations, each handling a specific role:
 
-👉 OpenStack is often used as the **foundation for private/hybrid clouds**, sometimes integrated with AWS, Azure, or GCP for hybrid models.
+* **KVM/QEMU (VMs)** → Full virtualization for guest OSes.
+* **LXC (Containers)** → Lightweight Linux containers for efficient workloads.
+* **pve-manager (Web UI)** → The browser-based management console and API server.
+* **pve-cluster / Corosync** → Cluster communication and quorum management.
+* **HA Manager** → High-availability orchestration for VMs and containers.
+* **Storage integrations** → ZFS, Ceph (RBD), LVM-Thin, iSCSI, NFS, directory, and Proxmox Backup Server.
+* **Proxmox Backup Server (PBS)** → Deduplicating, incremental backup server designed for Proxmox environments.
+* **Live migration & snapshotting** → Move running VMs between hosts and take snapshots (depends on storage).
+* **QEMU/KVM tools (qm)** & **pct** → CLI tools for VM and container lifecycle.
+* **API & REST endpoints** → Automation-friendly interfaces for integrations with Terraform/Ansible/CI pipelines.
 
 ---
 
-## Vendors & Distributions
+## Proxmox vs Public Cloud (AWS/Azure) — quick comparison
 
-Several companies provide commercial support and customized versions of OpenStack:
+| Feature           | Proxmox VE (On-prem)                             | AWS/Azure (Public Cloud)                  |
+| ----------------- | ------------------------------------------------ | ----------------------------------------- |
+| **Ownership**     | Organization-owned and managed                   | Provider-owned and managed                |
+| **Deployment**    | Runs on local servers (single cluster to many)   | Runs on provider’s global infra           |
+| **Cost Model**    | CapEx (hardware) + optional subscription         | OpEx (pay-as-you-go)                      |
+| **Customization** | Full control of hypervisor, storage, network     | Limited to provider services              |
+| **Scale**         | Scales across on-prem clusters; needs planning   | Essentially unlimited (provider scale)    |
+| **Use Case**      | Private virtualization, labs, edge, on-prem apps | Global apps, serverless, managed services |
 
-- **Red Hat OpenStack Platform (RHOSP)**  
-- **Canonical’s Charmed OpenStack (Ubuntu-based)**  
-- **Mirantis Cloud Platform**  
-- **SUSE OpenStack Cloud**  
-- **Huawei FusionSphere (OpenStack-based)**  
+👉 Use Proxmox when you need tight control of your hardware, cost predictability, on-prem data residency, or a simple private-cloud stack focused on VMs/containers.
+
+---
+
+## Vendors & Support
+
+Proxmox VE is produced by **Proxmox Server Solutions GmbH**. Options around the product ecosystem:
+
+* **Proxmox VE (community edition)** — free, open-source.
+* **Proxmox VE subscription** — enterprise repository access, technical support, and maintenance updates.
+* **Proxmox Backup Server (PBS)** — dedicated backup product; has community and subscription options.
+* **Third-party consultants & integrators** — many vendors provide Ceph, ZFS, or HA design & support services.
 
 ---
 
 ## Real-World Use Cases
-- **Telecom Industry (5G Core Networks):** OpenStack powers NFV (Network Function Virtualization).  
-- **Government Clouds:** Secure, private deployments for compliance.  
-- **Research & Universities:** Flexible, low-cost private clouds for HPC.  
-- **Enterprises:** Run private clouds for internal apps, dev/test, and regulated workloads.  
+
+* **Virtualization platform for labs & education:** Run many student VMs/containers with easy snapshots and rollbacks.
+* **Edge & branch datacenters:** Lightweight clusters that run KVM + LXC with local storage.
+* **Small/medium enterprise virtualization:** Replace legacy hypervisors with a unified, open platform.
+* **Ceph-backed resilient storage clusters:** Combine Proxmox + Ceph for scalable block/object storage.
+* **Backup & DR workflows:** Use Proxmox Backup Server for efficient backups and quick restores.
+* **Dev/Test & CI environments:** Provision VMs/containers programmatically via API.
 
 ---
 
 ## Example Scenario
-At **TechOps Inc.**, the IT team wants to run a **private cloud** for developers.  
 
-- OpenStack is deployed across 5 servers.  
-- Developers log in to Horizon and spin up VMs within minutes.  
-- Storage is provided by **Cinder (block)** and **Swift (object)**.  
-- Networking managed by **Neutron**.  
-- Authentication handled by **Keystone**.  
+At **TechOps Inc.**, the IT team wants a private virtualization platform for developers and QA.
 
-This setup allows TechOps Inc. to provide an **AWS-like experience internally**, without depending on public cloud providers.
+* **Deployment:** Proxmox VE deployed on 5 servers as a cluster.
+* **Compute:** Developers get KVM VMs for full OS testing and LXC containers for lightweight app stacks.
+* **Storage:** ZFS on local hosts for some workloads, and a Ceph cluster for resilient block storage used by production VMs.
+* **Management:** Engineers use the Proxmox web UI and the REST API to provision templates and automate with Ansible.
+* **Backups:** Proxmox Backup Server handles deduplicated, incremental backups of VMs and containers.
+* **Networking:** Linux bridges and VLANs isolate tenant networks; SDN features or external virtual routers can be integrated.
+
+This setup gives TechOps a streamlined, AWS-like developer experience for VM self-service (templates, snapshots, restore) while staying fully on-prem and cost-predictable.
 
 ---
 
-!!! tip "WOW Tip"
-    OpenStack is the **second most deployed open-source project in the cloud world after Kubernetes**. 
+!!! tip "Pro-Tip"
+    Proxmox is ideal when you want a **single product to cover VMs, containers, clustering, storage integrations, and backups** without deploying a full cloud orchestration stack.
 
 !!! tip "Fun Fact"
-    Many **public cloud providers (like OVH, Rackspace, and CityCloud)** actually run their services **on top of OpenStack**.
+    Proxmox VE’s tight integration with **Proxmox Backup Server** gives very efficient backups thanks to chunk-level deduplication and incremental storage.
 
 ---
 
 # Summary
-- OpenStack is an **open-source cloud platform** for building private and hybrid clouds.  
-- It provides modular services for compute, storage, networking, and management.  
-- Competes with AWS/Azure by offering on-premise cloud capabilities.  
-- Widely adopted in telecom, government, research, and enterprises.  
+
+* Proxmox VE is an **open-source virtualization platform** focusing on KVM VMs, LXC containers, clustering, and storage integration.
+* It provides a unified web UI, CLI and REST API for management and automation.
+* Best for private virtualization, labs, edge clusters, SMB production, and scenarios that prefer simplicity over a full cloud fabric.
+* Often paired with Ceph and Proxmox Backup Server for resilient storage and enterprise-grade backups.
 
 ---
+
