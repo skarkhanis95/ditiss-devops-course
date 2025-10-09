@@ -61,9 +61,10 @@
 
     ```bash
     sudo mkdir -p /etc/chef/accepted_licenses
-    echo > /etc/chef/accepted_licenses/chef_infra_client
-    echo > /etc/chef/accepted_licenses/inspec
+    sudo sh -c 'echo "accepted" > /etc/chef/accepted_licenses/chef_infra_client'
+    sudo sh -c 'echo "accepted" > /etc/chef/accepted_licenses/inspec'
     sudo chmod 644 /etc/chef/accepted_licenses/*
+    sudo chown root:root /etc/chef/accepted_licenses/*
     ```
 
     ---
@@ -72,13 +73,16 @@
 
     Create `/etc/chef/client.rb`. Replace `<CHEF_SERVER_PUBLIC_DNS>` with the DNS of the instructor’s Chef Server.
 
+    !!! danger "Important"
+        Change the `<your-node-name>` to any unique name
+
     ```bash
     sudo tee /etc/chef/client.rb <<EOF
     log_level        :info
     log_location     STDOUT
-    chef_server_url  'https://ec2-13-49-73-88.eu-north-1.compute.amazonaws.com/organizations/ditissorg'
+    chef_server_url  'https://ec2-16-16-182-88.eu-north-1.compute.amazonaws.com/organizations/ditissorg'
     validation_client_name 'ditissorg-validator'
-    node_name        'web-node'
+    node_name        '<your-node-name>'
     ssl_verify_mode  :verify_none
     EOF
     ```
@@ -184,7 +188,7 @@
     sudo tee /etc/chef/client.rb <<EOF
     log_level        :info
     log_location     STDOUT
-    chef_server_url  'https://ec2-13-49-73-88.eu-north-1.compute.amazonaws.com/organizations/ditissorg'
+    chef_server_url  'https://ec2-16-16-182-88.eu-north-1.compute.amazonaws.com/organizations/ditissorg'
     validation_client_name 'ditissorg-validator'
     node_name        'local-vm-node'
     ssl_verify_mode  :verify_none
