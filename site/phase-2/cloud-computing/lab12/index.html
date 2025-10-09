@@ -4363,19 +4363,24 @@ sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</sp
 <h3 id="step-4-accept-chef-licenses">Step 4: Accept Chef licenses<a class="headerlink" href="#step-4-accept-chef-licenses" title="Permanent link">&para;</a></h3>
 <p>Chef requires license acceptance. Create the accepted license files:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/chef/accepted_licenses
-<span class="nb">echo</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/chef/accepted_licenses/chef_infra_client
-<span class="nb">echo</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/chef/accepted_licenses/inspec
+sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;accepted&quot; &gt; /etc/chef/accepted_licenses/chef_infra_client&#39;</span>
+sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;accepted&quot; &gt; /etc/chef/accepted_licenses/inspec&#39;</span>
 sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/etc/chef/accepted_licenses/*
+sudo<span class="w"> </span>chown<span class="w"> </span>root:root<span class="w"> </span>/etc/chef/accepted_licenses/*
 </code></pre></div>
 <hr />
 <h3 id="step-5-create-chef-client-configuration">Step 5: Create Chef client configuration<a class="headerlink" href="#step-5-create-chef-client-configuration" title="Permanent link">&para;</a></h3>
 <p>Create <code>/etc/chef/client.rb</code>. Replace <code>&lt;CHEF_SERVER_PUBLIC_DNS&gt;</code> with the DNS of the instructor’s Chef Server.</p>
+<div class="admonition danger">
+<p class="admonition-title">Important</p>
+<p>Change the <code>&lt;your-node-name&gt;</code> to any unique name</p>
+</div>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/chef/client.rb<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">log_level        :info</span>
 <span class="s">log_location     STDOUT</span>
-<span class="s">chef_server_url  &#39;https://ec2-13-49-73-88.eu-north-1.compute.amazonaws.com/organizations/ditissorg&#39;</span>
+<span class="s">chef_server_url  &#39;https://ec2-16-16-182-88.eu-north-1.compute.amazonaws.com/organizations/ditissorg&#39;</span>
 <span class="s">validation_client_name &#39;ditissorg-validator&#39;</span>
-<span class="s">node_name        &#39;web-node&#39;</span>
+<span class="s">node_name        &#39;&lt;your-node-name&gt;&#39;</span>
 <span class="s">ssl_verify_mode  :verify_none</span>
 <span class="s">EOF</span>
 </code></pre></div>
@@ -4444,7 +4449,7 @@ sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">644</sp
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/chef/client.rb<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
 <span class="s">log_level        :info</span>
 <span class="s">log_location     STDOUT</span>
-<span class="s">chef_server_url  &#39;https://ec2-13-49-73-88.eu-north-1.compute.amazonaws.com/organizations/ditissorg&#39;</span>
+<span class="s">chef_server_url  &#39;https://ec2-16-16-182-88.eu-north-1.compute.amazonaws.com/organizations/ditissorg&#39;</span>
 <span class="s">validation_client_name &#39;ditissorg-validator&#39;</span>
 <span class="s">node_name        &#39;local-vm-node&#39;</span>
 <span class="s">ssl_verify_mode  :verify_none</span>
