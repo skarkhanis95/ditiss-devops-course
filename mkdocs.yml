@@ -157,6 +157,7 @@ nav:
           - Lab 19: phase-3/lab19.md
           - Lab 20: phase-3/lab20.md
           - Lab 21: phase-3/lab21.md
+          - Lab 21(B): phase-3/lab21b.md
           - Infrastructure as Code (IaC): phase-3/03_iac.md
           - Terraform: phase-3/00_terraform.md
           - Container Orchestration: phase-3/04_container_orchestration.md
