@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://skarkhanis95.github.io/ditiss-devops-course/phase-2/san/01_overview/">
+        <link rel="canonical" href="https://skarkhanis95.github.io/ditiss-devops-course/phase-3/lab21b/">
       
       
-        <link rel="prev" href="../../virtualization/lab04/">
+        <link rel="prev" href="../lab21/">
       
       
-        <link rel="next" href="../02_high_availablity/">
+        <link rel="next" href="../03_iac/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
     
     
       
-        <title>Introduction - PG-DITISS 2025 · IT Infrastructure & DevOps</title>
+        <title>Lab 21(B) - PG-DITISS 2025 · IT Infrastructure & DevOps</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/toggle-nav.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/toggle-nav.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#storage-area-network-san-and-related-concepts" class="md-skip">
+        <a href="#lab-21b-lab-deploy-a-dockerized-application-to-aws-app-runner-using-github-actions-and-ecr" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-header__button md-logo" aria-label="PG-DITISS 2025 · IT Infrastructure & DevOps" data-md-component="logo">
+    <a href="../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-header__button md-logo" aria-label="PG-DITISS 2025 · IT Infrastructure & DevOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Lab 21(B)
             
           </span>
         </div>
@@ -225,7 +225,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -257,7 +257,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../roadmap/roadmap/" class="md-tabs__link">
+        <a href="../../roadmap/roadmap/" class="md-tabs__link">
           
   
   
@@ -287,7 +287,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../capstone/01_overview/" class="md-tabs__link">
+        <a href="../../capstone/01_overview/" class="md-tabs__link">
           
   
   
@@ -310,7 +310,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../roadmap/syllabus/" class="md-tabs__link">
+        <a href="../../roadmap/syllabus/" class="md-tabs__link">
           
   
   
@@ -333,8 +333,6 @@
           
             
               
-                
-              
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -346,7 +344,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-nav__button md-logo" aria-label="PG-DITISS 2025 · IT Infrastructure & DevOps" data-md-component="logo">
+    <a href="../.." title="PG-DITISS 2025 · IT Infrastructure &amp; DevOps" class="md-nav__button md-logo" aria-label="PG-DITISS 2025 · IT Infrastructure & DevOps" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
@@ -376,7 +374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -492,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../roadmap/roadmap/" class="md-nav__link">
+      <a href="../../roadmap/roadmap/" class="md-nav__link">
         
   
   
@@ -569,7 +567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-0/01_overview/" class="md-nav__link">
+      <a href="../../phase-0/01_overview/" class="md-nav__link">
         
   
   
@@ -635,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-0/02_agile/" class="md-nav__link">
+      <a href="../../phase-0/02_agile/" class="md-nav__link">
         
   
   
@@ -658,7 +656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-0/03_agile-methodologies/" class="md-nav__link">
+      <a href="../../phase-0/03_agile-methodologies/" class="md-nav__link">
         
   
   
@@ -681,7 +679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-0/04_lean/" class="md-nav__link">
+      <a href="../../phase-0/04_lean/" class="md-nav__link">
         
   
   
@@ -704,7 +702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-0/lab00/" class="md-nav__link">
+      <a href="../../phase-0/lab00/" class="md-nav__link">
         
   
   
@@ -727,7 +725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-0/lab01/" class="md-nav__link">
+      <a href="../../phase-0/lab01/" class="md-nav__link">
         
   
   
@@ -750,7 +748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-0/lab02/" class="md-nav__link">
+      <a href="../../phase-0/lab02/" class="md-nav__link">
         
   
   
@@ -773,7 +771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-0/knowledge-check/" class="md-nav__link">
+      <a href="../../phase-0/knowledge-check/" class="md-nav__link">
         
   
   
@@ -901,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/overview/" class="md-nav__link">
+      <a href="../../phase-1/overview/" class="md-nav__link">
         
   
   
@@ -924,7 +922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-arch/" class="md-nav__link">
+      <a href="../../phase-1/dc-arch/" class="md-nav__link">
         
   
   
@@ -947,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-physical-area/" class="md-nav__link">
+      <a href="../../phase-1/dc-physical-area/" class="md-nav__link">
         
   
   
@@ -970,7 +968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-power/" class="md-nav__link">
+      <a href="../../phase-1/dc-power/" class="md-nav__link">
         
   
   
@@ -993,7 +991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-cooling/" class="md-nav__link">
+      <a href="../../phase-1/dc-cooling/" class="md-nav__link">
         
   
   
@@ -1016,7 +1014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-networks/" class="md-nav__link">
+      <a href="../../phase-1/dc-networks/" class="md-nav__link">
         
   
   
@@ -1039,7 +1037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-weigth/" class="md-nav__link">
+      <a href="../../phase-1/dc-weigth/" class="md-nav__link">
         
   
   
@@ -1062,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-geo-location/" class="md-nav__link">
+      <a href="../../phase-1/dc-geo-location/" class="md-nav__link">
         
   
   
@@ -1085,7 +1083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-budget/" class="md-nav__link">
+      <a href="../../phase-1/dc-budget/" class="md-nav__link">
         
   
   
@@ -1108,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-design/" class="md-nav__link">
+      <a href="../../phase-1/dc-design/" class="md-nav__link">
         
   
   
@@ -1131,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-ratings/" class="md-nav__link">
+      <a href="../../phase-1/dc-ratings/" class="md-nav__link">
         
   
   
@@ -1205,7 +1203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/00_Overview/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/00_Overview/" class="md-nav__link">
         
   
   
@@ -1228,7 +1226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/01_Modular_Cabling_Design/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/01_Modular_Cabling_Design/" class="md-nav__link">
         
   
   
@@ -1251,7 +1249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/02_Points_of_Distribution/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/02_Points_of_Distribution/" class="md-nav__link">
         
   
   
@@ -1274,7 +1272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/03_ISP_WAN_Links/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/03_ISP_WAN_Links/" class="md-nav__link">
         
   
   
@@ -1297,7 +1295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/04_NOC/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/04_NOC/" class="md-nav__link">
         
   
   
@@ -1320,7 +1318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/05_DataCenter_Physical_Logical_Security_and_Cleaning/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/05_DataCenter_Physical_Logical_Security_and_Cleaning/" class="md-nav__link">
         
   
   
@@ -1343,7 +1341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/06_Reasons_for_Consolidation/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/06_Reasons_for_Consolidation/" class="md-nav__link">
         
   
   
@@ -1366,7 +1364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/07_Consolidation_Opportunities/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/07_Consolidation_Opportunities/" class="md-nav__link">
         
   
   
@@ -1389,7 +1387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/08_Datacenter_Servers/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/08_Datacenter_Servers/" class="md-nav__link">
         
   
   
@@ -1412,7 +1410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/09_Server_Capacity_Planning/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/09_Server_Capacity_Planning/" class="md-nav__link">
         
   
   
@@ -1435,7 +1433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/10_Disaster_Recovery/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/10_Disaster_Recovery/" class="md-nav__link">
         
   
   
@@ -1458,7 +1456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/11_DataCenter_Security_Guidelines/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/11_DataCenter_Security_Guidelines/" class="md-nav__link">
         
   
   
@@ -1481,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/12_Internet_Security_Guidelines/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/12_Internet_Security_Guidelines/" class="md-nav__link">
         
   
   
@@ -1504,7 +1502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/13_Source_Security_Issues/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/13_Source_Security_Issues/" class="md-nav__link">
         
   
   
@@ -1527,7 +1525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/14_Best_Practices_System_Administration/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/14_Best_Practices_System_Administration/" class="md-nav__link">
         
   
   
@@ -1550,7 +1548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/dc-infra/15_System_Administration_Automation/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/15_System_Administration_Automation/" class="md-nav__link">
         
   
   
@@ -1581,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-1/ph1-quiz/" class="md-nav__link">
+      <a href="../../phase-1/ph1-quiz/" class="md-nav__link">
         
   
   
@@ -1609,8 +1607,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1626,11 +1622,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
           <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
@@ -1646,7 +1642,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             Pahse 2 . Virtualization & Cloud)
@@ -1660,7 +1656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_Overview/" class="md-nav__link">
+      <a href="../../phase-2/01_Overview/" class="md-nav__link">
         
   
   
@@ -1726,7 +1722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../virtualization/01_introduction/" class="md-nav__link">
+      <a href="../../phase-2/virtualization/01_introduction/" class="md-nav__link">
         
   
   
@@ -1749,7 +1745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../virtualization/02_concepts/" class="md-nav__link">
+      <a href="../../phase-2/virtualization/02_concepts/" class="md-nav__link">
         
   
   
@@ -1772,7 +1768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../virtualization/03_os_virtualization/" class="md-nav__link">
+      <a href="../../phase-2/virtualization/03_os_virtualization/" class="md-nav__link">
         
   
   
@@ -1795,7 +1791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../virtualization/04_clusters/" class="md-nav__link">
+      <a href="../../phase-2/virtualization/04_clusters/" class="md-nav__link">
         
   
   
@@ -1818,7 +1814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../virtualization/lab03/" class="md-nav__link">
+      <a href="../../phase-2/virtualization/lab03/" class="md-nav__link">
         
   
   
@@ -1841,7 +1837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../virtualization/lab04/" class="md-nav__link">
+      <a href="../../phase-2/virtualization/lab04/" class="md-nav__link">
         
   
   
@@ -1869,8 +1865,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1883,11 +1877,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_3" >
         
           
           <label class="md-nav__link" for="__nav_2_4_3" id="__nav_2_4_3_label" tabindex="0">
@@ -1903,7 +1897,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4_3">
             <span class="md-nav__icon md-icon"></span>
             Storage Area Network (SAN)
@@ -1914,32 +1908,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Introduction
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../phase-2/san/01_overview/" class="md-nav__link">
         
   
   
@@ -1950,137 +1922,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-san" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is SAN?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="What is SAN?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-it" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is it?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#theoretical-definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      Theoretical Definition
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-sans-are-needed" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why SANs Are Needed
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#real-world-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Real-World Example
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#types-of-san-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Types of SAN (Overview)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#das-vs-nas-vs-san" class="md-nav__link">
-    <span class="md-ellipsis">
-      DAS vs NAS vs SAN
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#understanding-san" class="md-nav__link">
-    <span class="md-ellipsis">
-      Understanding SAN
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#san-expanded" class="md-nav__link">
-    <span class="md-ellipsis">
-      SAN Expanded
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SAN Expanded">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#types-of-san" class="md-nav__link">
-    <span class="md-ellipsis">
-      Types of SAN
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#advantages-of-san" class="md-nav__link">
-    <span class="md-ellipsis">
-      Advantages of SAN
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2093,7 +1934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02_high_availablity/" class="md-nav__link">
+      <a href="../../phase-2/san/02_high_availablity/" class="md-nav__link">
         
   
   
@@ -2116,7 +1957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../03_san_components/" class="md-nav__link">
+      <a href="../../phase-2/san/03_san_components/" class="md-nav__link">
         
   
   
@@ -2139,7 +1980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lab05/" class="md-nav__link">
+      <a href="../../phase-2/san/lab05/" class="md-nav__link">
         
   
   
@@ -2162,7 +2003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lab06/" class="md-nav__link">
+      <a href="../../phase-2/san/lab06/" class="md-nav__link">
         
   
   
@@ -2185,7 +2026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lab07/" class="md-nav__link">
+      <a href="../../phase-2/san/lab07/" class="md-nav__link">
         
   
   
@@ -2208,7 +2049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lab08/" class="md-nav__link">
+      <a href="../../phase-2/san/lab08/" class="md-nav__link">
         
   
   
@@ -2231,7 +2072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lab09/" class="md-nav__link">
+      <a href="../../phase-2/san/lab09/" class="md-nav__link">
         
   
   
@@ -2305,7 +2146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/01_cloud_computing/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/01_cloud_computing/" class="md-nav__link">
         
   
   
@@ -2328,7 +2169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/02_hci/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/02_hci/" class="md-nav__link">
         
   
   
@@ -2351,7 +2192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/03_open_stack/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/03_open_stack/" class="md-nav__link">
         
   
   
@@ -2374,7 +2215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/04_sdn/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/04_sdn/" class="md-nav__link">
         
   
   
@@ -2397,7 +2238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/lab10/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/lab10/" class="md-nav__link">
         
   
   
@@ -2420,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/05_public_cloud/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/05_public_cloud/" class="md-nav__link">
         
   
   
@@ -2443,7 +2284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/06_public_cloud_services/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/06_public_cloud_services/" class="md-nav__link">
         
   
   
@@ -2466,7 +2307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/07_public_cloud_service_comparision/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/07_public_cloud_service_comparision/" class="md-nav__link">
         
   
   
@@ -2489,7 +2330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/lab11/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/lab11/" class="md-nav__link">
         
   
   
@@ -2512,7 +2353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/08_cloud_api_sdk/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/08_cloud_api_sdk/" class="md-nav__link">
         
   
   
@@ -2535,7 +2376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/09_cloud_dr/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/09_cloud_dr/" class="md-nav__link">
         
   
   
@@ -2558,7 +2399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/10_config_mgmt/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/10_config_mgmt/" class="md-nav__link">
         
   
   
@@ -2581,7 +2422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/11_cloud_migration/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/11_cloud_migration/" class="md-nav__link">
         
   
   
@@ -2604,7 +2445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/lab12/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/lab12/" class="md-nav__link">
         
   
   
@@ -2627,7 +2468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/lab12B/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/lab12B/" class="md-nav__link">
         
   
   
@@ -2650,7 +2491,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/lab13/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/lab13/" class="md-nav__link">
         
   
   
@@ -2673,7 +2514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/12_monitoring/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/12_monitoring/" class="md-nav__link">
         
   
   
@@ -2696,7 +2537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/lab14/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/lab14/" class="md-nav__link">
         
   
   
@@ -2719,7 +2560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-computing/lab15/" class="md-nav__link">
+      <a href="../../phase-2/cloud-computing/lab15/" class="md-nav__link">
         
   
   
@@ -2755,6 +2596,8 @@
                 
   
   
+    
+  
   
   
     
@@ -2770,11 +2613,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
         
           
           <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
@@ -2790,7 +2633,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             Phase 3 · DevOps
@@ -2804,7 +2647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/01_devops/" class="md-nav__link">
+      <a href="../01_devops/" class="md-nav__link">
         
   
   
@@ -2827,7 +2670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/02_devops_tools/" class="md-nav__link">
+      <a href="../02_devops_tools/" class="md-nav__link">
         
   
   
@@ -2850,7 +2693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab16/" class="md-nav__link">
+      <a href="../lab16/" class="md-nav__link">
         
   
   
@@ -2873,7 +2716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab17/" class="md-nav__link">
+      <a href="../lab17/" class="md-nav__link">
         
   
   
@@ -2896,7 +2739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab18/" class="md-nav__link">
+      <a href="../lab18/" class="md-nav__link">
         
   
   
@@ -2919,7 +2762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab19/" class="md-nav__link">
+      <a href="../lab19/" class="md-nav__link">
         
   
   
@@ -2942,7 +2785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab20/" class="md-nav__link">
+      <a href="../lab20/" class="md-nav__link">
         
   
   
@@ -2965,7 +2808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab21/" class="md-nav__link">
+      <a href="../lab21/" class="md-nav__link">
         
   
   
@@ -2985,10 +2828,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../phase-3/lab21b/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 21(B)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2999,6 +2864,173 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Learning Objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧰 Pre-Requisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Lab Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪜 Step-by-Step Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🪜 Step-by-Step Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-verify-your-github-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Verify your GitHub Repo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-an-ecr-repository-in-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Create an ECR Repository in AWS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-an-iam-role-for-github-actions-oidc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Create an IAM Role for GitHub Actions (OIDC)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Create an IAM Role for GitHub Actions (OIDC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-oidc-identity-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Create OIDC Identity Provider
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-create-role-for-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Create Role for GitHub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-the-github-actions-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Create the GitHub Actions Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-create-app-runner-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Create App Runner Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-test-the-deployed-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Test the Deployed App
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-test-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Test CI/CD
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-cleanup-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧹 Step 8: Cleanup (Optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-of-lab-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏁 End of Lab Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3011,7 +3043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/03_iac/" class="md-nav__link">
+      <a href="../03_iac/" class="md-nav__link">
         
   
   
@@ -3034,7 +3066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/00_terraform/" class="md-nav__link">
+      <a href="../00_terraform/" class="md-nav__link">
         
   
   
@@ -3057,7 +3089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/04_container_orchestration/" class="md-nav__link">
+      <a href="../04_container_orchestration/" class="md-nav__link">
         
   
   
@@ -3080,7 +3112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/05_micro_services_deployment/" class="md-nav__link">
+      <a href="../05_micro_services_deployment/" class="md-nav__link">
         
   
   
@@ -3103,7 +3135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab22a/" class="md-nav__link">
+      <a href="../lab22a/" class="md-nav__link">
         
   
   
@@ -3126,7 +3158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab22/" class="md-nav__link">
+      <a href="../lab22/" class="md-nav__link">
         
   
   
@@ -3149,7 +3181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab23/" class="md-nav__link">
+      <a href="../lab23/" class="md-nav__link">
         
   
   
@@ -3172,7 +3204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab24/" class="md-nav__link">
+      <a href="../lab24/" class="md-nav__link">
         
   
   
@@ -3195,7 +3227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab25/" class="md-nav__link">
+      <a href="../lab25/" class="md-nav__link">
         
   
   
@@ -3218,7 +3250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/06_ansible/" class="md-nav__link">
+      <a href="../06_ansible/" class="md-nav__link">
         
   
   
@@ -3241,7 +3273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab26/" class="md-nav__link">
+      <a href="../lab26/" class="md-nav__link">
         
   
   
@@ -3264,7 +3296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../phase-3/lab27/" class="md-nav__link">
+      <a href="../lab27/" class="md-nav__link">
         
   
   
@@ -3388,7 +3420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/01_overview/" class="md-nav__link">
+      <a href="../../capstone/01_overview/" class="md-nav__link">
         
   
   
@@ -3411,7 +3443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/02_labs_guide/" class="md-nav__link">
+      <a href="../../capstone/02_labs_guide/" class="md-nav__link">
         
   
   
@@ -3434,7 +3466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/03_lab01." class="md-nav__link">
+      <a href="../../capstone/03_lab01." class="md-nav__link">
         
   
   
@@ -3457,7 +3489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/04_lab02/" class="md-nav__link">
+      <a href="../../capstone/04_lab02/" class="md-nav__link">
         
   
   
@@ -3480,7 +3512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/05_lab03/" class="md-nav__link">
+      <a href="../../capstone/05_lab03/" class="md-nav__link">
         
   
   
@@ -3503,7 +3535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/06_lab04/" class="md-nav__link">
+      <a href="../../capstone/06_lab04/" class="md-nav__link">
         
   
   
@@ -3526,7 +3558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/07_lab05/" class="md-nav__link">
+      <a href="../../capstone/07_lab05/" class="md-nav__link">
         
   
   
@@ -3549,7 +3581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/08_lab06/" class="md-nav__link">
+      <a href="../../capstone/08_lab06/" class="md-nav__link">
         
   
   
@@ -3572,7 +3604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/09_lab07/" class="md-nav__link">
+      <a href="../../capstone/09_lab07/" class="md-nav__link">
         
   
   
@@ -3595,7 +3627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/10_lab08/" class="md-nav__link">
+      <a href="../../capstone/10_lab08/" class="md-nav__link">
         
   
   
@@ -3618,7 +3650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/11_lab09/" class="md-nav__link">
+      <a href="../../capstone/11_lab09/" class="md-nav__link">
         
   
   
@@ -3641,7 +3673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/12_lab10/" class="md-nav__link">
+      <a href="../../capstone/12_lab10/" class="md-nav__link">
         
   
   
@@ -3664,7 +3696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/13_lab11/" class="md-nav__link">
+      <a href="../../capstone/13_lab11/" class="md-nav__link">
         
   
   
@@ -3687,7 +3719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/14_lab12.md" class="md-nav__link">
+      <a href="../../capstone/14_lab12.md" class="md-nav__link">
         
   
   
@@ -3710,7 +3742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/15_lab13.md" class="md-nav__link">
+      <a href="../../capstone/15_lab13.md" class="md-nav__link">
         
   
   
@@ -3733,7 +3765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/16_lab14.md" class="md-nav__link">
+      <a href="../../capstone/16_lab14.md" class="md-nav__link">
         
   
   
@@ -3756,7 +3788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/17_lab15.md" class="md-nav__link">
+      <a href="../../capstone/17_lab15.md" class="md-nav__link">
         
   
   
@@ -3779,7 +3811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/18_lab16.md" class="md-nav__link">
+      <a href="../../capstone/18_lab16.md" class="md-nav__link">
         
   
   
@@ -3802,7 +3834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/19_lab17.md" class="md-nav__link">
+      <a href="../../capstone/19_lab17.md" class="md-nav__link">
         
   
   
@@ -3825,7 +3857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../capstone/20_lab18.md" class="md-nav__link">
+      <a href="../../capstone/20_lab18.md" class="md-nav__link">
         
   
   
@@ -3906,7 +3938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../roadmap/syllabus/" class="md-nav__link">
+      <a href="../../roadmap/syllabus/" class="md-nav__link">
         
   
   
@@ -3929,7 +3961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../resources/tools/" class="md-nav__link">
+      <a href="../../resources/tools/" class="md-nav__link">
         
   
   
@@ -3952,7 +3984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../resources/labs-intro/" class="md-nav__link">
+      <a href="../../resources/labs-intro/" class="md-nav__link">
         
   
   
@@ -3975,7 +4007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../resources/references.md" class="md-nav__link">
+      <a href="../../resources/references.md" class="md-nav__link">
         
   
   
@@ -3998,7 +4030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../resources/announcements.md" class="md-nav__link">
+      <a href="../../resources/announcements.md" class="md-nav__link">
         
   
   
@@ -4021,7 +4053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../resources/calendar.md" class="md-nav__link">
+      <a href="../../resources/calendar.md" class="md-nav__link">
         
   
   
@@ -4044,7 +4076,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../resources/faqs.md" class="md-nav__link">
+      <a href="../../resources/faqs.md" class="md-nav__link">
         
   
   
@@ -4075,9 +4107,7 @@
             
             
               
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -4096,73 +4126,124 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-san" class="md-nav__link">
+  <a href="#learning-objectives" class="md-nav__link">
     <span class="md-ellipsis">
-      What is SAN?
+      🎯 Learning Objectives
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What is SAN?">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧰 Pre-Requisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Lab Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪜 Step-by-Step Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🪜 Step-by-Step Guide">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-is-it" class="md-nav__link">
+  <a href="#step-1-verify-your-github-repo" class="md-nav__link">
     <span class="md-ellipsis">
-      What is it?
+      Step 1: Verify your GitHub Repo
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#theoretical-definition" class="md-nav__link">
+  <a href="#step-2-create-an-ecr-repository-in-aws" class="md-nav__link">
     <span class="md-ellipsis">
-      Theoretical Definition
+      Step 2: Create an ECR Repository in AWS
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-sans-are-needed" class="md-nav__link">
+  <a href="#step-3-create-an-iam-role-for-github-actions-oidc" class="md-nav__link">
     <span class="md-ellipsis">
-      Why SANs Are Needed
+      Step 3: Create an IAM Role for GitHub Actions (OIDC)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Create an IAM Role for GitHub Actions (OIDC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-oidc-identity-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Create OIDC Identity Provider
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#real-world-example" class="md-nav__link">
+  <a href="#32-create-role-for-github" class="md-nav__link">
     <span class="md-ellipsis">
-      Real-World Example
+      3.2 Create Role for GitHub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-the-github-actions-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Create the GitHub Actions Workflow
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#types-of-san-overview" class="md-nav__link">
+  <a href="#step-5-create-app-runner-service" class="md-nav__link">
     <span class="md-ellipsis">
-      Types of SAN (Overview)
+      Step 5: Create App Runner Service
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#das-vs-nas-vs-san" class="md-nav__link">
+  <a href="#step-6-test-the-deployed-app" class="md-nav__link">
     <span class="md-ellipsis">
-      DAS vs NAS vs SAN
+      Step 6: Test the Deployed App
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#understanding-san" class="md-nav__link">
+  <a href="#step-7-test-cicd" class="md-nav__link">
     <span class="md-ellipsis">
-      Understanding SAN
+      Step 7: Test CI/CD
     </span>
   </a>
   
@@ -4174,35 +4255,20 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#san-expanded" class="md-nav__link">
+  <a href="#step-8-cleanup-optional" class="md-nav__link">
     <span class="md-ellipsis">
-      SAN Expanded
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SAN Expanded">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#types-of-san" class="md-nav__link">
-    <span class="md-ellipsis">
-      Types of SAN
+      🧹 Step 8: Cleanup (Optional)
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#advantages-of-san" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#end-of-lab-summary" class="md-nav__link">
     <span class="md-ellipsis">
-      Advantages of SAN
+      🏁 End of Lab Summary
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4225,167 +4291,225 @@
           title="Toggle left navigation">☰</button>
   
                   
-  
-
 
 
   
   
 
 
-<h1 id="storage-area-network-san-and-related-concepts">Storage Area Network (SAN) and Related Concepts<a class="headerlink" href="#storage-area-network-san-and-related-concepts" title="Permanent link">&para;</a></h1>
+<h1 id="lab-21b-lab-deploy-a-dockerized-application-to-aws-app-runner-using-github-actions-and-ecr">Lab 21(B) LAB: Deploy a Dockerized Application to AWS App Runner using GitHub Actions and ECR<a class="headerlink" href="#lab-21b-lab-deploy-a-dockerized-application-to-aws-app-runner-using-github-actions-and-ecr" title="Permanent link">&para;</a></h1>
 <hr />
-<h2 id="what-is-san">What is SAN?<a class="headerlink" href="#what-is-san" title="Permanent link">&para;</a></h2>
-<h3 id="what-is-it">What is it?<a class="headerlink" href="#what-is-it" title="Permanent link">&para;</a></h3>
-<p>A <strong>Storage Area Network (SAN)</strong> is a specialized, high-speed network that connects servers (often called <strong>hosts</strong>) to a centralized pool of storage devices.<br />
-Unlike traditional setups where each server has its own directly attached storage (DAS – Direct Attached Storage), a SAN allows multiple servers to <strong>share the same storage resources</strong> over a dedicated network.</p>
-<p>Think of SAN as creating a <strong>separate highway for storage traffic</strong> — independent of your normal LAN (Local Area Network) used for emails, web browsing, and applications. This ensures fast, reliable, and scalable access to data.</p>
-<hr />
-<h3 id="theoretical-definition">Theoretical Definition<a class="headerlink" href="#theoretical-definition" title="Permanent link">&para;</a></h3>
-<p>A SAN is a <strong>dedicated, block-level storage network</strong> that uses specialized protocols (such as Fibre Channel, iSCSI, or FCoE) to allow servers to access disks across the network as if they were <strong>locally attached hard drives</strong>.  </p>
-<p>Key points in its definition:<br />
-- <strong>Dedicated network</strong>: SAN traffic is kept separate from standard LAN traffic to prevent congestion.<br />
-- <strong>Block-level access</strong>: Unlike file storage (NAS), SAN provides raw storage blocks, which servers can format and use as if they were physical disks.<br />
-- <strong>Scalability</strong>: New storage arrays or servers can be added without major disruption.<br />
-- <strong>Flexibility</strong>: Different servers (Windows, Linux, VMware hosts, etc.) can all use the same storage pool.  </p>
-<hr />
-<h3 id="why-sans-are-needed">Why SANs Are Needed<a class="headerlink" href="#why-sans-are-needed" title="Permanent link">&para;</a></h3>
+<h2 id="learning-objectives">🎯 <strong>Learning Objectives</strong><a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this lab, students will:</p>
 <ol>
-<li>
-<p><strong>Centralized Storage Management</strong><br />
-   Instead of managing disks inside each server, admins manage one large pool of storage.  </p>
-</li>
-<li>
-<p><strong>Scalability</strong><br />
-   As applications grow, you can add more storage devices to the SAN without changing servers.  </p>
-</li>
-<li>
-<p><strong>Performance</strong><br />
-   SANs use <strong>high-speed networking (16–128 Gbps in Fibre Channel)</strong> or optimized Ethernet (10/25/40/100 Gbps in iSCSI/FCoE).  </p>
-</li>
-<li>
-<p><strong>High Availability</strong><br />
-   SANs are built with redundancy (dual controllers, multiple network paths, RAID) to ensure zero downtime.  </p>
-</li>
+<li>Create an <strong>ECR repository</strong> to host container images.</li>
+<li>Deploy an app on <strong>AWS App Runner</strong> from ECR.</li>
+<li>Configure <strong>GitHub Actions CI/CD</strong> to auto-build and push images to ECR.</li>
+<li>Enable <strong>Auto Deployments</strong> in App Runner for seamless updates.</li>
 </ol>
 <hr />
-<h3 id="real-world-example">Real-World Example<a class="headerlink" href="#real-world-example" title="Permanent link">&para;</a></h3>
-<p>Imagine a <strong>bank’s data center</strong>:<br />
-- Hundreds of servers handle ATM transactions, online banking, and customer databases.<br />
-- Instead of each server having its own disks, the bank uses a SAN.<br />
-- All servers connect to a <strong>shared storage pool</strong> that is reliable, fast, and secure.<br />
-- If one server fails, another can immediately take over and access the same data through the SAN.  </p>
-<hr />
-<h3 id="types-of-san-overview">Types of SAN (Overview)<a class="headerlink" href="#types-of-san-overview" title="Permanent link">&para;</a></h3>
+<h2 id="pre-requisites">🧰 <strong>Pre-Requisites</strong><a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Fibre Channel SAN (FC-SAN):</strong> Uses Fibre Channel switches and HBAs; offers very high speed and reliability.  </li>
-<li><strong>iSCSI SAN:</strong> Runs on standard Ethernet networks; more cost-effective, good for small/medium businesses.  </li>
-<li><strong>Fibre Channel over Ethernet (FCoE):</strong> Combines Fibre Channel frames over Ethernet networks, reducing infrastructure needs.  </li>
+<li>✅ AWS Account (free tier or student credits)</li>
+<li>✅ GitHub Account</li>
+<li>✅ Dockerfile &amp; working app in GitHub repo</li>
+<li>✅ Basic understanding of Docker</li>
 </ul>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">WOW Tip</p>
-<p>SANs became popular in the late 1990s because they allowed organizations to <strong>separate compute and storage</strong>. This separation is the foundation of modern cloud and hyper-converged infrastructures.</p>
-</div>
+<h2 id="lab-architecture">📋 <strong>Lab Architecture</strong><a class="headerlink" href="#lab-architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>GitHub Repo → GitHub Actions → Amazon ECR → AWS App Runner → Public URL
+</code></pre></div>
 <hr />
-<h3 id="das-vs-nas-vs-san">DAS vs NAS vs SAN<a class="headerlink" href="#das-vs-nas-vs-san" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>DAS (Direct Attached Storage)</th>
-<th>NAS (Network Attached Storage)</th>
-<th>SAN (Storage Area Network)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Definition</strong></td>
-<td>Storage directly attached to a single server</td>
-<td>File-level storage accessed over LAN</td>
-<td>Block-level storage accessed over a dedicated network</td>
-</tr>
-<tr>
-<td><strong>Access Method</strong></td>
-<td>Server sees storage as local disks</td>
-<td>Clients access files via protocols (NFS, SMB)</td>
-<td>Servers access raw blocks via FC, iSCSI, FCoE</td>
-</tr>
-<tr>
-<td><strong>Network Used</strong></td>
-<td>No network (local bus, e.g., SATA/SAS)</td>
-<td>LAN (Ethernet)</td>
-<td>Dedicated storage network (Fibre Channel or IP-based)</td>
-</tr>
-<tr>
-<td><strong>Performance</strong></td>
-<td>High (limited to one server)</td>
-<td>Moderate (depends on LAN traffic)</td>
-<td>Very high (dedicated high-speed network)</td>
-</tr>
-<tr>
-<td><strong>Scalability</strong></td>
-<td>Limited to server capacity</td>
-<td>Easy to scale by adding NAS devices</td>
-<td>Highly scalable with storage arrays and switches</td>
-</tr>
-<tr>
-<td><strong>Data Sharing</strong></td>
-<td>Not shared (local to one server)</td>
-<td>Shared at file level</td>
-<td>Shared at block level across multiple servers</td>
-</tr>
-<tr>
-<td><strong>Use Cases</strong></td>
-<td>Personal PCs, small servers</td>
-<td>File sharing, backups, media servers</td>
-<td>Datacenters, virtualization, databases, enterprise apps</td>
-</tr>
-<tr>
-<td><strong>Example</strong></td>
-<td>Internal hard drives, external HDDs</td>
-<td>Synology/QNAP NAS devices</td>
-<td>EMC, NetApp, Dell, HP SAN solutions</td>
-</tr>
-</tbody>
-</table>
+<h2 id="step-by-step-guide">🪜 <strong>Step-by-Step Guide</strong><a class="headerlink" href="#step-by-step-guide" title="Permanent link">&para;</a></h2>
 <hr />
-<h3 id="understanding-san">Understanding SAN<a class="headerlink" href="#understanding-san" title="Permanent link">&para;</a></h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3yZDDr0JKVc?si=f2OMRl19CoT8CUh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-<h2 id="san-expanded">SAN Expanded<a class="headerlink" href="#san-expanded" title="Permanent link">&para;</a></h2>
-<h3 id="types-of-san">Types of SAN<a class="headerlink" href="#types-of-san" title="Permanent link">&para;</a></h3>
+<h3 id="step-1-verify-your-github-repo"><strong>Step 1: Verify your GitHub Repo</strong><a class="headerlink" href="#step-1-verify-your-github-repo" title="Permanent link">&para;</a></h3>
 <ol>
-<li>
-<p><strong>Fibre Channel SAN</strong>  </p>
-<ul>
-<li>Uses Fibre Channel switches and host bus adapters (HBAs).  </li>
-<li>High-speed (16–128 Gbps).  </li>
-<li>Traditionally the most common in enterprise data centers.  </li>
-</ul>
-</li>
-<li>
-<p><strong>iSCSI SAN</strong>  </p>
-<ul>
-<li>Uses IP networks (Ethernet) to send SCSI commands.  </li>
-<li>More cost-effective than Fibre Channel.  </li>
-<li>Easier to set up for small and medium businesses.  </li>
-</ul>
-</li>
-<li>
-<p><strong>Fibre Channel over Ethernet (FCoE)</strong>  </p>
-<ul>
-<li>Combines Fibre Channel traffic over Ethernet.  </li>
-<li>Reduces the need for separate cabling.  </li>
-</ul>
-</li>
+<li>Ensure your app runs locally:</li>
 </ol>
-<h3 id="advantages-of-san">Advantages of SAN<a class="headerlink" href="#advantages-of-san" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>flask-demo-app<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span>flask-demo-app
+</code></pre></div>
+2. Confirm you can access it at:
+   👉 <code>http://localhost:5000</code></p>
+<p>✅ If that works, you’re ready for deployment.</p>
+<hr />
+<h3 id="step-2-create-an-ecr-repository-in-aws"><strong>Step 2: Create an ECR Repository in AWS</strong><a class="headerlink" href="#step-2-create-an-ecr-repository-in-aws" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Login to AWS Console → Search <strong>ECR (Elastic Container Registry)</strong></li>
+<li>
+<p>Click <strong>Create Repository</strong></p>
+</li>
+<li>
+<p>Name: <code>flask-demo-app</code></p>
+</li>
+<li>Visibility: <strong>Private</strong></li>
+<li>Leave other options default</li>
+<li>Click <strong>Create Repository</strong></li>
+</ol>
+<p>Take note of:</p>
+<div class="highlight"><pre><span></span><code>Repository URI = &lt;aws_account_id&gt;.dkr.ecr.ap-south-1.amazonaws.com/flask-demo-app
+</code></pre></div>
+<hr />
+<h3 id="step-3-create-an-iam-role-for-github-actions-oidc"><strong>Step 3: Create an IAM Role for GitHub Actions (OIDC)</strong><a class="headerlink" href="#step-3-create-an-iam-role-for-github-actions-oidc" title="Permanent link">&para;</a></h3>
+<p>We’ll allow GitHub to authenticate <strong>securely without storing AWS keys</strong>.</p>
+<h4 id="31-create-oidc-identity-provider">3.1 Create OIDC Identity Provider<a class="headerlink" href="#31-create-oidc-identity-provider" title="Permanent link">&para;</a></h4>
+<p>In AWS Console:</p>
 <ul>
-<li>High performance and reliability.  </li>
-<li>Centralized storage management.  </li>
-<li>Scalability (easy to add more storage).  </li>
-<li>Supports <strong>High Availability</strong> through redundancy.  </li>
+<li>
+<p>Go to <strong>IAM → Identity Providers → Add Provider</strong></p>
+</li>
+<li>
+<p>Provider type: <code>OpenID Connect</code></p>
+</li>
+<li>Provider URL: <code>https://token.actions.githubusercontent.com</code></li>
+<li>Audience: <code>sts.amazonaws.com</code></li>
+</ul>
+<p>✅ Done.</p>
+<h4 id="32-create-role-for-github">3.2 Create Role for GitHub<a class="headerlink" href="#32-create-role-for-github" title="Permanent link">&para;</a></h4>
+<p>You’ll create a role that GitHub Actions can assume via OIDC, scoped to your repo, and with ECR push permissions.</p>
+<p><strong>A) Start role creation</strong></p>
+<ol>
+<li>AWS Console → <strong>IAM</strong> → <strong>Roles</strong> → <strong>Create role</strong></li>
+<li><strong>Trusted entity type:</strong> <strong>Web identity</strong></li>
+<li><strong>Identity provider:</strong> <code>token.actions.githubusercontent.com</code></li>
+<li><strong>Audience:</strong> <code>sts.amazonaws.com</code></li>
+<li>
+<p><strong>GitHub organization:</strong> enter your GitHub <strong>username or org name</strong></p>
+</li>
+<li>
+<p>Example: <code>sid-karkhanis3115</code></p>
+</li>
+<li>
+<p><strong>Repository filter (optional but recommended):</strong> enter your repo name</p>
+</li>
+<li>
+<p>Example: <code>flask-sample-webapp</code>
+     This auto-generates the trust condition equivalent to
+     <code>repo:sid-karkhanis3115/flask-sample-webapp:*</code></p>
+</li>
+<li>Click <strong>Next</strong></li>
+</ol>
+<p><strong>B) Attach permission policies (pick from the list)</strong></p>
+<p>On the <strong>Add permissions</strong> page, select one of the following:</p>
+<ul>
+<li>
+<p><strong>Recommended Policy:</strong></p>
+<ul>
+<li><strong>AmazonEC2ContainerRegistryPowerUser</strong>
+(lets the workflow log in to ECR, create repo if missing, and push images)</li>
+</ul>
+</li>
+</ul>
+<p>Click <strong>Next</strong>.</p>
+<p><strong>C) Name &amp; create</strong></p>
+<ul>
+<li><strong>Role name:</strong> <code>github-actions-ecr</code></li>
+<li>(Optional) Description: “OIDC role for GitHub Actions to push to ECR”</li>
+<li>Click <strong>Create role</strong>.</li>
+</ul>
+<p><strong>D) Copy the Role ARN (you’ll need it in GitHub Actions)</strong></p>
+<p>Open the role you just created and copy the <strong>Role ARN</strong>, e.g.:</p>
+<div class="highlight"><pre><span></span><code>arn:aws:iam::123456789012:role/github-actions-ecr
+</code></pre></div>
+<hr />
+<h3 id="step-4-create-the-github-actions-workflow"><strong>Step 4: Create the GitHub Actions Workflow</strong><a class="headerlink" href="#step-4-create-the-github-actions-workflow" title="Permanent link">&para;</a></h3>
+<p>In your repo, create this file:
+📁 <code>.github/workflows/deploy.yml</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build &amp; Push to ECR</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">AWS_REGION</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ap-south-1</span>
+<span class="w">  </span><span class="nt">ECR_REPO</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flask-demo-app</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build-and-push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">permissions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+<span class="w">      </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configure AWS credentials</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aws-actions/configure-aws-credentials@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">role-to-assume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">arn:aws:iam::123456789012:role/github-actions-ecr</span>
+<span class="w">          </span><span class="nt">aws-region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ env.AWS_REGION }}</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Login to Amazon ECR</span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ecr</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aws-actions/amazon-ecr-login@v2</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and push image</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">IMAGE_TAG=&quot;${GITHUB_SHA::7}&quot;</span>
+<span class="w">          </span><span class="no">ECR_URI=&quot;${{ steps.ecr.outputs.registry }}/${{ env.ECR_REPO }}&quot;</span>
+<span class="w">          </span><span class="no">docker build -t &quot;${ECR_URI}:${IMAGE_TAG}&quot; -t &quot;${ECR_URI}:latest&quot; .</span>
+<span class="w">          </span><span class="no">docker push &quot;${ECR_URI}:${IMAGE_TAG}&quot;</span>
+<span class="w">          </span><span class="no">docker push &quot;${ECR_URI}:latest&quot;</span>
+</code></pre></div>
+<p>✅ Commit and push this file to your repo.</p>
+<hr />
+<h3 id="step-5-create-app-runner-service"><strong>Step 5: Create App Runner Service</strong><a class="headerlink" href="#step-5-create-app-runner-service" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Go to <strong>AWS Console → App Runner</strong></li>
+<li>Click <strong>Create Service</strong></li>
+<li>
+<p>Choose:</p>
+</li>
+<li>
+<p><strong>Source:</strong> Container registry</p>
+</li>
+<li><strong>Provider:</strong> Amazon ECR</li>
+<li><strong>Select Repository:</strong> <code>flask-demo-app</code></li>
+<li><strong>Select Tag:</strong> <code>latest</code></li>
+<li>Click <strong>Next</strong></li>
+</ol>
+<p><strong>Service Settings:</strong></p>
+<ul>
+<li>Port: <code>5000</code></li>
+<li>Auto Deployments: ✅ <strong>Enable auto deployment</strong></li>
+<li>Service name: <code>flask-app-runner</code></li>
+<li>Click <strong>Create &amp; Deploy</strong></li>
+</ul>
+<p>⏳ Wait a few minutes...</p>
+<hr />
+<h3 id="step-6-test-the-deployed-app"><strong>Step 6: Test the Deployed App</strong><a class="headerlink" href="#step-6-test-the-deployed-app" title="Permanent link">&para;</a></h3>
+<p>Once status = <strong>Running</strong>, open the <strong>default domain URL</strong>, e.g.:</p>
+<div class="highlight"><pre><span></span><code>https://flask-app-runner-xyz123.ap-south-1.awsapprunner.com
+</code></pre></div>
+<p>✅ You should see your Flask app running live on AWS.</p>
+<hr />
+<h3 id="step-7-test-cicd"><strong>Step 7: Test CI/CD</strong><a class="headerlink" href="#step-7-test-cicd" title="Permanent link">&para;</a></h3>
+<p>Make a small code change in your app (e.g., update a text or HTML).
+Commit &amp; push to the <code>main</code> branch.</p>
+<p>GitHub Actions will automatically:</p>
+<ol>
+<li>Build the new image</li>
+<li>Push to ECR</li>
+<li>App Runner will auto-deploy the new version 🎉</li>
+</ol>
+<p>Check GitHub → <strong>Actions tab</strong> → verify workflow success.</p>
+<hr />
+<h2 id="step-8-cleanup-optional">🧹 <strong>Step 8: Cleanup (Optional)</strong><a class="headerlink" href="#step-8-cleanup-optional" title="Permanent link">&para;</a></h2>
+<p>To avoid charges:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>apprunner<span class="w"> </span>delete-service<span class="w"> </span>--service-arn<span class="w"> </span>arn:aws:apprunner:ap-south-1:&lt;acct&gt;:service/flask-app-runner/&lt;id&gt;
+aws<span class="w"> </span>ecr<span class="w"> </span>delete-repository<span class="w"> </span>--repository-name<span class="w"> </span>flask-demo-app<span class="w"> </span>--force
+</code></pre></div>
+<hr />
+<h2 id="end-of-lab-summary">🏁 <strong>End of Lab Summary</strong><a class="headerlink" href="#end-of-lab-summary" title="Permanent link">&para;</a></h2>
+<p>You have successfully:</p>
+<ul>
+<li>Built a containerized app</li>
+<li>Stored it in AWS ECR</li>
+<li>Deployed it to App Runner</li>
+<li>Automated the CI/CD using GitHub Actions</li>
 </ul>
 <hr />
 
@@ -4395,13 +4519,8 @@ Unlike traditional setups where each server has its own directly attached storag
 
 
 
-  
-  
 
 
-
-
-  
 
 
 
@@ -4428,12 +4547,10 @@ Unlike traditional setups where each server has its own directly attached storag
   
     
       
-        
-      
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../virtualization/lab04/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 04">
+          <a href="../lab21/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 21">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4443,20 +4560,20 @@ Unlike traditional setups where each server has its own directly attached storag
                 Previous
               </span>
               <div class="md-ellipsis">
-                Lab 04
+                Lab 21
               </div>
             </div>
           </a>
         
         
           
-          <a href="../02_high_availablity/" class="md-footer__link md-footer__link--next" aria-label="Next: High Availability">
+          <a href="../03_iac/" class="md-footer__link md-footer__link--next" aria-label="Next: Infrastructure as Code (IaC)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                High Availability
+                Infrastructure as Code (IaC)
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4492,12 +4609,12 @@ Unlike traditional setups where each server has its own directly attached storag
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.top", "navigation.collapse", "navigation.sections", "navigation.instant", "navigation.footer", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.collapse", "navigation.sections", "navigation.instant", "navigation.footer", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
-        <script src="../../../assets/javascripts/toggle-nav.js"></script>
+        <script src="../../assets/javascripts/toggle-nav.js"></script>
       
     
   </body>

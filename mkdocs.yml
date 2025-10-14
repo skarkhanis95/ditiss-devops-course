@@ -160,7 +160,8 @@ nav:
           - Lab 21(B): phase-3/lab21b.md
           - Infrastructure as Code (IaC): phase-3/03_iac.md
           - Terraform: phase-3/00_terraform.md
-          - Container Orchestration: phase-3/04_container_orchestration.md
+          - Container Orchestration: phase-3/04a_container_orchestration.md
+          - Swarm & Kubernetes: phase-3/04_container_orchestration.md
           - Micro Services Deployment: phase-3/05_micro_services_deployment.md
           - Lab 22(a) (Optional): phase-3/lab22a.md
           - Lab 22: phase-3/lab22.md
