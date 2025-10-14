@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://skarkhanis95.github.io/ditiss-devops-course/phase-1/dc-cooling/">
+        <link rel="canonical" href="https://skarkhanis95.github.io/ditiss-devops-course/phase-3/04a_container_orchestration/">
       
       
-        <link rel="prev" href="../dc-power/">
+        <link rel="prev" href="../00_terraform/">
       
       
-        <link rel="next" href="../dc-networks/">
+        <link rel="next" href="../04_container_orchestration/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Cooling - PG-DITISS 2025 · IT Infrastructure & DevOps</title>
+        <title>Container Orchestration - PG-DITISS 2025 · IT Infrastructure & DevOps</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#required-cooling-hvac" class="md-skip">
+        <a href="#container-orchestration" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cooling
+              Container Orchestration
             
           </span>
         </div>
@@ -809,8 +809,6 @@
                 
   
   
-    
-  
   
   
     
@@ -826,11 +824,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
@@ -846,7 +844,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             Phase 1 . Data Center Management
@@ -857,8 +855,6 @@
                 
   
   
-    
-  
   
   
     
@@ -871,11 +867,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_1" >
         
           
           <label class="md-nav__link" for="__nav_2_3_1" id="__nav_2_3_1_label" tabindex="0">
@@ -891,7 +887,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3_1">
             <span class="md-nav__icon md-icon"></span>
             Data Center Management
@@ -905,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../phase-1/overview/" class="md-nav__link">
         
   
   
@@ -928,7 +924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-arch/" class="md-nav__link">
+      <a href="../../phase-1/dc-arch/" class="md-nav__link">
         
   
   
@@ -951,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-physical-area/" class="md-nav__link">
+      <a href="../../phase-1/dc-physical-area/" class="md-nav__link">
         
   
   
@@ -974,7 +970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-power/" class="md-nav__link">
+      <a href="../../phase-1/dc-power/" class="md-nav__link">
         
   
   
@@ -994,30 +990,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Cooling
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../phase-1/dc-cooling/" class="md-nav__link">
         
   
   
@@ -1028,93 +1004,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#required-cooling-hvac" class="md-nav__link">
-    <span class="md-ellipsis">
-      Required Cooling &amp; HVAC
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Required Cooling &amp; HVAC">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-it" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is it?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#theoretical-definition" class="md-nav__link">
-    <span class="md-ellipsis">
-      Theoretical Definition
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#why-is-it-important" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why is it Important?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-is-it-planned" class="md-nav__link">
-    <span class="md-ellipsis">
-      How is it Planned?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#impact-down-the-line" class="md-nav__link">
-    <span class="md-ellipsis">
-      Impact Down the Line
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#real-world-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Real World Example
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1127,7 +1016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-networks/" class="md-nav__link">
+      <a href="../../phase-1/dc-networks/" class="md-nav__link">
         
   
   
@@ -1150,7 +1039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-weigth/" class="md-nav__link">
+      <a href="../../phase-1/dc-weigth/" class="md-nav__link">
         
   
   
@@ -1173,7 +1062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-geo-location/" class="md-nav__link">
+      <a href="../../phase-1/dc-geo-location/" class="md-nav__link">
         
   
   
@@ -1196,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-budget/" class="md-nav__link">
+      <a href="../../phase-1/dc-budget/" class="md-nav__link">
         
   
   
@@ -1219,7 +1108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-design/" class="md-nav__link">
+      <a href="../../phase-1/dc-design/" class="md-nav__link">
         
   
   
@@ -1242,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-ratings/" class="md-nav__link">
+      <a href="../../phase-1/dc-ratings/" class="md-nav__link">
         
   
   
@@ -1316,7 +1205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/00_Overview/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/00_Overview/" class="md-nav__link">
         
   
   
@@ -1339,7 +1228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/01_Modular_Cabling_Design/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/01_Modular_Cabling_Design/" class="md-nav__link">
         
   
   
@@ -1362,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/02_Points_of_Distribution/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/02_Points_of_Distribution/" class="md-nav__link">
         
   
   
@@ -1385,7 +1274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/03_ISP_WAN_Links/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/03_ISP_WAN_Links/" class="md-nav__link">
         
   
   
@@ -1408,7 +1297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/04_NOC/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/04_NOC/" class="md-nav__link">
         
   
   
@@ -1431,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/05_DataCenter_Physical_Logical_Security_and_Cleaning/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/05_DataCenter_Physical_Logical_Security_and_Cleaning/" class="md-nav__link">
         
   
   
@@ -1454,7 +1343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/06_Reasons_for_Consolidation/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/06_Reasons_for_Consolidation/" class="md-nav__link">
         
   
   
@@ -1477,7 +1366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/07_Consolidation_Opportunities/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/07_Consolidation_Opportunities/" class="md-nav__link">
         
   
   
@@ -1500,7 +1389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/08_Datacenter_Servers/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/08_Datacenter_Servers/" class="md-nav__link">
         
   
   
@@ -1523,7 +1412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/09_Server_Capacity_Planning/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/09_Server_Capacity_Planning/" class="md-nav__link">
         
   
   
@@ -1546,7 +1435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/10_Disaster_Recovery/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/10_Disaster_Recovery/" class="md-nav__link">
         
   
   
@@ -1569,7 +1458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/11_DataCenter_Security_Guidelines/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/11_DataCenter_Security_Guidelines/" class="md-nav__link">
         
   
   
@@ -1592,7 +1481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/12_Internet_Security_Guidelines/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/12_Internet_Security_Guidelines/" class="md-nav__link">
         
   
   
@@ -1615,7 +1504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/13_Source_Security_Issues/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/13_Source_Security_Issues/" class="md-nav__link">
         
   
   
@@ -1638,7 +1527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/14_Best_Practices_System_Administration/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/14_Best_Practices_System_Administration/" class="md-nav__link">
         
   
   
@@ -1661,7 +1550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dc-infra/15_System_Administration_Automation/" class="md-nav__link">
+      <a href="../../phase-1/dc-infra/15_System_Administration_Automation/" class="md-nav__link">
         
   
   
@@ -1692,7 +1581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ph1-quiz/" class="md-nav__link">
+      <a href="../../phase-1/ph1-quiz/" class="md-nav__link">
         
   
   
@@ -2709,6 +2598,8 @@
                 
   
   
+    
+  
   
   
     
@@ -2724,11 +2615,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
         
           
           <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
@@ -2744,7 +2635,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             Phase 3 · DevOps
@@ -2758,7 +2649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/01_devops/" class="md-nav__link">
+      <a href="../01_devops/" class="md-nav__link">
         
   
   
@@ -2781,7 +2672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/02_devops_tools/" class="md-nav__link">
+      <a href="../02_devops_tools/" class="md-nav__link">
         
   
   
@@ -2804,7 +2695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab16/" class="md-nav__link">
+      <a href="../lab16/" class="md-nav__link">
         
   
   
@@ -2827,7 +2718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab17/" class="md-nav__link">
+      <a href="../lab17/" class="md-nav__link">
         
   
   
@@ -2850,7 +2741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab18/" class="md-nav__link">
+      <a href="../lab18/" class="md-nav__link">
         
   
   
@@ -2873,7 +2764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab19/" class="md-nav__link">
+      <a href="../lab19/" class="md-nav__link">
         
   
   
@@ -2896,7 +2787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab20/" class="md-nav__link">
+      <a href="../lab20/" class="md-nav__link">
         
   
   
@@ -2919,7 +2810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab21/" class="md-nav__link">
+      <a href="../lab21/" class="md-nav__link">
         
   
   
@@ -2942,7 +2833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab21b/" class="md-nav__link">
+      <a href="../lab21b/" class="md-nav__link">
         
   
   
@@ -2965,7 +2856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/03_iac/" class="md-nav__link">
+      <a href="../03_iac/" class="md-nav__link">
         
   
   
@@ -2988,7 +2879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/00_terraform/" class="md-nav__link">
+      <a href="../00_terraform/" class="md-nav__link">
         
   
   
@@ -3008,10 +2899,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../phase-3/04a_container_orchestration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Container Orchestration
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3022,6 +2935,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-are-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧩 1. What are Containers?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-container-orchestration-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ 2. What Container Orchestration Does
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-popular-container-orchestration-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 3. Popular Container Orchestration Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-example-kubernetes-in-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ 4. Example – Kubernetes in Action
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-why-it-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 5. Why It Matters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-in-short" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧭 6. In Short
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3034,7 +3021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/04_container_orchestration/" class="md-nav__link">
+      <a href="../04_container_orchestration/" class="md-nav__link">
         
   
   
@@ -3057,7 +3044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/05_micro_services_deployment/" class="md-nav__link">
+      <a href="../05_micro_services_deployment/" class="md-nav__link">
         
   
   
@@ -3080,7 +3067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab22a/" class="md-nav__link">
+      <a href="../lab22a/" class="md-nav__link">
         
   
   
@@ -3103,7 +3090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab22/" class="md-nav__link">
+      <a href="../lab22/" class="md-nav__link">
         
   
   
@@ -3126,7 +3113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab23/" class="md-nav__link">
+      <a href="../lab23/" class="md-nav__link">
         
   
   
@@ -3149,7 +3136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab24/" class="md-nav__link">
+      <a href="../lab24/" class="md-nav__link">
         
   
   
@@ -3172,7 +3159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab25/" class="md-nav__link">
+      <a href="../lab25/" class="md-nav__link">
         
   
   
@@ -3195,7 +3182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/06_ansible/" class="md-nav__link">
+      <a href="../06_ansible/" class="md-nav__link">
         
   
   
@@ -3218,7 +3205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab26/" class="md-nav__link">
+      <a href="../lab26/" class="md-nav__link">
         
   
   
@@ -3241,7 +3228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../phase-3/lab27/" class="md-nav__link">
+      <a href="../lab27/" class="md-nav__link">
         
   
   
@@ -4063,6 +4050,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -4071,71 +4060,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#required-cooling-hvac" class="md-nav__link">
+  <a href="#1-what-are-containers" class="md-nav__link">
     <span class="md-ellipsis">
-      Required Cooling &amp; HVAC
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Required Cooling &amp; HVAC">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-it" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is it?
+      🧩 1. What are Containers?
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#theoretical-definition" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2-what-container-orchestration-does" class="md-nav__link">
     <span class="md-ellipsis">
-      Theoretical Definition
+      ⚙️ 2. What Container Orchestration Does
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#why-is-it-important" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#3-popular-container-orchestration-tools" class="md-nav__link">
     <span class="md-ellipsis">
-      Why is it Important?
+      🧠 3. Popular Container Orchestration Tools
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#how-is-it-planned" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#4-example-kubernetes-in-action" class="md-nav__link">
     <span class="md-ellipsis">
-      How is it Planned?
+      🏗️ 4. Example – Kubernetes in Action
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#impact-down-the-line" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#5-why-it-matters" class="md-nav__link">
     <span class="md-ellipsis">
-      Impact Down the Line
+      🚀 5. Why It Matters
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#real-world-example" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#6-in-short" class="md-nav__link">
     <span class="md-ellipsis">
-      Real World Example
+      🧭 6. In Short
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4166,29 +4140,137 @@
   
 
 
-  <h1>Cooling</h1>
-
-<h2 id="required-cooling-hvac">Required Cooling &amp; HVAC<a class="headerlink" href="#required-cooling-hvac" title="Permanent link">&para;</a></h2>
-<h4 id="what-is-it">What is it?<a class="headerlink" href="#what-is-it" title="Permanent link">&para;</a></h4>
-<p>The system that removes heat generated by IT equipment.</p>
-<h4 id="theoretical-definition">Theoretical Definition<a class="headerlink" href="#theoretical-definition" title="Permanent link">&para;</a></h4>
-<p>HVAC (Heating, Ventilation, Air Conditioning) systems maintain optimal temperature and humidity in data centers.</p>
-<h4 id="why-is-it-important">Why is it Important?<a class="headerlink" href="#why-is-it-important" title="Permanent link">&para;</a></h4>
+<h1 id="container-orchestration">Container Orchestration<a class="headerlink" href="#container-orchestration" title="Permanent link">&para;</a></h1>
+<p><strong>Container orchestration</strong> is the <strong>automated management</strong> of containerized applications — meaning it handles how containers are <strong>deployed, scaled, networked, and maintained</strong> across clusters of machines.</p>
+<p>Let’s break it down clearly 👇</p>
+<hr />
+<h3 id="1-what-are-containers">🧩 1. What are Containers?<a class="headerlink" href="#1-what-are-containers" title="Permanent link">&para;</a></h3>
+<p>Containers (like <strong>Docker containers</strong>) package an application and all its dependencies so it runs reliably in any environment — development, test, or production.</p>
+<p>A typical app might have:</p>
 <ul>
-<li>Prevents <strong>overheating and hardware damage</strong>.  </li>
-<li>Stabilizes environment for performance.  </li>
-<li>Energy efficiency driver (cooling can consume ~40% of DC power).  </li>
+<li>1 container for the <strong>frontend</strong></li>
+<li>1 for the <strong>backend API</strong></li>
+<li>1 for the <strong>database</strong></li>
+<li>and maybe others for monitoring, logging, etc.</li>
 </ul>
-<h4 id="how-is-it-planned">How is it Planned?<a class="headerlink" href="#how-is-it-planned" title="Permanent link">&para;</a></h4>
+<p>When you start having <strong>dozens or hundreds of containers</strong>, managing them manually becomes impossible — that’s where orchestration comes in.</p>
+<hr />
+<h3 id="2-what-container-orchestration-does">⚙️ 2. What Container Orchestration Does<a class="headerlink" href="#2-what-container-orchestration-does" title="Permanent link">&para;</a></h3>
+<p>Container orchestration tools <strong>automate and manage</strong> the lifecycle of containers in a cluster.</p>
+<p><strong>Key functions include:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>Automatically starts containers on appropriate hosts.</td>
+</tr>
+<tr>
+<td><strong>Scheduling</strong></td>
+<td>Decides which node (machine) each container should run on based on resources and rules.</td>
+</tr>
+<tr>
+<td><strong>Scaling</strong></td>
+<td>Adds or removes containers automatically based on demand (CPU usage, traffic, etc.).</td>
+</tr>
+<tr>
+<td><strong>Load balancing</strong></td>
+<td>Distributes traffic evenly across containers.</td>
+</tr>
+<tr>
+<td><strong>Health monitoring</strong></td>
+<td>Restarts failed containers, reschedules them if a node fails.</td>
+</tr>
+<tr>
+<td><strong>Networking</strong></td>
+<td>Connects containers securely within and across nodes.</td>
+</tr>
+<tr>
+<td><strong>Configuration &amp; Secrets management</strong></td>
+<td>Distributes app configs, environment variables, and secrets securely.</td>
+</tr>
+<tr>
+<td><strong>Rolling updates &amp; rollbacks</strong></td>
+<td>Updates your application with zero downtime and rolls back if there’s an issue.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="3-popular-container-orchestration-tools">🧠 3. Popular Container Orchestration Tools<a class="headerlink" href="#3-popular-container-orchestration-tools" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Kubernetes (K8s)</strong></td>
+<td>The industry standard, open-source by Google. Highly extensible and widely supported.</td>
+</tr>
+<tr>
+<td><strong>Docker Swarm</strong></td>
+<td>Simple and native to Docker. Easier to start, less complex than K8s.</td>
+</tr>
+<tr>
+<td><strong>Amazon ECS / EKS</strong></td>
+<td>AWS-managed orchestration (ECS for AWS-native, EKS for Kubernetes).</td>
+</tr>
+<tr>
+<td><strong>Azure AKS / Google GKE</strong></td>
+<td>Managed Kubernetes on Azure / Google Cloud.</td>
+</tr>
+<tr>
+<td><strong>Nomad (by HashiCorp)</strong></td>
+<td>Lightweight and simpler alternative, can run containers and other workloads.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="4-example-kubernetes-in-action">🏗️ 4. Example – Kubernetes in Action<a class="headerlink" href="#4-example-kubernetes-in-action" title="Permanent link">&para;</a></h3>
+<p>When you deploy an app on <strong>Kubernetes</strong>, you define:</p>
 <ul>
-<li>Hot aisle/cold aisle containment.  </li>
-<li>Raised floor airflow or overhead ducts.  </li>
-<li>Liquid cooling for dense racks.  </li>
+<li><strong>Pods</strong> → Smallest deployable units (can run 1 or more containers)</li>
+<li><strong>Deployments</strong> → Describe how to create/update Pods</li>
+<li><strong>Services</strong> → Expose your app to other Pods or the internet</li>
+<li><strong>Ingress</strong> → Manage external access (like reverse proxy)</li>
+<li><strong>ConfigMaps &amp; Secrets</strong> → Handle app configs securely</li>
 </ul>
-<h4 id="impact-down-the-line">Impact Down the Line<a class="headerlink" href="#impact-down-the-line" title="Permanent link">&para;</a></h4>
-<p>Poor cooling = outages, hardware failures. Overcooling = wasted energy costs.</p>
-<h4 id="real-world-example">Real World Example<a class="headerlink" href="#real-world-example" title="Permanent link">&para;</a></h4>
-<p>Google pioneered liquid cooling for AI workloads (&gt;10 kW per rack) to manage extreme heat.</p>
+<p>Then Kubernetes ensures:
+✅ The right number of Pods are running
+✅ They restart automatically on failure
+✅ Load balancing happens automatically
+✅ Updates roll out without downtime</p>
+<hr />
+<h3 id="5-why-it-matters">🚀 5. Why It Matters<a class="headerlink" href="#5-why-it-matters" title="Permanent link">&para;</a></h3>
+<p>Without orchestration, you’d manually:</p>
+<ul>
+<li>SSH into servers</li>
+<li>Start containers one by one</li>
+<li>Restart them when they fail</li>
+<li>Update them manually during releases</li>
+</ul>
+<p>That doesn’t scale.</p>
+<p>Orchestration gives you:</p>
+<ul>
+<li><strong>High availability</strong></li>
+<li><strong>Self-healing</strong></li>
+<li><strong>Scalability</strong></li>
+<li><strong>Automation</strong></li>
+<li><strong>Efficient resource usage</strong></li>
+</ul>
+<hr />
+<h3 id="6-in-short">🧭 6. In Short<a class="headerlink" href="#6-in-short" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>Container orchestration = Automatic control system for containerized apps.</strong></p>
+</blockquote>
+<p>It keeps your application <strong>running, healthy, and scalable</strong> across many servers — without you micromanaging every container.</p>
 <hr />
 
 
@@ -4235,7 +4317,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../dc-power/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Power">
+          <a href="../00_terraform/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Terraform">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4245,20 +4327,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Power
+                Terraform
               </div>
             </div>
           </a>
         
         
           
-          <a href="../dc-networks/" class="md-footer__link md-footer__link--next" aria-label="Next: Networks">
+          <a href="../04_container_orchestration/" class="md-footer__link md-footer__link--next" aria-label="Next: Swarm &amp; Kubernetes">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Networks
+                Swarm & Kubernetes
               </div>
             </div>
             <div class="md-footer__button md-icon">
