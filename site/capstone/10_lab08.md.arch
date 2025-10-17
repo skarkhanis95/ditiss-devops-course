@@ -1,0 +1,315 @@
+# Lab 08 — Jenkins Credentials Setup
+
+**Role(s) Responsible**
+IAM Engineer
+
+**Objectives**
+
+* Add the required credentials to Jenkins Credentials store (System scope) using only the Jenkins Web UI.
+* Use the same credential IDs used by pipelines: `github-token`, `dockerhub-token`, `terraform-token`, `aws-jenkins-access`, `ssh-jenkins`.
+* Validate credentials appear in Jenkins UI and are consumable by pipelines.
+
+**Pre-reqs**
+
+* Jenkins EC2 already created and accessible (from earlier labs).
+* You have Jenkins admin username & password (created in Lab 07).
+* Access to the accounts used for tokens: GitHub, Docker Hub, Terraform Cloud, AWS Console.
+* SSH private key available locally if you choose to upload SSH credentials.
+
+---
+
+## High-level flow (one-line)
+
+1. Retrieve/generate tokens and keys from provider UIs (GitHub, DockerHub, Terraform Cloud, AWS).
+2. Login to Jenkins Web UI as admin.
+3. For each credential type, add a new credential under **Manage Jenkins → Manage Credentials → System → Global** with the exact ID that pipelines expect.
+4. Validate via Jenkins UI and run a simple pipeline that references the credentials.
+
+> **Important:** Use the same credential *IDs* listed below — pipelines reference these IDs exactly.
+
+---
+
+## Credentials & IDs (same IDs as original playbook)
+
+* `github-token` → GitHub Personal Access Token (PAT)
+* `dockerhub-token` → Docker Hub Access Token (username+token)
+* `terraform-token` → Terraform Cloud API token (workspace/organization API token)
+* `aws-jenkins-access` → AWS Access Key ID / Secret (optional; prefer instance profile if available)
+* `ssh-jenkins` → SSH private key credential for pipelines (optional)
+
+---
+
+## 1) Retrieve / generate tokens & keys from provider UIs
+
+### A — GitHub Personal Access Token (classic or fine-grained PAT)
+
+1. Sign into GitHub ([https://github.com](https://github.com)).
+2. Click your avatar → **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)** (or **Fine-grained tokens** if your org allows).
+3. Click **Generate new token** → give a descriptive name (e.g., `jenkins-lab-08`) and set expiration (choose short-lived for labs, e.g., 7 days).
+4. Select scopes:
+
+      * For **classic**: check all the boxes *(Note: This is only for demo, in enterprise you will neeed to select granular access)*
+
+5. Click **Generate token** and **copy** the token immediately (GitHub shows it only once).
+6. Save the token securely locally (we’ll paste it into Jenkins next).
+
+**Value to use in Jenkins:** paste as **Secret Text** and set credential ID = `github-token`.
+
+---
+
+### B — Docker Hub Access Token
+
+1. Sign into Docker Hub ([https://hub.docker.com](https://hub.docker.com)).
+2. Click your profile → **Account Settings** → **Security** → **Personal Access Tokens** (or directly **Personal Access Tokens**).
+3. Click **Create Access Token** → name it `jenkins-lab-08` → **Access Permission:** `Read,Write, Delete` → click **Generate**.
+4. Copy the token string shown (this is only shown once).
+5. Note your DockerHub username.
+
+**Value to use in Jenkins:** add credential type **Username with password**:
+
+* Username = your DockerHub username
+* Password = Docker Hub Access Token
+* Credential ID = `dockerhub-token`
+
+---
+
+### C — Terraform Cloud API Token
+
+1. Login to Terraform Cloud ([https://app.terraform.io](https://app.terraform.io)).
+2. Click your avatar → **Account Settings** → **Tokens** → **Create an API token**.
+3. Give it a name (e.g., `jenkins-lab-08`) and create.
+4. Copy token string (store it safely — it's shown only once).
+
+**Value to use in Jenkins:** add **Secret Text** credential:
+
+* Secret = Terraform token
+* ID = `terraform-token`
+
+---
+
+
+## 2) Add credentials to Jenkins (UI steps, exact clicks)
+
+1. Open Jenkins UI: `http://<JENKINS_PUBLIC_IP>:8080` → login as admin.
+2. From the left menu click **Manage Jenkins**.
+3. Click **Manage Credentials** or **Credentials**.
+
+   * If you have multiple domains, choose **(global)** or **System** → **Global credentials (unrestricted)** (varies by Jenkins version).
+4. Click **Add Credentials** (left or drop-down).
+5. For each credential type below, fill the **Kind**, **Scope**, **ID**, **Description**, **Secret/Username/Password/Key**, then **OK**.
+
+### Add GitHub PAT
+
+* Kind: **Secret text**
+* Secret: paste GitHub PAT
+* ID: `github-token`
+* Description: `GitHub PAT for IAM Engineer - Lab 08`
+* Scope: Global/System → OK
+
+### Add Docker Hub username+token
+
+* Kind: **Username with password**
+* Username: your DockerHub username
+* Password: Docker Hub access token (not your account password)
+* ID: `dockerhub-token`
+* Description: `Docker Hub creds for pushing images` → OK
+
+### Add Terraform Cloud token
+
+* Kind: **Secret text**
+* Secret: Terraform token
+* ID: `terraform-token`
+* Description: `Terraform Cloud API token for workspace` → OK
+
+
+---
+
+## 3) Verify credentials in Jenkins UI
+
+1. **Manage Jenkins → Manage Credentials → System → Global**.
+
+2. Verify each credential ID appears:
+
+   * `github-token`
+   * `dockerhub-token`
+   * `terraform-token`
+
+
+3. Click a credential and verify description/metadata (you cannot view secret values — only that it exists).
+
+---
+
+## 4) Test credentials by creating a quick pipeline (UI-only)
+
+Create a simple Declarative Pipeline in Jenkins UI that references the IDs; this proves the credentials are usable.
+
+### Steps (UI)
+
+1. Jenkins Dashboard → **New Item** → name: `lab08-test-credentials` → **Pipeline** → OK.
+2. Under **Pipeline** definition, choose **Pipeline script** and paste the snippet below.
+3. Click **Save** → click **Build Now** → review console output.
+
+### Pipeline test snippet (Declarative)
+
+```groovy
+pipeline {
+  agent any
+  parameters {
+    choice(name: 'USE_AWS_KEYS', choices: ['no', 'yes'], description: 'Set to yes to test AWS using stored aws-jenkins-access credentials instead of instance profile')
+  }
+  environment {
+    AWS_REGION = 'ap-south-1'
+  }
+
+  stages {
+    stage('Prepare') {
+      steps {
+        echo "Running on: ${env.NODE_NAME}"
+        sh 'echo "Workspace: $WORKSPACE"'
+      }
+    }
+
+    stage('Test GitHub PAT (authenticated user)') {
+      steps {
+        withCredentials([string(credentialsId: 'github-token', variable: 'GHTOKEN')]) {
+          sh '''#!/bin/bash
+set -euo pipefail
+echo "GitHub token length: $(echo -n "$GHTOKEN" | wc -c)"
+
+HTTP_CODE=$(curl -s -o /tmp/gh_user.json -w "%{http_code}" -H "Authorization: token ${GHTOKEN}" https://api.github.com/user || true)
+echo "GitHub API HTTP status: $HTTP_CODE"
+if [ "$HTTP_CODE" -ne 200 ]; then
+  echo "Returned JSON:"
+  cat /tmp/gh_user.json || true
+  echo "GitHub token test failed (HTTP $HTTP_CODE)"
+  exit 2
+fi
+
+if command -v jq >/dev/null 2>&1; then
+  echo "Authenticated GitHub login: $(jq -r '.login' /tmp/gh_user.json || echo '<no-jq-present>')"
+else
+  echo "jq not present — printing raw login field with grep/sed:"
+  grep -o '"login":[^,]*' /tmp/gh_user.json || true
+fi
+'''
+        }
+      }
+    }
+
+    stage('Test DockerHub creds & Docker access') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-token', usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
+          sh '''#!/bin/bash
+set -euo pipefail
+echo "Docker CLI version:"
+docker --version || true
+
+echo "Testing docker socket access (docker ps):"
+docker ps --format 'table {{.Names}}\t{{.Status}}' || true
+
+echo "Attempting docker login (password masked):"
+echo "$DH_PASS" | docker login -u "$DH_USER" --password-stdin
+
+echo "docker login finished (if no errors above, login succeeded)"
+docker logout || true
+'''
+        }
+      }
+    }
+
+    stage('Test AWS (instance profile or stored keys)') {
+      steps {
+        script {
+          if (params.USE_AWS_KEYS == 'yes') {
+            echo "Using stored AWS keys (aws-jenkins-access) for test"
+            withCredentials([usernamePassword(credentialsId: 'aws-jenkins-access', usernameVariable: 'AWS_ID', passwordVariable: 'AWS_SECRET')]) {
+              sh '''#!/bin/bash
+set -euo pipefail
+export AWS_ACCESS_KEY_ID="$AWS_ID"
+export AWS_SECRET_ACCESS_KEY="$AWS_SECRET"
+aws sts get-caller-identity --region ${AWS_REGION}
+'''
+            }
+          } else {
+            echo "Using instance profile / role for AWS test (no stored keys)"
+            sh '''#!/bin/bash
+set -euo pipefail
+aws sts get-caller-identity --region ${AWS_REGION}
+'''
+          }
+        }
+      }
+    }
+  } // stages
+
+  post {
+    success {
+      echo "All tests completed successfully."
+    }
+    failure {
+      echo "At least one test failed — check console output for details."
+    }
+    always {
+      sh 'rm -f /tmp/gh_user.json || true'
+    }
+  }
+}
+
+```
+
+**Notes:**
+
+* The pipeline uses `withCredentials` so secrets remain masked in logs.
+* The `curl` and `docker login` operations demonstrate that tokens are valid (make sure `docker` and `aws` CLI are installed on the Jenkins agent if you run those stages).
+* If your Jenkins agents do not have `docker` or `aws` CLI, run just the token-length checks or install required tools on the agent node.
+
+---
+
+## 5) Deliverables — what to hand in
+
+1. Short report (1 page) confirming:
+
+   * You logged in as admin and added the credentials via Jenkins UI.
+   * Which personal accounts were used (GitHub/Docker/Terraform/AWS) — say “personal accounts” (no sensitive values).
+2. Screenshot(s):
+
+   * Jenkins **Manage Credentials → Global** showing the list with IDs visible (IDs and descriptions should be visible).
+   * Pipeline console output showing masked secrets and successful API calls / login attempts (masking visible).
+3. Jenkins pipeline name: `lab08-test-credentials` (or name you used).
+4. Confirmation whether AWS keys were used, or instance role was preferred instead.
+
+---
+
+## 6) Troubleshooting (UI-focused)
+
+* **Credential not visible:** Ensure you added under **System → Global** scope and that you’re viewing the same domain (Global domain). Jenkins has folder-scoped credentials — add at system/global level.
+* **Pipeline cannot find credential by ID:** Confirm the exact ID string (IDs are case-sensitive) and that job has permission to access system/global credentials (usually default).
+* **`docker login` fails:** Ensure Jenkins agent has network access to Docker Hub and Docker CLI installed. Use token as password.
+* **`curl` API returns 401:** Token may be expired or scopes insufficient — regenerate token with required scopes.
+* **AWS CLI `sts get-caller-identity` fails:** Ensure the AWS keys are valid and have minimal required permissions; rotate keys if accidentally committed.
+* **You accidentally committed a token file:** Rotate the token immediately and, if needed, follow org policy for secret exposure.
+
+---
+
+## 7) Optional — secure practices & notes for instructors
+
+* Encourage students to create **short-lived** tokens (expiration 7–14 days) for labs and rotate them after the lab.
+* Prefer **instance profiles / IAM role** for EC2-hosted Jenkins agents instead of long-lived AWS keys. If using instance profile, do **not** add `aws-jenkins-access`; pipelines can use instance-role automatically if running on the EC2 node. Add a note that pipeline code expecting `aws-jenkins-access` must be adjusted accordingly.
+* Remove test credentials after the lab, or set them to expire.
+* Students should never commit tokens to Git. If they do, rotate immediately.
+
+---
+
+## 8) Quick checklist for IAM Engineer (copyable)
+
+* [ ] Generate GitHub PAT → saved locally
+* [ ] Generate DockerHub access token → saved locally
+* [ ] Generate Terraform Cloud API token → saved locally
+* [ ] (Optional) Create AWS user + access keys (or confirm instance profile)
+* [ ] (Optional) Generate SSH keypair for pipelines
+* [ ] Login to Jenkins admin UI
+* [ ] Add credentials (IDs exactly: `github-token`, `dockerhub-token`, `terraform-token`, `aws-jenkins-access`, `ssh-jenkins`)
+* [ ] Create `lab08-test-credentials` pipeline and run tests
+* [ ] Capture screenshots + short report
+
+---

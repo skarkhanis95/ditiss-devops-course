@@ -173,6 +173,7 @@ nav:
           - Lab 27: phase-3/lab27.md
   - Capstone Project:
       - Project:
+          - Challenge: capstone/00_mini_projects.md
           - Overview: capstone/01_overview.md
           - Labs Guide: capstone/02_labs_guide.md
           - Lab 01: capstone/03_lab01.

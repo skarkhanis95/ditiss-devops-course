@@ -1,0 +1,300 @@
+# Lab 09: Build Sample App & Dockerize
+
+**Filename:** `lab09.md`
+**Role(s) Responsible:** Developers
+
+---
+
+## Objectives
+
+* Clone the sample Flask app from the team repo and run it locally.
+* Verify endpoints and create a simple unit test.
+* Write a production-ready `Dockerfile`.
+* Build and run the Docker image locally and validate the containerized app.
+* Prepare required artifacts for Lab 10 (push to Docker Hub).
+
+---
+
+## Pre-requisites (exact commands / steps)
+
+1. Local machine (Linux / macOS recommended; Windows WSL acceptable).
+2. Git, Python 3.11+ (or 3.10), Docker (Engine + CLI) installed and running.
+
+   * Install checks:
+
+     ```bash
+     git --version
+     python3 --version
+     docker --version
+     docker compose version || true
+     ```
+
+---
+
+## Theory Recap (3–4 sentences)
+
+Dockerizing the app packages runtime, dependencies and the application into an immutable image so deployments are consistent across environments. Running the app locally first ensures functionality before containerizing. Using a small base image (e.g., `python:3.11-slim`) plus a production WSGI server (e.g., `gunicorn`) yields a stable container suitable for CI/CD. Tests give confidence for the build pipeline.
+
+---
+
+## Step-by-Step Instructions (copy-paste-ready)
+
+### A. Inspect repo & run the app locally
+
+1. Clone & change dir:
+
+   ```bash
+   git clone https://github.com/Sid-Trainings/flask-sample-webapp.git
+   cd flask-sample-webapp
+   ```
+
+2. Look for the entrypoint (common filenames):
+
+   ```bash
+   ls -la
+   # Look for app.py, run.py, wsgi.py or a package folder with __init__.py
+   ```
+
+3. If there is a `requirements.txt`, install deps:
+
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+
+4. Run the app:
+
+     ```bash
+     export FLASK_APP=app.py
+     flask run --host=0.0.0.0 --port=5000
+     ```
+  
+
+5. Test endpoint(s) locally:
+
+**If you are running from your laptop:** In your browser open http://127.0.0.1:5000/
+
+OR
+
+**If you are running on VM without desktop:**
+
+    ```bash
+    # from the same machine
+    curl -i http://127.0.0.1:5000/
+    # or a specific endpoint
+    curl -i http://127.0.0.1:5000/health
+    ```
+
+   **Expected:** HTTP/1.1 200 OK and an HTML or JSON payload representing the index/health page.
+
+---
+
+### B. Create a production-ready Dockerfile
+
+Create `Dockerfile` at repo root:
+
+```dockerfile
+# Dockerfile (production-ish)
+FROM python:3.11-slim
+
+# OS deps for some Python packages (if needed)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential gcc libpq-dev \
+ && rm -rf /var/lib/apt/lists/*
+
+# Create app user
+RUN useradd --create-home appuser
+WORKDIR /app
+
+# Copy requirements first for Docker layer caching
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Copy app source
+COPY . /app
+
+# Ensure non-root
+USER appuser
+
+# Expose port used by the app
+EXPOSE 5000
+
+# Default command: use gunicorn if app exposes 'app' WSGI callable.
+# Replace 'app:app' with '<module>:<callable>' if different.
+CMD ["gunicorn", "--workers", "3", "--bind", "0.0.0.0:5000", "app:app"]
+```
+
+---
+
+### C. Build and run the Docker image locally
+
+1. Build:
+
+   ```bash
+   docker build -t techops/flask-sample:lab09 .
+   ```
+2. Run:
+
+   ```bash
+   docker run --rm -p 5000:5000 --name flask-lab09 techops/flask-sample:lab09
+   ```
+3. Validate:
+
+   ```bash
+   curl -i http://127.0.0.1:5000/
+   ```
+
+   **Expected:** HTTP 200 and page content. Also `docker ps` should show the running container.
+
+---
+
+Here’s the **corrected and polished section** with the fixed `cp -r` command and a ready-to-use **`.dockerignore`** template.
+
+---
+
+### D. Move Your App into Your Team’s Repository
+
+**Delete `.git` foler**
+
+Inside your cloned `flask-sample-webapp` folder, remove the `.git` history so it becomes a plain app folder:
+
+```bash
+rm -rf .git
+```
+*(On Windows, just delete the `.git` folder manually.)*
+
+**Create Temporary Directory and Clone your team's Repo**
+
+Create a temporary directory somewhere outside of `flask-sample-webapp` (e.g., `~/temp_repo`).
+1. From inside `temp_repo`, clone your **team repository** (replace `<your-org>` and `teamX` with your actual details):
+
+   ```bash
+   git clone git@github.com:<your-org>/techops-capstone-teamX.git
+   ```
+2. Enter the cloned team repo folder:
+
+   ```bash
+   cd techops-capstone-teamX
+   ```
+3. Remove any placeholder app folders if they exist:
+
+   ```bash
+   rm -rf apps/frontend/
+   rm -rf apps/backend/
+   ```
+4. Copy your **Flask app** into the `apps/` folder of your team repo:
+
+=== "Windows"
+
+    Copy the entire `flask-sample-webapp` folder into your team repo.
+
+    **Example:**
+    If your Flask app is at
+    `C:/Users/YourUserName/Documents/Code/flask-sample-webapp`
+
+    and your team repo is at
+    `C:/Users/YourUserName/Documents/Capstone/techops-capstone-teamX`
+
+    → Copy `flask-sample-webapp` into:
+    `C:/Users/YourUserName/Documents/Capstone/techops-capstone-teamX/apps/`
+
+
+=== "Linux/macOS"
+
+    Use the `cp -r` command (note the **-r** to copy the folder and preserve structure):
+
+    ```bash
+    cp -r /path/to/flask-sample-webapp /path/to/techops-capstone-teamX/apps/
+    ```
+
+    After this step, your repo should look like:
+
+    ```
+    techops-capstone-teamX/
+    └── apps/
+        └── flask-sample-webapp/
+            ├── app.py
+            ├── requirements.txt
+            ├── Dockerfile
+            └── ...
+    ```
+
+**Create `.dockerignore` file:**
+
+1. Inside `apps/flask-sample-webapp`, create a `.dockerignore` file to avoid copying unnecessary files into Docker images:
+
+   ```bash
+   cat > apps/flask-sample-webapp/.dockerignore <<EOF
+   .venv
+   __pycache__/
+   *.pyc
+   *.pyo
+   *.pyd
+   .git
+   .gitignore
+   tests/
+   node_modules/
+   *.log
+   EOF
+   ```
+
+**Commit & Push to yoru Team's Repo**
+
+1. Stage, commit, and push the new app to your team repo:
+
+   ```bash
+   git checkout -b feature/lab09-add-flask-app
+   git add apps/flask-sample-webapp
+   git commit -m "Lab09: add flask-sample-webapp under apps/ with Dockerfile and .dockerignore"
+   git push -u origin feature/lab09-add-flask-app
+   ```
+
+
+**Merge the Pull Request**
+
+On GitHub, open a **Pull Request** from your branch (`feature/lab09-add-flask-app`) into `main`. Approve & Merge!
+
+
+---
+
+## Troubleshooting Tips (common errors & fixes)
+
+* **Error: `requirements.txt` missing**
+  Fix: Inspect `pyproject.toml` or `Pipfile`. If dependencies unknown, create minimal `requirements.txt` (e.g., `Flask`, `gunicorn`) and iterate:
+
+  ```text
+  Flask>=2.0
+  gunicorn
+  ```
+* **`FLASK_APP` not set / ModuleNotFoundError for app**
+  Find the module with `app = Flask(__name__)` or a factory `create_app()`. Update `FLASK_APP` or `CMD` in Dockerfile accordingly.
+* **Port 5000 already in use**
+  Stop other service or map to another port: `docker run -p 8080:5000 ...` then test `http://localhost:8080`.
+* **gunicorn import error: cannot import name 'app'**
+  Either point gunicorn to correct WSGI callable (`module:callable`) or add a `wsgi.py` wrapper that exposes the `application`.
+* **Build fails with missing dev headers (e.g., for psycopg2)**
+  Add required OS packages in Dockerfile (e.g., `libpq-dev`) and rebuild.
+* **Image too large**
+  Use `python:3.11-slim`, remove apt caches (`rm -rf /var/lib/apt/lists/*`), and add `.dockerignore` (exclude `.venv`, `tests`, `.git`).
+
+---
+
+## Deliverables (what to commit/push for evaluation)
+
+1. `Dockerfile` in repo root.
+2. `tests/test_app.py` (or similar) with passing tests.
+3. README section: “Run locally” and “Run with Docker” with exact commands used.
+4. One screenshot or paste of `curl -i http://127.0.0.1:5000/` showing HTTP 200.
+5. `docker images` output showing `techops/flask-sample:lab09` image ID and size.
+6. Commit sha / PR URL if you created a branch/PR.
+
+---
+
+## Reflection Question
+
+What was the single change you had to make to the upstream repo (entrypoint, dependency, or config) to make the app run inside Docker — and why was that change necessary?
+
+---
+

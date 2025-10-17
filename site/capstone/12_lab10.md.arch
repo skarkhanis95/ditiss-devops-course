@@ -1,0 +1,160 @@
+# Lab 10: Push Images to Docker Hub
+
+**Roles Responsible:** Developers
+
+---
+
+## Objectives
+
+* Log in to your personal Docker Hub account.
+* Tag and push the Flask app Docker image to your personal Docker Hub repo.
+* Update `README.md` with pull/run instructions from Docker Hub.
+* Commit the changes into the team GitHub repo via a feature branch and PR.
+
+---
+
+## Pre-requisites
+
+1. **Docker Installed & Running** (already covered in Lab 09).
+2. **Personal Docker Hub Account** (sign up at [hub.docker.com](https://hub.docker.com) if you don’t have one).
+3. Lab 09 completed successfully:
+
+   * `apps/flask-sample-webapp/Dockerfile` present.
+   * Local image built (e.g., `techops/flask-sample:lab09`).
+
+---
+
+## Theory Recap
+
+Docker Hub lets individual developers store and distribute container images. By pushing your local build, you ensure the image can be pulled anywhere (including Jenkins or EC2 in future labs). Each developer will use their **personal Docker Hub username** as the namespace.
+
+---
+
+## Step-by-Step Instructions
+
+### A. Create Docker Hub Repository
+
+1. Log into [Docker Hub](https://hub.docker.com).
+2. In your local terminal run `docker login`
+3. Go to **Repositories → Create Repository**.
+
+   * **Name**: `flask-sample-webapp`
+   * **Visibility**: Public (preferred for this lab).
+   * **Namespace**: Your Docker Hub username (e.g., `your-username/flask-sample-webapp`).
+
+---
+
+### B. Tag the Local Image
+
+Check your local image:
+
+```bash
+docker images | grep flask-sample
+```
+
+Re-tag it with your **personal Docker Hub username**:
+
+```bash
+docker tag techops/flask-sample:lab09 <your-dockerhub-username>/flask-sample-webapp:lab10
+docker tag techops/flask-sample:lab09 <your-dockerhub-username>/flask-sample-webapp:latest
+```
+
+---
+
+### C. Push to Docker Hub
+
+```bash
+docker push <your-dockerhub-username>/flask-sample-webapp:lab10
+docker push <your-dockerhub-username>/flask-sample-webapp:latest
+```
+
+Check on Docker Hub that both tags appear under your repo.
+
+---
+
+### D. Test Pull & Run from Docker Hub
+
+From any machine with Docker:
+
+```bash
+docker pull <your-dockerhub-username>/flask-sample-webapp:lab10
+docker run --rm -p 5000:5000 <your-dockerhub-username>/flask-sample-webapp:lab10
+```
+
+Validate with:
+
+```bash
+curl -i http://127.0.0.1:5000/
+```
+
+---
+
+### E. Update README.md in Team Repo
+
+In `apps/flask-sample-webapp/README.md`, add:
+
+````markdown
+## Run from Docker Hub
+
+To pull and run the app directly from Docker Hub:
+
+
+```bash
+docker pull <your-dockerhub-username>/flask-sample-webapp:latest
+docker run --rm -p 5000:5000 <your-dockerhub-username>/flask-sample-webapp:latest
+```
+````
+
+
+---
+
+### F. Commit & Push Changes to Team Repo
+From inside your team repo (`techops-capstone-teamX`):  
+
+```bash
+git checkout -b feature/lab10-dockerhub
+git add .
+git commit -m "Lab10: update README with Docker Hub image info"
+git push -u origin feature/lab10-dockerhub
+```
+
+Create a Pull Request → get it reviewed → merge into `main`.
+
+---
+
+## Checkpoint / Validation
+
+* Personal Docker Hub repo exists (`your-username/flask-sample-webapp`).
+* Image pushed with tags `lab10` and `latest`.
+* `docker pull` and `docker run` work on another machine.
+* README updated in team repo with Docker Hub instructions.
+* PR merged successfully.
+
+---
+
+## Troubleshooting Tips
+
+* **`denied: requested access to the resource is denied`**
+    → Run `docker login` and make sure you use your personal username.
+* **`manifest unknown`**
+    → Tag mismatch. Double-check with `docker images`.
+* **Push to wrong namespace**
+  → Always tag with your Docker Hub username (`docker tag ... your-username/...`).
+
+---
+
+## Deliverables
+
+1. Screenshot of `docker push` output.
+2. Screenshot of successful `docker run` from Docker Hub image.
+3. Updated `README.md` in team repo.
+4. PR link merged into `main`.
+
+---
+
+## Reflection Question
+
+If every developer pushes to their own personal Docker Hub repo, what challenges could arise when DevOps later automates deployment using Jenkins?
+
+---
+

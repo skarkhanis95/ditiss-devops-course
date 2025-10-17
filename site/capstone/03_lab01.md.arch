@@ -1,0 +1,218 @@
+Great 👍 — using the **Capstone Lab Generation Master Prompt**, here is the **first lab (Lab 01)** fully written out.
+
+---
+
+# Lab 01: Pre-Requisites & Local Setup
+
+## Role(s) Responsible
+
+**All Roles** — Every student must complete this lab before continuing.
+
+---
+
+## Objectives
+
+* Set up all required local tools for the Capstone Project.
+* Verify access to AWS, Terraform Cloud, GitHub, Docker Hub.
+* Ensure a consistent working environment across all team members.
+
+---
+
+## Pre-Requisites
+
+* Personal **AWS account** (already created, Free Tier).
+* **Terraform Cloud account** (sign up at [Terraform Cloud](https://app.terraform.io)).
+* **GitHub account**.
+* **Docker Hub account**.
+* Laptop/VM running Linux/macOS (Windows with WSL2 also supported).
+
+---
+
+## Step-by-Step Instructions
+
+### 1. Install AWS CLI v2
+
+```bash
+# Linux
+sudo apt install unzip -y
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# Verify
+aws --version
+```
+
+### 2. Configure AWS CLI
+
+Ask your IAM Engineer (Project Owner) for AWS Access Key + Secret. Then:
+
+!!! info "Tip"
+    You can do this step once IAM Engineer has done configuring your access
+
+
+```bash
+aws configure
+# AWS Access Key ID: <provided>
+# AWS Secret Access Key: <provided>
+# Default region: ap-south-1  (or as defined by Architect)
+# Output format: json
+```
+
+Validate:
+
+```bash
+aws sts get-caller-identity
+```
+
+Expected: Your AWS user ARN.
+
+---
+
+### 3. Install Terraform CLI
+
+```bash
+# Linux
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install terraform
+
+# Verify
+terraform -version
+```
+
+---
+
+### 4. Log Into Terraform Cloud
+
+Generate a **User Token**:
+
+* Go to [Terraform Cloud](https://app.terraform.io) → Account Settings → Tokens → Create an API token.
+* Copy the token and keep it somewhere safe, as Terraform does not display it again
+
+On CLI:
+
+```bash
+terraform login
+```
+
+Paste token when prompted.
+Validation:
+
+```bash
+terraform -help
+# should not error
+```
+
+---
+
+### 5. Install Ansible
+
+```bash
+# Ubuntu
+sudo apt update
+sudo apt install -y ansible
+
+# Verify
+ansible --version
+```
+
+---
+
+### 6. Install Docker
+
+```bash
+# Ubuntu
+sudo apt-get update
+sudo apt-get install -y docker.io docker-compose
+sudo systemctl enable docker
+sudo systemctl start docker
+
+# Add your user to docker group
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Verify
+docker run hello-world
+```
+
+---
+
+### 7. Configure Git
+
+```bash
+sudo apt-get install git -y
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+Generate SSH key for GitHub:
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "you@example.com"
+cat ~/.ssh/id_rsa.pub
+```
+
+Copy the key into **GitHub → Settings → SSH and GPG keys → New Key**.
+
+Test:
+
+```bash
+ssh -T git@github.com
+```
+
+---
+
+### 8. Create Accounts for Registries
+
+* Log into [Docker Hub](https://hub.docker.com) and note your username.
+* Share Docker Hub usernames with **DevOps** for later pipeline setup.
+
+---
+
+## Checkpoint / Validation
+
+* Run:
+
+  ```bash
+  aws sts get-caller-identity
+  terraform -version
+  ansible --version
+  docker --version
+  git --version
+  ```
+* Confirm all tools return versions without errors.
+* Run `docker run hello-world` and confirm successful message.
+
+---
+
+## Troubleshooting Tips
+
+* **AWS CLI error** → check if credentials are correct, ensure IAM role has permissions.
+* **Docker permission denied** → ensure user is added to `docker` group, re-login.
+* **Terraform login fails** → regenerate token from Terraform Cloud.
+* **GitHub SSH auth fails** → check that your SSH key was added correctly to GitHub.
+
+---
+
+## Deliverables
+
+* Screenshot of:
+
+  * `aws sts get-caller-identity` output.
+  * `terraform -version`, `ansible --version`, `docker run hello-world`.
+* GitHub SSH key test (`ssh -T git@github.com`).
+
+---
+
+## Reflection Question
+
+*Why do we use Terraform Cloud for managing state instead of keeping `.tfstate` files locally or in GitHub?*
+
+---
+
+✅ This completes **Lab 01: Pre-Requisites & Local Setup**.
+
+---
+
