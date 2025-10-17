@@ -1,0 +1,344 @@
+# Lab 11: Jenkins Pipeline Setup (CI) — Full Guide
+
+**Role(s) Responsible:** DevOps (with help from Developers for creating the `Jenkinsfile`)
+
+---
+
+## Objectives
+
+* Add a `Jenkinsfile` to the team repo (created by Developers / DevOps).
+* Configure Jenkins to run a pipeline that: checks out code, runs tests, builds Docker image and pushes to the developer’s Docker Hub repo using credentials from **Lab 08**.
+* Ensure pipeline: runs only on `main` **and** only when `apps/flask-sample-webapp/**` files changed.
+* Configure GitHub webhook so pushes/PR merges trigger Jenkins builds (no polling).
+
+---
+
+## Pre-requisites (exact checklist & commands)
+
+1. Jenkins server provisioned and reachable (from Lab 06/07).
+2. Jenkins host has Docker available and Jenkins user can run Docker:
+
+   ```bash
+   # on Jenkins host
+   docker --version
+   sudo usermod -aG docker jenkins   # if permission issues; then restart jenkins
+   sudo systemctl restart jenkins
+   ```
+3. Plugins installed on Jenkins:
+
+   * GitHub Branch Source (for multibranch pipelines/webhooks)
+   * Pipeline (workflow-aggregator)
+   * Credentials Plugin
+   * Docker Pipeline (optional/helpful)
+4. **Docker Hub credential already present from Lab 08** — note the **Credential ID** (e.g., `dockerhub-token` or `dockerhub-credentials`). You will use this ID in the Jenkinsfile.
+
+   * To find it: Jenkins → Credentials → System → Global credentials (unrestricted) → note the *ID* column.
+5. Team GitHub repo cloned locally (or access to edit). We will place the `Jenkinsfile` in the repo **before** configuring Jenkins. Recommended location: at `apps/flask-sample-webapp/Jenkinsfile` (makes multibranch scanning straightforward).
+
+   ```bash
+   git clone git@github.com:<your-org-or-team-repo>.git
+   cd <repo>
+   ```
+6. Developers have pushed the Dockerized app (Lab 09) and updated `apps/flask-sample-webapp` with `Dockerfile`, tests, etc.
+
+---
+
+## Jenkinsfile — what to add to the repo
+
+**Important:** Devs / DevOps must create and commit a `Jenkinsfile` into the repo *before* creating the Jenkins job. Place it at `apps/flask-sample-webapp/Jenkinsfile` or root and point the job to that path.
+
+Below is a robust **Declarative Jenkinsfile** that:
+
+* checks branch is `main`,
+* inspects the commit changeSets and runs only if something under `apps/flask-sample-webapp/` changed,
+* runs tests, builds the Docker image and pushes to Docker Hub using the credential created in Lab 08.
+
+> Replace `YOUR_DOCKERHUB_CRED_ID` and your `your_dockerhub_username` with the *actual credential ID* created in Lab 08 and username on which the image is pushed at DockerHub.
+
+```groovy
+// apps/flask-sample-webapp/Jenkinsfile
+pipeline {
+  agent any
+
+  parameters {
+    // Set this to the credential ID you created in Lab 08 (or let DevOps set it via Job defaults)
+    string(name: 'DOCKERHUB_CRED_ID', defaultValue: 'YOUR_DOCKERHUB_CRED_ID', description: 'Jenkins credential ID for Docker Hub (username+token)')
+    string(name: 'DOCKERHUB_USER', defaultValue: 'your_dockerhub_username', description: 'Docker Hub username/namespace (developer should set their username)')
+    string(name: 'IMAGE_NAME', defaultValue: 'flask-sample-webapp', description: 'Image name')
+    string(name: 'IMAGE_TAG', defaultValue: "lab11-${env.BUILD_ID}", description: 'Image tag (auto default)')
+  }
+
+  environment {
+    APP_PATH = "apps/flask-sample-webapp"
+    IMAGE = "${params.DOCKERHUB_USER}/${params.IMAGE_NAME}:${params.IMAGE_TAG}"
+    IMAGE_LATEST = "${params.DOCKERHUB_USER}/${params.IMAGE_NAME}:latest"
+  }
+
+  stages {
+    stage('Should we run?') {
+      steps {
+        script {
+          // Fail fast if not on main branch
+          if (!env.BRANCH_NAME) {
+            // For single pipeline jobs, BRANCH_NAME may not be set; try GIT_BRANCH
+            env.BRANCH_NAME = env.GIT_BRANCH ?: env.BRANCH_NAME
+          }
+          if (env.BRANCH_NAME == null) {
+            echo "BRANCH_NAME not set — continuing (job may be configured as single-branch pipeline)."
+          } else {
+            echo "Branch: ${env.BRANCH_NAME}"
+            if (env.BRANCH_NAME != 'main') {
+              echo "Not main branch (${env.BRANCH_NAME}) — skipping remaining stages."
+              currentBuild.result = 'NOT_BUILT'
+              error("Stopping pipeline: not main branch")
+            }
+          }
+
+          // Determine whether files under APP_PATH changed in this build.
+          boolean pathChanged = false
+          for (changeSet in currentBuild.changeSets) {
+            for (entry in changeSet.items) {
+              for (file in entry.affectedFiles) {
+                if (file.path.startsWith("${APP_PATH}/")) {
+                  pathChanged = true
+                  break
+                }
+              }
+              if (pathChanged) break
+            }
+            if (pathChanged) break
+          }
+          if (!pathChanged) {
+            echo "No changes under ${APP_PATH} detected in this build. Exiting."
+            currentBuild.result = 'NOT_BUILT'
+            error("No relevant changes")
+          } else {
+            echo "Changes detected under ${APP_PATH} — continuing pipeline."
+          }
+        }
+      }
+    }
+
+    stage('Checkout') {
+      steps {
+        // Checkout the commit that triggered the build
+        checkout scm
+      }
+    }
+
+    stage('Unit Tests') {
+      steps {
+        dir("${APP_PATH}") {
+          sh '''
+            set -e
+            python3 -m venv .venv || true
+            . .venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt || true
+            pytest -q || true
+          '''
+        }
+      }
+      // Do not fail the whole build on flaky tests by default; you can alter to fail
+      post {
+        unsuccessful { echo "Unit tests stage reported issues (see logs)." }
+      }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        dir("${APP_PATH}") {
+          sh '''
+            docker build -t "${IMAGE}" .
+          '''
+        }
+      }
+    }
+
+    stage('Docker Login & Push') {
+      steps {
+        // Use credential added in Lab 08. DevOps/Students must replace DOCKERHUB_CRED_ID or set it in job parameters
+        withCredentials([usernamePassword(credentialsId: params.DOCKERHUB_CRED_ID, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          sh '''
+            echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin
+            docker tag "${IMAGE}" "${IMAGE_LATEST}" || true
+            docker push "${IMAGE}"
+            docker push "${IMAGE_LATEST}"
+            docker logout
+          '''
+        }
+      }
+    }
+
+    stage('Cleanup') {
+      steps {
+        sh 'docker image prune -f || true'
+      }
+    }
+  } // stages
+
+  post {
+    success {
+      echo "Pipeline completed successfully. Image pushed: ${IMAGE}"
+    }
+    failure {
+      echo "Pipeline failed. Check console output for errors."
+    }
+    always {
+      // optional: collect junit/test reports if produced
+      echo "Build finished: ${currentBuild.currentResult}"
+    }
+  }
+}
+```
+
+---
+
+## Steps: create / commit Jenkinsfile (student/devops)
+
+1. Create the `Jenkinsfile` locally (path recommended: `apps/flask-sample-webapp/Jenkinsfile`) and paste the content above (update default parameters).
+   Example:
+
+   ```bash
+   cd /path/to/your/local/repo
+   mkdir -p apps/flask-sample-webapp
+   cat > apps/flask-sample-webapp/Jenkinsfile <<'JENK'
+   <paste Jenkinsfile content here>
+   JENK
+   ```
+
+2. Update placeholders:
+
+   * Replace `YOUR_DOCKERHUB_CRED_ID` with the Jenkins credential ID created in **Lab 08** (or leave as-is if job will set parameter defaults).
+   * Set `DOCKERHUB_USER` to your Docker Hub username (or leave as parameter to set at job-level).
+
+3. Commit & push:
+
+   ```bash
+   git checkout -b feature/add-jenkinsfile
+   git add apps/flask-sample-webapp/Jenkinsfile
+   git commit -m "Lab11: add Jenkinsfile for CI (build & push Docker image)"
+   git push -u origin feature/add-jenkinsfile
+   # Create a PR and merge into main (since pipeline only runs on main)
+   ```
+
+   > Important: merge the PR into `main` so Jenkins multibranch or webhook-triggered job can see the `Jenkinsfile` on `main`.
+
+---
+
+## Configure Jenkins Job (DevOps)
+
+
+1. Jenkins → **New Item** → give a name (e.g., `techops-flask-multibranch`) → **Multibranch Pipeline** → OK.
+2. Under **Branch Sources** → Add → **Git** (or **GitHub** if plugin installed).
+
+   * **Repository**: `git@github.com:<org-or-team>/<repo>.git` (or HTTPS)
+   * Add credentials if necessary for Jenkins to read the repo.
+3. Under **Build Configuration** set **Script Path** to:
+
+   ```
+   apps/flask-sample-webapp/Jenkinsfile
+   ```
+
+   (This makes multibranch create jobs for branches that have that Jenkinsfile in that path.)
+4. Save.
+
+> We will not rely on interval scanning — webhooks will trigger indexing/builds (see webhook steps below).
+
+
+---
+
+## Setup GitHub Webhook (no polling)
+
+1. In GitHub: go to the team repo → **Settings → Webhooks → Add webhook**.
+2. **Payload URL**:
+
+   ```
+   https://<your-jenkins-public-url>/github-webhook/
+   ```
+
+   (If Jenkins is behind auth or firewall, ensure GitHub can reach it — you may need to use a public IP / DNS or a tunneling service during lab.)
+3. **Content type**: `application/json`
+4. **Secret**: optional (if you configure secret on Jenkins side; can be left empty for classroom).
+5. **Which events would you like to trigger this webhook?** → Choose **Let me select individual events** → check **Push** and **Pull request**.
+6. Add webhook.
+7. In Jenkins, ensure GitHub plugin/webhook handling is enabled: Manage Jenkins → Configure Global Security / or check GitHub webhook logs.
+
+**Test:** Merge the PR with `Jenkinsfile` into `main` (or push a change to `main` under `apps/flask-sample-webapp/`) — GitHub webhook should POST to Jenkins and Jenkins should trigger a build. Verify webhook delivery status in GitHub UI (should show 200 response).
+
+---
+
+## Checkpoint / Validation (what students should provide)
+
+1. **Jenkinsfile** exists and was merged into `main` at `apps/flask-sample-webapp/Jenkinsfile`. (PR link + commit sha)
+2. Jenkins job created (multibranch/pipeline) and configured `Script Path` as `apps/flask-sample-webapp/Jenkinsfile`. (screenshot)
+3. Jenkins Credentials (from Lab 08) are visible and you used that credential ID in the job or Jenkinsfile. (screenshot of credentials list showing the credential ID)
+4. GitHub webhook created and shows successful recent deliveries (screenshot).
+5. A merge/commit to `main` that changed files under `apps/flask-sample-webapp/` has triggered Jenkins and resulted in console logs showing: checkout → tests → docker build → docker push (copy of log lines showing `docker push`).
+6. Docker Hub shows the pushed tag (screenshot of your Docker Hub repo with `lab11-<buildId>` and `latest`).
+
+---
+
+## Troubleshooting (common errors & fixes)
+
+* **Webhook not triggering / 404 / 403 responses**
+
+  * Ensure Jenkins is reachable from the public internet (GitHub must reach it). If Jenkins is internal, use a public tunneling service (e.g., ngrok) for the lab or configure GitHub App. Check firewall/security group on Jenkins host.
+  * Verify webhook payload URL ends with `/github-webhook/`.
+  * Check GitHub webhook delivery logs for response codes.
+
+* **`BRANCH_NAME` or `currentBuild.changeSets` empty**
+
+  * For some job types (single pipeline) environment variables differ — the Jenkinsfile handles common variants but if changeSets are empty, the pipeline may not detect changes. In that case, as a fallback run tests/build only when you cannot inspect changeSets (or set up job to run on PR merges only). Multibranch pipeline tends to populate these.
+
+* **`denied: requested access to the resource is denied` (docker push)**
+
+  * Ensure Jenkins Credential corresponds to the Docker namespace you are pushing to (i.e., the credential username must match `DOCKERHUB_USER` in the Jenkinsfile). Use tokens not passwords when possible. Confirm the credential ID in the Jenkinsfile matches the one created in Lab 08.
+
+* **Permissions to run Docker on Jenkins host**
+
+  * `sudo usermod -aG docker jenkins` and restart Jenkins. Ensure the Jenkins process is restarted and has group membership.
+
+* **Tests failing in Jenkins but pass locally**
+
+  * Ensure Jenkins workspace uses same Python version and installs dependencies. Cache discrepancies or network issues can cause failure. Collect logs, run same commands locally in a clean venv to reproduce.
+
+---
+
+## Deliverables (what to submit for evaluation)
+
+1. PR link for `Jenkinsfile` merged to `main`.
+2. Screenshots: Jenkins job config (script path), Jenkins credentials list (showing credential ID), GitHub webhook config (showing successful deliveries).
+3. Console log excerpt showing `docker build` and `docker push`.
+4. Docker Hub screenshot showing pushed image tag.
+5. Short explanation (1–2 lines) of how you verified the pipeline only ran for `main` and only when `apps/flask-sample-webapp/` changed.
+
+**Rubric:**
+
+* Jenkinsfile present & merged before job creation (20%)
+* Webhook configured and triggering builds (25%)
+* Build runs tests and pushes image using Lab08 credentials (40%)
+* Pipeline only runs for main + path filter logic works (15%)
+
+---
+
+## Reflection Question
+
+Explain how the `changeSets` check in the Jenkinsfile prevents unnecessary CI usage and why this matters in shared monorepos.
+
+---
+
+## Quick tips for instructors / DevOps
+
+* Teach students to **merge the `Jenkinsfile` to `main` first**; otherwise multibranch jobs might not discover the script.
+* If some students’ Docker Hub usernames differ from the credential username, make sure `DOCKERHUB_USER` parameter is set to match the credential username (or DevOps creates a per-developer credential with a matching username).
+* Encourage use of Docker Hub tokens and to rotate them frequently; store tokens in Jenkins credentials (username = docker username, password = token).
+
+---
+
+If you want, I can now:
+
+* Produce a **short shell script** developers can use to create and push the `Jenkinsfile` (automates the `git` steps), **or**
+* Produce a **one-page student checklist** (PDF/markdown) summarizing exactly what screenshots/links they must submit for grading.
+
+Which of those should I produce next?

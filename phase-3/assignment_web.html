@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AWS + Ansible + Docker Assignment</title>
+<style>
+  body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 40px;
+    line-height: 1.6;
+    color: #222;
+  }
+  h1, h2, h3 {
+    color: #004d80;
+  }
+  pre, code {
+    background: #f6f8fa;
+    border-radius: 6px;
+    padding: 0.6em;
+    font-size: 0.95em;
+  }
+  pre {
+    overflow-x: auto;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 2em 0;
+  }
+  ul { margin-left: 1.5em; }
+  strong { color: #333; }
+</style>
+</head>
+<body>
+
+<h1>Assignment</h1>
+
+<h2>Objectives</h2>
+<ul>
+  <li>Stand up a basic two-subnet VPC in AWS (public + private).</li>
+  <li>Launch:
+    <ol>
+      <li><strong>Private EC2</strong> (no public IP) — Ansible control node.</li>
+      <li><strong>Jump host</strong> in public subnet — for SSH into the private EC2.</li>
+      <li><strong>Web server</strong> in public subnet.</li>
+    </ol>
+  </li>
+  <li>From the <strong>private EC2</strong>, run the provided <strong>Ansible playbook</strong> to install Apache on the <strong>public web server</strong> and serve a page with <strong>Name + Roll No.</strong></li>
+  <li>Additionally, <strong>containerize</strong> a simple Apache site by building a basic <strong>Docker image</strong> that serves the same page.</li>
+</ul>
+
+<h2>Deliverables (brief)</h2>
+<ol>
+  <li>Public web server URL showing <strong>Name + Roll No</strong>.</li>
+  <li>One screenshot of Ansible run completion.</li>
+  <li>One screenshot of your Docker container serving the same page locally (<code>docker run …</code>).</li>
+  <li>One diagram or bullet list of your VPC + subnets + instances (very brief).</li>
+</ol>
+
+<hr>
+
+<h1>Provided Files (only these)</h1>
+
+<h2>1) <code>site.yml</code> (Ansible playbook)</h2>
+<p>Works on Ubuntu or Amazon Linux 2 targets. Run it <strong>from the private EC2</strong> against the public web server.</p>
+
+<pre><code>---
+- name: Bootstrap Apache and deploy Name/Roll page
+  hosts: web
+  become: true
+  gather_facts: true
+
+  vars:
+    apache_pkg: "{{ 'httpd' if ansible_facts.os_family in ['RedHat','Amazon'] else 'apache2' }}"
+    apache_svc: "{{ 'httpd' if ansible_facts.os_family in ['RedHat','Amazon'] else 'apache2' }}"
+    doc_root: "/var/www/html"
+    student_name: "{{ lookup('env','STUDENT_NAME') | default('Your Name', true) }}"
+    roll_no: "{{ lookup('env','ROLL_NO') | default('0000', true) }}"
+
+  tasks:
+    - name: Ensure package cache is up to date (Debian/Ubuntu)
+      apt:
+        update_cache: yes
+      when: ansible_facts.os_family == 'Debian'
+
+    - name: Install Apache
+      package:
+        name: "{{ apache_pkg }}"
+        state: present
+
+    - name: Ensure Apache service is enabled and running
+      service:
+        name: "{{ apache_svc }}"
+        state: started
+        enabled: true
+
+    - name: Deploy index.html with Name and Roll No
+      copy:
+        dest: "{{ doc_root }}/index.html"
+        mode: '0644'
+        content: |
+          &lt;!doctype html&gt;
+          &lt;html&gt;
+            &lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Student&lt;/title&gt;&lt;/head&gt;
+            &lt;body style="font-family: system-ui; margin: 3rem;"&gt;
+              &lt;h1&gt;{{ student_name }}&lt;/h1&gt;
+              &lt;h2&gt;Roll No: {{ roll_no }}&lt;/h2&gt;
+              &lt;p&gt;Deployed via Ansible ✅&lt;/p&gt;
+            &lt;/body&gt;
+          &lt;/html&gt;
+</code></pre>
+
+<p><strong>How students run (example, from private EC2):</strong></p>
+
+<pre><code># inventory.ini (example)
+# [web]
+# &lt;public-web-server-ip&gt; ansible_user=ubuntu   # or ec2-user for Amazon Linux 2
+
+ansible -i inventory.ini web -m ping
+ansible-playbook -i inventory.ini site.yml
+</code></pre>
+
+<hr>
+
+<h2>2) <code>Dockerfile</code> (minimal Apache image)</h2>
+
+<p>Builds a tiny image that serves the same page. No external files needed.</p>
+
+<pre><code># Simple Apache image that serves Name + Roll No
+FROM httpd:2.4-alpine
+
+ARG STUDENT_NAME="Your Name"
+ARG ROLL_NO="0000"
+
+# Create a minimal index.html at container build time
+RUN printf '&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Student&lt;/title&gt;&lt;/head&gt;&lt;body style="font-family: system-ui; margin: 3rem;"&gt;&lt;h1&gt;%s&lt;/h1&gt;&lt;h2&gt;Roll No: %s&lt;/h2&gt;&lt;p&gt;Served from Docker ✅&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;' \
+    "$STUDENT_NAME" "$ROLL_NO" \
+    > /usr/local/apache2/htdocs/index.html
+
+EXPOSE 80
+CMD ["httpd-foreground"]
+</code></pre>
+
+<hr>
+
+<h2>3) Installing Ansible (on the Private EC2)</h2>
+
+<p>Once your <strong>private EC2</strong> instance is reachable (via SSH from your jump host), install Ansible using the package manager for your OS:</p>
+
+<h3>🟢 For <strong>Amazon Linux 2 / RHEL / CentOS</strong></h3>
+<pre><code>sudo yum update -y
+sudo yum install -y ansible
+# or (if yum doesn’t have it)
+sudo amazon-linux-extras install ansible2 -y
+ansible --version
+</code></pre>
+
+<h3>🔵 For <strong>Ubuntu / Debian</strong></h3>
+<pre><code>sudo apt update -y
+sudo apt install -y ansible
+ansible --version
+</code></pre>
+
+<p>✅ <strong>Verify Installation</strong></p>
+<pre><code>ansible --version
+</code></pre>
+
+<p>You should see a version number (e.g. <code>ansible [core 2.17.x]</code>).</p>
+
+<hr>
+
+<p style="text-align:center; font-size:0.9em; color:#666;">End of Assignment</p>
+
+</body>
+</html>

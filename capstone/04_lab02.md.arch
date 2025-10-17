@@ -1,0 +1,206 @@
+# Lab 02: GitHub Repo & Project Structure
+
+## Role(s) Responsible
+
+**Architect**
+
+!!! tip "Role"
+    This lab is to be only performed by the team **"Architect"**.
+
+
+
+---
+
+## Objectives
+
+* Create a **team GitHub repository** for the Capstone Project.
+* Define the **directory structure** for infrastructure, app code, Ansible, CI/CD, and docs.
+* Add collaborators (all team members) with correct permissions.
+* Verify that the repository is ready to be linked with Terraform Cloud (next lab).
+
+---
+
+## Pre-requisites
+
+* Completion of **Lab 01: Pre-Requisites & Local Setup**.
+* Architect has a GitHub account.
+* All teammates have GitHub accounts.
+
+---
+
+## Step-by-Step Instructions
+
+### 1. Create a New Orgnization for your team
+
+1. Log in to [GitHub](https://github.com).
+2. Click on your user picture, top right corner -> Click on Organizations
+3. Click on `New Organization`
+4. Choose the Free plan -> `Create a free organization`
+5. Enter following details:
+      1. **Organization name:** `ditiis-<your-team-name>`
+      2. **Contact Email:** Your personal email address
+      3. This orgnization belongs to: `My personal account`
+      4. Verify your account
+      5. Click on `Next`
+6. Add all of your team members to the orgization by typing their usernames/email addresses
+7. Click on `Complete Setup`
+
+
+---
+
+### 2. Create a New Repository
+
+1. Verify in the url that you are in your orgnization space i.e. `https://github.com/ditiss-<your-team-mname>`
+2. Click on `Repositories`
+3. Click **New Repository**.
+4.  Fill details:
+    
+      * Owner
+
+        ```
+        ditiss-<your-team-name>
+        ```
+      * Repository name:
+
+        ```
+        techops-capstone-teamX
+        ```
+
+        (replace `X` with your team number).
+      * Description:
+
+        ```
+        Capstone Project - TechOps Inc. (Team X)
+        ```
+      * Visibility: **Public**
+      * Initialize with:
+
+        * ✅ `README.md`
+        * ✅ `.gitignore` (select Terraform template)
+      * License: MIT
+
+5.  Click **Create Repository**.
+
+---
+
+### 2. Add Team Members
+
+1. Go to **Settings → Collaborators & Teams**.
+2. Click **Add People**.
+3. Add all teammates by their GitHub usernames.
+>Note all team members must accept the invitation first before this or their name might not show up in Add People
+4. Permissions:
+
+   * **Write Access** → All team members.
+   * **Admin Access** → Scrum Master + IAM Engineer (they’ll need repo admin rights for secrets/integrations).
+
+
+!!! danger "Important"
+    Do not forget to add yourself as Admin
+---
+
+### 3. Clone the Repo Locally
+
+You can find the ssh url by clicking `Code` button from repository home page.
+
+```bash
+git clone git@github.com:<your-orgname>/techops-capstone-teamX.git
+cd techops-capstone-teamX
+```
+
+---
+
+### 4. Create Repository Structure
+
+Inside the repo, create the following folders:
+
+```bash
+mkdir -p infrastructure/{network,infra,jenkins,monitoring}
+mkdir -p apps/{backend,frontend}
+mkdir -p ansible/{playbooks,inventories}
+mkdir -p ci
+mkdir -p docs/runbooks
+```
+
+Add placeholder files for clarity:
+
+```bash
+touch infrastructure/{network,infra,jenkins,monitoring}/README.md
+touch apps/backend/README.md apps/frontend/README.md
+touch ansible/playbooks/README.md ansible/inventories/README.md
+touch ci/README.md
+touch docs/architecture.md docs/runbooks/incident.md
+```
+
+---
+
+### 5. Initial Commit & Push
+
+```bash
+git add .
+git commit -m "Initial repo structure for capstone project"
+git push origin main
+```
+
+---
+
+### 6. Protect Your Repository
+
+1. Open your repo on GitHub → click **Settings**.
+2. Left menu → **Branches** → under "Branch protection rules" click **Add classic branch protection rile**.
+3. Under *Branch name pattern* enter: `main` (or `refs/heads/main`).
+4. Tick the boxes and fill fields as recommended:
+
+   * **Require a pull request before merging** ✓
+
+     * Require approvals: enter `1` (or `2`)
+     * Check **Dismiss stale pull request approvals when new commits are pushed** ✓
+   * **Require status checks to pass before merging** ✓
+
+     * Choose required checks (e.g., `jenkins-ci`, `terraform-plan`) — you can add them after Jenkins runs.
+     * Check **Require branches to be up to date before merging** ✓
+   * **Do not allow bypassing the above settings** — check this to enforce for admins ✓
+   
+   
+5. Click **Create/Save Changes**.
+
+---
+
+### 7. Verify Repo Readiness
+
+* Confirm all folders are visible in GitHub.
+* Confirm all teammates have accepted invitations.
+* Leave repo empty of `.tfstate` files or secrets.
+* This repo will be linked to **Terraform Cloud** in **Lab 04**.
+
+---
+
+## Checkpoint / Validation
+
+* Repository `techops-capstone-teamX` exists with proper structure.
+* Team members added as collaborators with correct roles.
+* Initial commit pushed and visible in GitHub.
+* Branches are protected
+
+---
+
+## Troubleshooting Tips
+
+* **Permission denied (SSH)** → Ensure SSH key from Lab 01 is added to GitHub.
+* **Can’t add collaborators** → Only Architect (repo owner) can invite them.
+* **Wrong branch name** → Default branch should be `main`; rename if needed:
+
+  ```bash
+  git branch -M main
+  git push -u origin main
+  ```
+
+---
+
+## Deliverables
+
+* Screenshot of repo structure in GitHub.
+* Screenshot showing team members as collaborators.
+* GitHub commit log with initial repo structure.
+
+---

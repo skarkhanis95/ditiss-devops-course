@@ -1,0 +1,226 @@
+# Lab 04: Terraform Cloud Setup & Workspace
+
+## Role(s) Responsible
+
+**IAM Engineer, Architect**
+
+---
+
+## Objectives
+
+* Create a **Terraform Cloud organization** for the team.
+* Connect Terraform Cloud to the team GitHub repo.
+* Create a dedicated **workspace (`capstone-infra`)** for infrastructure.
+* Add **Terraform Cloud variables** with the Terraform service user’s Access Key & Secret Key from Lab 03.
+* Verify Terraform Cloud runs a test plan successfully.
+
+---
+
+## Pre-requisites
+
+* **Lab 02: GitHub Repo & Project Structure** completed.
+* **Lab 03: AWS IAM Setup** completed (Terraform service user + keys created).
+* GitHub repo must exist and contain `infrastructure/` folder.
+* IAM Engineer has Terraform service user’s `Access Key` and `Secret Key`.
+
+---
+
+## Step-by-Step Instructions
+
+### 1. Sign up / Log in to Terraform Cloud
+
+1. Go to [Terraform Cloud](https://app.terraform.io).
+2. Sign up with your GitHub account or email.
+3. IAM Engineer creates a new **organization** for the team:
+
+   ```
+   TechOps-TeamX
+   ```
+
+---
+
+### 2. Create a Workspace
+
+1. Inside your organization, click **New Workspace**.
+2. Choose **Version Control Workflow**.
+3. Connect to **GitHub** and authorize Terraform Cloud.
+4. Make sure to select the orgisation for your team instead of your personal account
+5. Select your team repo (`techops-capstone-teamX`).
+6. Name the workspace:
+   ```
+   capstone-infra
+   ``` 
+7. Click on `Advanced Options`
+8. Set the **Working Directory** =
+
+   ```
+   infrastructure/
+   ```
+
+   (so Terraform Cloud only runs code inside that folder).
+9. Under VCS Trigger Type:
+      *  Select **Branch-based**
+      *  VCS Branch: `main`
+10. Click on `Create`
+11. Go to your workspace on left side menu, find **Settings** -> **General**
+12. Select/Tick Mark **Auto-appy API, UI & VCS runs** under Auto-Apply
+13. **Save Settings**
+---
+
+### 3. Configure Workspace Variables
+
+1. In the workspace → **Variables** tab → Add variables. or `Configure variables`
+2. Add AWS credentials for the `techops-terraform` user created in Lab 03:
+
+      * **Environment Variables**:
+
+        * `AWS_ACCESS_KEY_ID` = `<TerraformUser_AccessKeyId>` (mark as Sensitive)
+        * `AWS_SECRET_ACCESS_KEY` = `<TerraformUser_SecretKey>` (mark as Sensitive)
+        * `AWS_DEFAULT_REGION` = `ap-south-1` (or your chosen region)
+
+3. Add optional Terraform settings:
+
+      * `TF_VAR_team` = `"teamX"`
+      * `TF_VAR_environment` = `"staging"`
+
+---
+
+### 4. Add Backend Configuration (in repo) 
+
+>IAM Engineer: On your Linux or WSL enabeld machine or from the machine where you ran the previous AWS commands
+
+1. In your repo, `nano infrastructure/backend.tf`:
+
+```hcl
+terraform {
+  cloud {
+    organization = "TechOps-TeamX"
+
+    workspaces {
+      name = "capstone-infra"
+    }
+  }
+}
+```
+2. Commit & push:
+
+```bash
+git checkout -b terra-1
+git add infrastructure/backend.tf
+git commit -m "Added Terraform Cloud backend config"
+git push origin terra-1
+```
+3. Repeat the steps to create and merge pull request mentioned in [Lab 03 (Step 6.4 to 6.13)](./05_lab03.md/#step-6-commit-your-policies-to-github-repo)
+
+!!! danger "Do Not Forget Above Step"
+    **DO NOT FORGET** TO RUN THE ABOVE STEP AS WITHOUT WHICH Architect cannot do the next step
+   
+---
+
+### 5. Initialize Terraform with Remote Backend
+
+!!! tip "Role Chage: Architect"
+    Following step will be run by **Architect** on his local machine. If IAM & Architect are same then IAM can continue
+
+
+1. **Clone or update repo**
+
+   ```bash
+   # If you don't already have it locally
+   git clone git@github.com:TechOps-TeamX/techops-capstone-teamX.git
+   cd techops-capstone-teamX/infrastructure
+
+   # OR if you already cloned earlier
+   cd techops-capstone-teamX
+   git pull origin main
+   cd infrastructure
+   ```
+
+2. **Run Terraform init**
+
+   ```bash
+   terraform init
+   ```
+
+Expected output:
+Terraform downloads providers, configures backend, and shows:
+
+```
+Terraform has been successfully initialized!
+```
+
+---
+
+
+### 6. Test Run with a Null Resource
+
+1. Create a test file `infrastructure/test.tf` using nano or any editor if you are on Windows:
+
+    ```hcl
+    resource "null_resource" "hello" {
+    # this trigger forces recreation if you change the message
+    triggers = {
+        message = "Hello from Terraform Cloud at ${timestamp()}"
+    }
+
+    provisioner "local-exec" {
+        command = "echo \"${self.triggers.message}\""
+    }
+    }
+
+    output "hello_message_trigger" {
+    value = null_resource.hello.triggers.message
+    }
+    ```
+
+2. **Commit & push:**
+
+    ```bash
+    git checkout -b architect-1
+    git add infrastructure/test.tf
+    git commit -m "Terraform Cloud test run"
+    git push origin architect-1
+    ```
+3. Repeat the steps to create and merge pull request mentioned in [Lab 03 (Step 6.4 to 6.13)](./05_lab03.md/#step-6-commit-your-policies-to-github-repo)
+
+4, Go to Terraform Cloud → Workspace → **Runs** → A run should appear automatically. Output should show `Hello from Terraform Cloud!`.
+
+---
+
+## Checkpoint / Validation
+
+* Terraform Cloud organization `TechOps-TeamX` exists.
+* Workspace `capstone-infra` linked to GitHub repo.
+* Terraform service user keys added as workspace variables.
+* `terraform init` confirms remote backend.
+* Terraform Cloud run triggers on push and completes successfully.
+
+---
+
+## Troubleshooting Tips
+
+* **No run triggered** → check VCS integration between Terraform Cloud and GitHub.
+* **Invalid AWS credentials** → verify you pasted correct keys from `techops-terraform`.
+* **Backend init error** → confirm `organization` and `workspace` names match exactly.
+* **Plan fails with permission denied** → update `TechOps_TerraformPolicy` in Lab 03 with missing actions.
+
+---
+
+## Deliverables
+
+* Screenshot of Terraform Cloud workspace variables showing AWS env vars (sensitive keys hidden).
+* Screenshot of successful test run in Terraform Cloud.
+* Commit log with `backend.tf` and `test.tf`.
+
+---
+
+## Reflection Question
+
+*Why is it better to store Terraform state in Terraform Cloud (with locking & RBAC) instead of local `.tfstate` files in GitHub?*
+
+---
+
+✅ This completes **Lab 04: Terraform Cloud Setup & Workspace**.
+
+---
+

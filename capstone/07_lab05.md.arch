@@ -1,0 +1,346 @@
+# Lab 05: Networking with Terraform (VPC, Subnets, Security Groups)
+
+## Role(s) Responsible
+
+**Network Engineers**
+
+---
+
+## Objectives
+
+* Remove temporary `test.tf` used in Lab 04.
+* Create a root `main.tf` under `infrastructure/` that references the `network` module.
+* Define **global variable** for region in `infrastructure/variables.tf`.
+* Move all **network-specific variables** inside `infrastructure/network/variables.tf`.
+* Apply Terraform via Terraform Cloud to provision:
+
+    * VPC
+    * Public & private subnets
+    * Internet Gateway + NAT Gateway
+    * Route Tables + associations
+    * Security Groups (for Jenkins & App servers)
+
+---
+
+## Pre-requisites
+
+* **Lab 04: Terraform Cloud Setup & Workspace** completed.
+* Terraform Cloud workspace `capstone-infra` connected to GitHub repo.
+* AWS credentials for Terraform service user added as sensitive variables in Terraform Cloud.
+
+---
+
+## Step-by-Step Instructions
+
+### 1. Create a Terraform module for networking
+
+**Clone or update repo**
+
+```bash
+# If you don't already have it locally
+git clone git@github.com:TechOps-TeamX/techops-capstone-teamX.git
+cd techops-capstone-teamX/infrastructure
+
+# OR if you already cloned earlier
+cd techops-capstone-teamX
+git pull origin main
+cd infrastructure
+```
+
+
+### 2. Remove `test.tf`
+
+From your local repo:
+
+```bash
+cd techops-capstone-teamX/infrastructure
+git rm test.tf
+git commit -m "Remove test.tf from root module"
+```
+
+---
+
+### 3. Create Root Module
+
+In `infrastructure/main.tf`:
+
+```hcl
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = var.aws_region
+}
+
+module "network" {
+  source = "./network"
+
+  aws_region = var.aws_region
+}
+```
+
+---
+
+!!! tip "Use Nano"
+    Use `nano <path>/filename.extension` to quickly create or edit files
+
+### 4. Create Global Variables (root level)
+
+In `infrastructure/variables.tf`:
+
+```hcl
+variable "aws_region" {
+  description = "AWS region for deployment"
+  type        = string
+  default     = "ap-south-1"
+}
+```
+
+---
+
+### 5. Create Network Module Files
+
+Inside `infrastructure/network/`:
+
+**`main.tf`**
+
+```hcl
+resource "aws_vpc" "main" {
+  cidr_block           = var.vpc_cidr
+  enable_dns_hostnames = true
+  tags = { Name = "techops-vpc" }
+}
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+  tags   = { Name = "techops-igw" }
+}
+
+resource "aws_subnet" "public_a" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.public_subnet_cidr
+  availability_zone       = "${var.aws_region}a"
+  map_public_ip_on_launch = true
+  tags = { Name = "techops-public-a" }
+}
+
+resource "aws_subnet" "private_a" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = var.private_subnet_cidr
+  availability_zone = "${var.aws_region}a"
+  tags = { Name = "techops-private-a" }
+}
+
+resource "aws_eip" "nat" {
+  vpc = true
+}
+
+resource "aws_nat_gateway" "natgw" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public_a.id
+  tags          = { Name = "techops-natgw" }
+}
+
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+  tags = { Name = "techops-public-rt" }
+}
+
+resource "aws_route_table_association" "public_a" {
+  subnet_id      = aws_subnet.public_a.id
+  route_table_id = aws_route_table.public.id
+}
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.natgw.id
+  }
+  tags = { Name = "techops-private-rt" }
+}
+
+resource "aws_route_table_association" "private_a" {
+  subnet_id      = aws_subnet.private_a.id
+  route_table_id = aws_route_table.private.id
+}
+
+resource "aws_security_group" "jenkins_sg" {
+  name        = "jenkins-sg"
+  description = "Allow SSH + Jenkins UI"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Jenkins UI"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "app_sg" {
+  name        = "app-sg"
+  description = "Allow HTTP/HTTPS"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+```
+
+**`variables.tf`**
+
+```hcl
+variable "aws_region" {
+  description = "AWS region (passed from root)"
+  type        = string
+}
+
+variable "vpc_cidr" {
+  description = "CIDR for VPC"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "public_subnet_cidr" {
+  description = "CIDR for public subnet"
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+variable "private_subnet_cidr" {
+  description = "CIDR for private subnet"
+  type        = string
+  default     = "10.0.2.0/24"
+}
+```
+
+**`outputs.tf`**
+
+```hcl
+output "vpc_id" {
+  value = aws_vpc.main.id
+}
+
+output "public_subnet_id" {
+  value = aws_subnet.public_a.id
+}
+
+output "private_subnet_id" {
+  value = aws_subnet.private_a.id
+}
+
+output "jenkins_sg_id" {
+  value = aws_security_group.jenkins_sg.id
+}
+
+output "app_sg_id" {
+  value = aws_security_group.app_sg.id
+}
+```
+
+---
+
+### 6. Commit & push
+
+```bash
+git checkout -b network-2
+git add infrastructure/main.tf infrastructure/variables.tf infrastructure/network/*
+git commit -m "Network module with VPC, subnets, SGs; referenced from root"
+git push origin network-2
+```
+
+Terraform Cloud will trigger a run.
+
+---
+
+### 7. Create & Merge Pull Requst
+
+Repeat the steps to create and merge pull request mentioned in [Lab 03 (Step 6.4 to 6.13)](./05_lab03.md/#step-6-commit-your-policies-to-github-repo)
+
+### 8. Apply in Terraform Cloud
+
+* Go to Workspace → Runs.
+* Review the Plan (should show VPC, Subnets, SGs).
+* Confirm & Apply.
+
+---
+
+## Checkpoint / Validation
+
+* In AWS Console → VPC → confirm VPC, subnets, IGW, NAT exist.
+* In AWS Console → EC2 → Security Groups: verify `jenkins-sg` and `app-sg`.
+* Run:
+
+  ```bash
+  aws ec2 describe-vpcs --query "Vpcs[].VpcId"
+  aws ec2 describe-subnets --query "Subnets[].SubnetId"
+  ```
+
+  IDs should match Terraform outputs.
+
+---
+
+## Deliverables
+
+* `infrastructure/main.tf` (root module calling network).
+* `infrastructure/variables.tf` (region variable).
+* `infrastructure/network/*` with main/variables/outputs.
+* Screenshot of AWS Console showing VPC + subnets + SGs.
+* Screenshot of successful run in Terraform Cloud.
+
+---
+
+## Reflection Question
+
+*Why do we keep global variables like `aws_region` in the root module, while each submodule (network, Jenkins, monitoring) keeps its own variables inside its folder?*
+
+---
+
+✅ **Lab 05** is completed
+
+---
